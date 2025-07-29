@@ -810,6 +810,46 @@ function showSlides() {
   enableHoverSkillAnimation("softskills-trigger");
 </script>
 
+<!-- Message to the Audience -->
+
+<section id="sw-portfolio-section" style="width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; background-color: #fff; color: #000; font-family: 'Segoe UI', sans-serif; padding: 2rem;">
+  <style>
+    #sw-portfolio-section .type-container {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      border-left: 3px solid #000;
+      padding-left: 1rem;
+      white-space: pre-wrap;
+      min-height: 150px;
+    }
+  </style>
+
+  <div class="type-container" id="autoText"></div>
+
+  <script>
+    const typeTarget = document.getElementById("autoText");
+    const message = "Welcome to the SW Portfolio page. This isn't a formal site. It's just a bulletin board to put out different concepts and designs. This allows the audience to see a range of styles and capabilities. But honestly..................... there's nothing that can't be done here!";
+    let interval;
+
+    function autoType() {
+      clearInterval(interval);
+      typeTarget.textContent = "";
+      let index = 0;
+      interval = setInterval(() => {
+        if (index < message.length) {
+          typeTarget.textContent += message.charAt(index);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 45);
+    }
+
+    document.getElementById("sw-portfolio-section").addEventListener("mouseenter", autoType);
+  </script>
+</section>
 
 <!-- Think Bigger Webpage AD -->
 
