@@ -1,4 +1,3 @@
-<!-- Font Awesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -810,6 +809,96 @@ function showSlides() {
   enableHoverSkillAnimation("skills-trigger");
   enableHoverSkillAnimation("softskills-trigger");
 </script>
+
+
+<!-- Think Bigger Webpage AD -->
+
+<section id="think-bigger-section" style="width: 100%; height: 100%; background-color: black; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;">
+  <style>
+    #think-bigger-section header {
+      text-align: center;
+      padding: 3rem 1rem 1.5rem;
+      font-size: 6.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 0 #444, -1px -1px 0 #888;
+      letter-spacing: 2px;
+      perspective: 500px;
+    }
+
+    #think-bigger-section header span {
+      display: inline-block;
+      transform: rotateX(15deg) rotateY(-10deg);
+    }
+
+    #think-bigger-section .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #think-bigger-section .product-image {
+      max-width: 800px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    #think-bigger-section .product-description {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 1rem;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    #think-bigger-section .banner:hover .product-description {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #think-bigger-section .product-image:hover {
+      transform: scale(1.03);
+    }
+  </style>
+
+  <header><span>Think Bigger</span></header>
+
+  <div class="banner">
+    <img class="product-image" src="https://dlcdnwebimgs.asus.com/files/media/cf9d4ac3-7540-4386-a70a-abcc28e23c2b/v1/features/images/large/1x/kv.jpg" alt="Product Image">
+    <div class="product-description">
+      <h2>ZT Book Pro XL</h2>
+      <p>
+        Experience dual-screen productivity with cutting-edge design. Powered by Intel Core and NVIDIA graphics, this laptop redefines creative performance.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const title = document.querySelector("#think-bigger-section header span");
+
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * -30;
+      title.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+    });
+
+    document.addEventListener("mouseleave", () => {
+      title.style.transform = "rotateX(15deg) rotateY(-10deg)";
+    });
+  </script>
+</section>
 
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
