@@ -433,6 +433,7 @@
 </style>
 
 <!-- SLIDESHOW BULLETIN BOARD -->
+
 <div id="slideshow-board" style="margin-top: 50px;">
   <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
   <div class="slideshow-container">
@@ -460,8 +461,8 @@
 
 <style>
 .slideshow-container {
-  max-width: 1200px;
-  height: 200px;
+  max-width: 2000px;
+  height: 300px;
   position: relative;
   margin: 30px auto;
   border: 2px solid #ffffff;
@@ -564,17 +565,7 @@ function showSlides() {
   </a>
 </div>
 
-<!-- CONTACT FORM -->
-<div class="contact-wrapper">
-  <h2>Contact SW Marketing</h2>
-  <form class="contact-form" action="mailto:swmarketingfirm@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your Name" required>
-    <input type="email" name="Email" placeholder="Your Email" required>
-    <input type="tel" name="Phone" placeholder="Your Phone Number" required>
-    <textarea name="Message" placeholder="Your Message..." required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</div>
+
 
 <!-- TECHNICAL SKILLS SECTION -->
 <div class="skills-section" id="skills-trigger">
@@ -769,79 +760,70 @@ function showSlides() {
   </div>
 </div>
 
-<!-- SLIDE-IN RECTANGLE UNDER SOFT SKILLS -->
+<script>
+  function enableHoverSkillAnimation(sectionId) {
+    const section = document.getElementById(sectionId);
+    const skills = section.querySelectorAll(".skill");
 
-  <h2>CRM Daily App Preview (currently in development)</h2>
+    section.addEventListener("mouseenter", () => {
+      skills.forEach(skill => {
+        const fill = skill.querySelector(".fill");
+        const percent = skill.querySelector(".percent");
 
-<div class="slide-hover-zone">
-  <div class="slide-box-under" id="greenBoxUnder"></div>
+        // Reset first
+        fill.style.width = "0%";
+        percent.innerText = "0%";
+
+        const targetWidth = fill.dataset.width;
+        const target = parseInt(percent.dataset.target);
+
+        setTimeout(() => {
+          // Animate fill
+          fill.style.width = targetWidth;
+
+          // Animate counter
+          let count = 0;
+          const updateCount = () => {
+            if (count <= target) {
+              percent.innerText = count + "%";
+              count++;
+              setTimeout(updateCount, 20);
+            }
+          };
+          updateCount();
+        }, 100); // Slight delay ensures the reset is visible
+      });
+    });
+
+    section.addEventListener("mouseleave", () => {
+      skills.forEach(skill => {
+        const fill = skill.querySelector(".fill");
+        const percent = skill.querySelector(".percent");
+
+        // Reset everything
+        fill.style.width = "0%";
+        percent.innerText = "0%";
+      });
+    });
+  }
+
+  enableHoverSkillAnimation("skills-trigger");
+  enableHoverSkillAnimation("softskills-trigger");
+</script>
+
+<!-- CONTACT FORM -->
+<div class="contact-wrapper">
+  <h2>Contact SW Marketing</h2>
+  <form class="contact-form" action="mailto:swmarketingfirm@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+    <textarea name="Message" placeholder="Your Message..." required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
 </div>
 
-<style>
-  .slide-hover-zone {
-    position: relative;
-    height: 120px;
-    margin-top: 40px;
-    overflow: visible;
-  }
 
-  .slide-box-under {
-    position: absolute;
-    top: 0;
-    left: -220px;
-    width: 800px;
-    height: 200px;
-    background-color: #145214;
-    transition: left 0.6s ease;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
-    z-index: 10;
-  }
-
-  .slide-hover-zone:hover .slide-box-under {
-    left: 0;
-  }
-</style>
-
-<script>
-  document.getElementById('softskills-trigger').addEventListener('mouseenter', () => {
-    const skills = document.querySelectorAll("#softskills-trigger .skill");
-    const fills = document.querySelectorAll("#softskills-trigger .fill");
-    const counters = document.querySelectorAll("#softskills-trigger .percent");
-
-    skills.forEach((skill, index) => {
-      skill.classList.add("active");
-
-      const fill = fills[index];
-      const counter = counters[index];
-      const targetWidth = fill.getAttribute("data-width");
-      fill.style.width = targetWidth;
-
-      const target = +counter.getAttribute("data-target");
-      let count = 0;
-      counter.innerText = "0%";
-
-      const updateCount = () => {
-        const speed = 20;
-        if (count < target) {
-          count++;
-          counter.innerText = count + "%";
-          setTimeout(updateCount, speed);
-        } else {
-          counter.innerText = target + "%";
-        }
-      };
-
-      updateCount();
-    });
-  });
-
-  document.getElementById('softskills-trigger').addEventListener('mouseleave', () => {
-    document.querySelectorAll("#softskills-trigger .skill").forEach(skill => skill.classList.remove("active"));
-    document.querySelectorAll("#softskills-trigger .fill").forEach(fill => fill.style.width = "0");
-    document.querySelectorAll("#softskills-trigger .percent").forEach(percent => percent.innerText = "0%");
-  });
-</script>
 
 <style>
 
@@ -952,8 +934,7 @@ header,
   </a>
 </h1>
     
-            </a>
-          </h1>
+            
         </div>
         <p></p>
       </div>
@@ -997,18 +978,3 @@ header,
 .blog-name.container a:hover {
   color: #ccc;
 }
-
-/* PREVENT CONTENT FROM BEING HIDDEN UNDER HEADER */
-#main {
-  padding-top: 100px; /* Adjust to match header height */
-}
-
-<!-- IMAGE DISPLAYED TO THE RIGHT OF SOFT SKILLS -->
-<div class="skills-image-wrapper">
-  <div class="skills-left">
-    <!-- This space is intentionally left for the soft skills list (already present) -->
-  </div>
-  <div class="skills-right">
-    <img src="https://via.placeholder.com/200x400?text=Calendar+Image" alt="Calendar Image" />
-  </div>
-</div>
