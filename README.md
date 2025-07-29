@@ -900,6 +900,123 @@ function showSlides() {
   </script>
 </section>
 
+<!-- Ashton Villas Webpage Ad -->
+
+<section id="ashton-villas-section" style="font-family: 'Georgia', serif; overflow-x: hidden; position: relative;">
+  <style>
+    #ashton-villas-section {
+      background: url('https://stb2.cdn.imgeng.in/assets/uploads/News/villa%20storica%20di%20lusso%20a%20firenze.png') no-repeat center center fixed;
+      background-size: cover;
+      color: black;
+    }
+
+    #ashton-villas-section nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #ashton-villas-section .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    #ashton-villas-section .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    #ashton-villas-section .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    #ashton-villas-section .nav-links a:hover {
+      color: #555;
+    }
+
+    #ashton-villas-section .header-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    #ashton-villas-section .luxury-header {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      opacity: 0;
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+
+    #ashton-villas-section .header-container:hover .luxury-header {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    #ashton-villas-section .rental-list {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      background-color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #ashton-villas-section .rental-types {
+      animation: scrollUp 10s linear infinite;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+  </style>
+
+  <nav>
+    <div class="logo">Ashton Villas</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Properties</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <div class="header-container">
+    <div class="luxury-header">Let Your Environment Match Your Mindset</div>
+  </div>
+
+  <div class="rental-list">
+    <div class="rental-types">
+      <div>Condos</div>
+      <div>Villas</div>
+      <div>Mobile Homes</div>
+      <div>Mansions</div>
+      <div>Apartment Complexes</div>
+      <div>Duplexes</div>
+      <div>Traditional Homes</div>
+      <div>Available Now!</div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
