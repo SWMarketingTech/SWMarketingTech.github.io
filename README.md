@@ -1138,7 +1138,7 @@ function showSlides() {
   </form>
 </div>
 
-<!-- three.js and GLTFLoader from CDN -->
+<!-- Load Three.js and GLTFLoader -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
 
@@ -1165,7 +1165,7 @@ function showSlides() {
 <script>
   const container = document.getElementById('watermark-3d');
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setClearColor(0x000000, 0);
+  renderer.setClearColor(0x000000, 0); // Transparent background
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
@@ -1173,9 +1173,9 @@ function showSlides() {
   const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
   camera.position.set(0, 0, 3);
 
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(5, 10, 7.5);
-  scene.add(light);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight.position.set(5, 10, 7.5);
+  scene.add(directionalLight);
   scene.add(new THREE.AmbientLight(0xffffff, 0.7));
 
   const loader = new THREE.GLTFLoader();
@@ -1185,11 +1185,12 @@ function showSlides() {
     'https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%203D%20Logo.glb',
     function (gltf) {
       model = gltf.scene;
+      model.scale.set(1, 1, 1); // Adjust as needed
       scene.add(model);
     },
     undefined,
     function (error) {
-      console.error('Error loading GLB:', error);
+      console.error('GLB load error:', error);
     }
   );
 
