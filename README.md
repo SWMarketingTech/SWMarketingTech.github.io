@@ -1057,6 +1057,58 @@ function showSlides() {
   </div>
 </section>
 
+<!-- CRM APP UPDATE -->
+<section id="crm-logo-type" style="width: 100%; background-color: #fff; color: #000; font-family: 'Segoe UI', sans-serif; padding: 1rem;">
+  <style>
+    #crm-logo-type .header-line {
+      font-size: 20px;
+      font-weight: normal;
+      letter-spacing: 0.8px;
+      min-height: 2.5em;
+      white-space: pre;
+      text-align: left; /* Align header text to the left */
+    }
+
+    #crm-logo-type p {
+      font-size: 18px;
+      margin-top: 0.75rem;
+      text-align: left;
+      line-height: 1.5;
+    }
+  </style>
+
+  <div>
+    <div class="header-line">
+      CRM APP <span id="logoType"></span>
+    </div>
+    <p>
+      This is the CRM app currently in development. What SW is trying to encapsulate with this app isn’t anything that hasn’t necessarily been seen before. More so, SW is trying to create the greatest version of a business commodity that has become a necessity. An end to common bugs, convenient interfaces, modern nostalgic designs, and helpful configurations. The production of this said app is at display for the audience's discretion.
+    </p>
+  </div>
+
+  <script>
+    const logoTarget = document.getElementById("logoType");
+    const logoText = " [Input Logo Here]";
+    let logoInterval;
+
+    function typeLogo() {
+      clearInterval(logoInterval);
+      logoTarget.textContent = "";
+      let i = 0;
+      logoInterval = setInterval(() => {
+        if (i < logoText.length) {
+          logoTarget.textContent += logoText.charAt(i);
+          i++;
+        } else {
+          clearInterval(logoInterval);
+        }
+      }, 50);
+    }
+
+    document.getElementById("crm-logo-type").addEventListener("mouseenter", typeLogo);
+  </script>
+</section>
+
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
