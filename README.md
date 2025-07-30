@@ -1138,7 +1138,7 @@ function showSlides() {
   </form>
 </div>
 
-<!-- Load Three.js and GLTFLoader -->
+<!-- Script includes -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
 
@@ -1155,6 +1155,7 @@ function showSlides() {
   }
 
   #watermark-3d canvas {
+    display: block;
     width: 100% !important;
     height: 100% !important;
   }
@@ -1165,18 +1166,18 @@ function showSlides() {
 <script>
   const container = document.getElementById('watermark-3d');
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setClearColor(0x000000, 0); // Transparent background
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setClearColor(0x000000, 0);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(0, 0, 3);
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-  directionalLight.position.set(5, 10, 7.5);
-  scene.add(directionalLight);
   scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(5, 10, 7.5);
+  scene.add(light);
 
   const loader = new THREE.GLTFLoader();
   let model;
@@ -1185,24 +1186,21 @@ function showSlides() {
     'https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%203D%20Logo.glb',
     function (gltf) {
       model = gltf.scene;
-      model.scale.set(1, 1, 1); // Adjust as needed
+      model.scale.set(1, 1, 1);
       scene.add(model);
+      animate(); // Start animation only after model loads
     },
     undefined,
     function (error) {
-      console.error('GLB load error:', error);
+      console.error('Error loading GLB:', error);
     }
   );
 
   function animate() {
     requestAnimationFrame(animate);
-    if (model) {
-      model.rotation.y += 0.01;
-    }
+    if (model) model.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
-
-  animate();
 </script>
   
 /* FULL TRANSPARENCY STYLES FOR MAIN PAGE AREA */
