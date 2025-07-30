@@ -1167,11 +1167,16 @@ function showSlides() {
   const container = document.getElementById('watermark-3d');
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setClearColor(0x000000, 0);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
   camera.position.set(0, 0, 3);
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.7));
@@ -1187,8 +1192,11 @@ function showSlides() {
     function (gltf) {
       model = gltf.scene;
       model.scale.set(1, 1, 1);
+      model.position.set(0, 0, 0);
+      model.rotation.x = Math.PI / 8;
+      model.rotation.y = Math.PI / 4;
       scene.add(model);
-      animate(); // Start animation only after model loads
+      animate();
     },
     undefined,
     function (error) {
@@ -1202,6 +1210,7 @@ function showSlides() {
     renderer.render(scene, camera);
   }
 </script>
+
   
 /* FULL TRANSPARENCY STYLES FOR MAIN PAGE AREA */
 #main,
