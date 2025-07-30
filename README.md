@@ -1141,66 +1141,67 @@ function showSlides() {
 <!-- three.js and GLTFLoader from CDN -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+
 <style>
-#watermark-3d {
-  position: fixed;
-  right: 20px;      /* bottom right corner */
-  bottom: 20px;
-  width: 180px;     /* adjust size as needed */
-  height: 180px;
-  z-index: 9999;
-  pointer-events: none; /* so it doesn't block clicks */
-  background: transparent;
-}
+  #watermark-3d {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 180px;
+    height: 180px;
+    z-index: 9999;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  #watermark-3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
 </style>
+
 <div id="watermark-3d"></div>
-<style>
 
 <script>
-// Set up renderer
-const container = document.getElementById('watermark-3d');
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setClearColor(0x000000, 0); // transparent background
-renderer.setSize(container.clientWidth, container.clientHeight);
-container.appendChild(renderer.domElement);
+  const container = document.getElementById('watermark-3d');
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setClearColor(0x000000, 0);
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
 
-// Set up camera and scene
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 1000);
-camera.position.set(0, 0, 3); // Adjust as needed
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(0, 0, 3);
 
-// Add light
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(5, 10, 7.5);
-scene.add(light);
-scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(5, 10, 7.5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
 
-// Load GLB model
-const loader = new THREE.GLTFLoader();
-let model;
-loader.load(
-  'https://github.com/SWMarketingTech/SWFiles/raw/main/SW%203D%20Logo.glb',
-  function(gltf) {
-    model = gltf.scene;
-    scene.add(model);
-  },
-  undefined,
-  function(error) {
-    console.error('Error loading GLB:', error);
-  }
-);
+  const loader = new THREE.GLTFLoader();
+  let model;
 
-// Animation loop
-function animate() {
-  requestAnimationFrame(animate);
+  loader.load(
+    'https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%203D%20Logo.glb',
+    function (gltf) {
+      model = gltf.scene;
+      scene.add(model);
+    },
+    undefined,
+    function (error) {
+      console.error('Error loading GLB:', error);
+    }
+  );
 
-  if (model) {
-    model.rotation.y += 0.01; // Spin 360°
+  function animate() {
+    requestAnimationFrame(animate);
+    if (model) {
+      model.rotation.y += 0.01;
+    }
+    renderer.render(scene, camera);
   }
 
-  renderer.render(scene, camera);
-}
-animate();
+  animate();
 </script>
   
 /* FULL TRANSPARENCY STYLES FOR MAIN PAGE AREA */
