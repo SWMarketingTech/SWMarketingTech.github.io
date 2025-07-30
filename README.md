@@ -1066,7 +1066,7 @@ function showSlides() {
       letter-spacing: 0.8px;
       min-height: 2.5em;
       white-space: pre;
-      text-align: left; /* Align header text to the left */
+      text-align: left;
     }
 
     #crm-logo-type p {
@@ -1074,6 +1074,22 @@ function showSlides() {
       margin-top: 0.75rem;
       text-align: left;
       line-height: 1.5;
+    }
+
+    #crm-logo-type a.button-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 16px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    #crm-logo-type a.button-link:hover {
+      background-color: #333;
     }
   </style>
 
@@ -1084,6 +1100,7 @@ function showSlides() {
     <p>
       This is the CRM app currently in development. What SW is trying to encapsulate with this app isn’t anything that hasn’t necessarily been seen before. More so, SW is trying to create the greatest version of a business commodity that has become a necessity. An end to common bugs, convenient interfaces, modern nostalgic designs, and helpful configurations. The production of this said app is at display for the audience's discretion.
     </p>
+    <a href="https://github.com/SWMarketingTech/SWFiles" class="button-link" target="_blank">More Info</a>
   </div>
 
   <script>
@@ -1107,7 +1124,7 @@ function showSlides() {
 
     document.getElementById("crm-logo-type").addEventListener("mouseenter", typeLogo);
   </script>
-</section>
+</section>>
 
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
