@@ -1187,22 +1187,82 @@ function showSlides() {
   const loader = new THREE.GLTFLoader();
   let model;
 
-  loader.load(
-    'https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%203D%20Logo.glb',
-    function (gltf) {
-      model = gltf.scene;
-      model.scale.set(1, 1, 1);
-      model.position.set(0, 0, 0);
-      model.rotation.x = Math.PI / 8;
-      model.rotation.y = Math.PI / 4;
-      scene.add(model);
-      animate();
-    },
-    undefined,
-    function (error) {
-      console.error('Error loading GLB:', error);
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Watermark Test</title>
+  <style>
+    #watermark-3d {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 180px;
+      height: 180px;
+      z-index: 9999;
+      pointer-events: none;
+      background: transparent;
     }
-  );
+
+    #watermark-3d canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="watermark-3d"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+  <script>
+    const container = document.getElementById('watermark-3d');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0); // transparent
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 3);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambientLight);
+
+    const loader = new THREE.GLTFLoader();
+    let model;
+
+    loader.load(
+  'https://dainty-selkie-99811a.netlify.app/sw-logo.glb',
+  function (gltf) {
+    model = gltf.scene;
+    model.scale.set(1, 1, 1);
+    model.rotation.x = Math.PI / 8;
+    model.rotation.y = Math.PI / 4;
+    scene.add(model);
+    animate();
+  },
+  undefined,
+  function (error) {
+    console.error('Error loading model:', error);
+  }
+);
+
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (model) model.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+  </script>
+</body>
+</html>
+
 
   function animate() {
     requestAnimationFrame(animate);
