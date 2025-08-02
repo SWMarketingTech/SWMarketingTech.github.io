@@ -1186,6 +1186,64 @@
   </script>
 </section>>
 
+<!-- CRM APP Pictures -->
+<section class="crm-visuals">
+  <div class="image-container">
+    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%201.png" alt="CRM Visual 1" />
+    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%201a.png" alt="CRM Visual 2" />
+    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%202.png" alt="CRM Visual 3" />
+  </div>
+</section>
+
+<style>
+  .crm-visuals {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .image-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .image-container img {
+    width: 230px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+  }
+
+  .image-container img:nth-child(1) {
+    animation-delay: 0.5s;
+  }
+
+  .image-container img:nth-child(2) {
+    animation-delay: 1.5s;
+  }
+
+  .image-container img:nth-child(3) {
+    animation-delay: 2.5s;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .image-container img {
+      width: 160px;
+    }
+  }
+</style>
+
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
