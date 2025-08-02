@@ -432,17 +432,18 @@
 </style>
 
 <!-- SLIDESHOW BULLETIN BOARD -->
-
 <div id="slideshow-board" style="margin-top: 50px;">
   <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
   <div class="slideshow-container">
 
-  <div class="mySlides fade" style="background-color: white;">
-  <div id="typewriter-slide">
-    <div id="typewriter"></div>
-  </div>
-</div>
+    <!-- FIRST SLIDE WITH TYPEWRITER EFFECT -->
+    <div class="mySlides fade" style="background-color: white;">
+      <div id="typewriter-slide">
+        <div id="typewriter"></div>
+      </div>
+    </div>
 
+    <!-- OTHER BULLETIN SLIDES -->
     <div class="mySlides fade">
       <div class="slide-text">🎉 New AI Video Generator Project Coming Soon!</div>
     </div>
@@ -458,113 +459,88 @@
   </div>
 
   <div style="text-align:center; margin-top: 10px;">
-    <span class="dot"></span> 
-    <span class="dot"></span> 
-    <span class="dot"></span> 
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 </div>
 
 <style>
-.slideshow-container {
-  max-width: 2000px;
-  height: 300px;
-  position: relative;
-  margin: 30px auto;
-  border: 2px solid #ffffff;
-  border-radius: 12px;
-  background-color: #1b4e1b;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
+  .slideshow-container {
+    max-width: 2000px;
+    height: 300px;
+    position: relative;
+    margin: 30px auto;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    background-color: #1b4e1b;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  }
 
-.mySlides {
-  display: none;
-  text-align: center;
-}
+  .mySlides {
+    display: none;
+    text-align: center;
+    height: 100%;
+  }
 
-.slide-text {
-  font-size: 1.2rem;
-  padding: 20px;
-  color: #fffacd;
-  font-weight: 600;
-  text-shadow: 2px 2px 4px #000;
-}
+  .slide-text {
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #fffacd;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px #000;
+  }
 
-.fade {
-  animation: fadeEffect 1.5s;
-}
+  #typewriter-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 
-@keyframes fadeEffect {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
+  #typewriter {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid black;
+    animation: blinkCaret 0.75s step-end infinite;
+    color: black;
+  }
 
-.dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.4s ease;
-}
+  @keyframes blinkCaret {
+    50% { border-color: transparent; }
+  }
 
-.active {
-  background-color: #fffacd;
-}
-#typewriter-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+  .fade {
+    animation: fadeEffect 1.5s;
+  }
 
-#typewriter {
-  font-family: 'Arial Black', sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: .15em solid black;
-  animation: blinkCaret 0.75s step-end infinite;
-  color: black;
-}
+  @keyframes fadeEffect {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
 
-@keyframes blinkCaret {
-  50% { border-color: transparent; }
-}
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.4s ease;
+  }
+
+  .active {
+    background-color: #fffacd;
+  }
 </style>
 
 <script>
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let slideIndex = 0;
-function showSlides() {
-  const slides = document.getElementsByClassName("mySlides");
-  const dots = document.getElementsByClassName("dot");
-
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-
-  slideIndex++;
-  if (slideIndex > slides.length) { slideIndex = 1 }
-
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-
-  const delay = (slideIndex === 1) ? 15000 : 5000;
-  setTimeout(showSlides, delay);
-}
-</script>
-
-<script>
+  // TYPEWRITER LOGIC
   const messages = ["The CRM APP", "making work.......", "work."];
   const element = document.getElementById("typewriter");
   let messageIndex = 0;
@@ -591,7 +567,34 @@ function showSlides() {
   }
 
   type();
-</script>       
+
+  // SLIDESHOW LOGIC
+  let slideIndex = 0;
+  function showSlides() {
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+
+    const delay = (slideIndex === 1) ? 15000 : 5000; // First slide: 15s, rest: 5s
+    setTimeout(showSlides, delay);
+  }
+
+  showSlides();
+</script>
+
 <!-- PORTFOLIO THUMBNAILS -->
 <div class="portfolio-container">
  
