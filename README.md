@@ -564,7 +564,34 @@ function showSlides() {
 }
 </script>
 
-       
+<script>
+  const messages = ["The CRM APP", "making work.......", "work."];
+  const element = document.getElementById("typewriter");
+  let messageIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentMessage = messages[messageIndex];
+    if (!isDeleting) {
+      element.textContent = currentMessage.slice(0, ++charIndex);
+      if (charIndex === currentMessage.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+        return;
+      }
+    } else {
+      element.textContent = currentMessage.slice(0, --charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        messageIndex = (messageIndex + 1) % messages.length;
+      }
+    }
+    setTimeout(type, isDeleting ? 40 : 100);
+  }
+
+  type();
+</script>       
 <!-- PORTFOLIO THUMBNAILS -->
 <div class="portfolio-container">
  
