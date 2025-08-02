@@ -1126,6 +1126,74 @@ function showSlides() {
   </script>
 </section>>
 
+<!-- CRM APP AD 2 -->
+
+
+<section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRM Typing Animation</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: transparent;
+      font-family: 'Arial Black', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: black;
+      font-size: 2rem;
+    }
+
+    #typewriter {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid black;
+      animation: blinkCaret 0.75s step-end infinite;
+    }
+
+    @keyframes blinkCaret {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div id="typewriter"></div>
+
+  <script>
+    const messages = ["The CRM APP", "making work.......", "work."];
+    const element = document.getElementById("typewriter");
+    let messageIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentMessage = messages[messageIndex];
+      if (!isDeleting) {
+        element.textContent = currentMessage.slice(0, ++charIndex);
+        if (charIndex === currentMessage.length) {
+          isDeleting = true;
+          setTimeout(type, 1500); // Pause before deleting
+          return;
+        }
+      } else {
+        element.textContent = currentMessage.slice(0, --charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          messageIndex = (messageIndex + 1) % messages.length;
+        }
+      }
+      setTimeout(type, isDeleting ? 40 : 100); // Typing and deleting speed
+    }
+
+    type();
+  </script>
+</body>
+</section>
+
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
