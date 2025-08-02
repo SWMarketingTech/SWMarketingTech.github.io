@@ -437,6 +437,12 @@
   <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
   <div class="slideshow-container">
 
+  <div class="mySlides fade" style="background-color: white;">
+  <div id="typewriter-slide">
+    <div id="typewriter"></div>
+  </div>
+</div>
+
     <div class="mySlides fade">
       <div class="slide-text">🎉 New AI Video Generator Project Coming Soon!</div>
     </div>
@@ -506,13 +512,35 @@
 .active {
   background-color: #fffacd;
 }
+#typewriter-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
+#typewriter {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: .15em solid black;
+  animation: blinkCaret 0.75s step-end infinite;
+  color: black;
+}
+
+@keyframes blinkCaret {
+  50% { border-color: transparent; }
+}
 </style>
 
 <script>
 let slideIndex = 0;
 showSlides();
 
+function showSlides() {
+  let slideIndex = 0;
 function showSlides() {
   const slides = document.getElementsByClassName("mySlides");
   const dots = document.getElementsByClassName("dot");
@@ -522,7 +550,7 @@ function showSlides() {
   }
 
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
+  if (slideIndex > slides.length) { slideIndex = 1 }
 
   for (let i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
@@ -530,7 +558,9 @@ function showSlides() {
 
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
-  setTimeout(showSlides, 5000); // Change slide every 5 seconds
+
+  const delay = (slideIndex === 1) ? 15000 : 5000;
+  setTimeout(showSlides, delay);
 }
 </script>
 
