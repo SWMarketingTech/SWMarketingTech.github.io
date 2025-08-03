@@ -1279,59 +1279,20 @@
   }
 </style>
 
+<script>
 <div id="watermark-3d"></div>
 
 <div id="watermark-3d" style="position: fixed; bottom: 0; right: 0; width: 300px; height: 300px; z-index: 999;"></div>
 
-<script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-  import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+<!-- Spline 3D Watermark -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
 
-  const container = document.getElementById('watermark-3d');
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  container.appendChild(renderer.domElement);
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0, 3);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(5, 10, 7.5);
-  scene.add(light);
-
-  const loader = new GLTFLoader();
-  let model;
-
-  loader.load(
-    'https://dainty-selkie-99811a.netlify.app/sw-logo.glb',
-    function (gltf) {
-      model = gltf.scene;
-      model.scale.set(1, 1, 1);
-      model.rotation.x = Math.PI / 8;
-      model.rotation.y = Math.PI / 4;
-      scene.add(model);
-      animate();
-    },
-    undefined,
-    function (error) {
-      console.error('Error loading .glb:', error);
-    }
-  );
-
-  function animate() {
-    requestAnimationFrame(animate);
-    if (model) model.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  }
-
-  window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-  });
+<div style="position: fixed; bottom: 0; right: 0; width: 200px; height: 200px; z-index: 999; pointer-events: none;">
+  <spline-viewer
+    url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"
+    style="width: 100%; height: 100%;"
+  ></spline-viewer>
+</div>
 </script>
 
 
