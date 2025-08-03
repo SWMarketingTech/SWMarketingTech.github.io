@@ -1300,19 +1300,23 @@
   const loader = new THREE.GLTFLoader();
   let model;
 
-  loader.load(
-    'https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%203D%20Logo.glb',
-    function (gltf) {
-      model = gltf.scene;
-      model.scale.set(1, 1, 1);
-      scene.add(model);
-      animate(); // Start animation only after model loads
-    },
-    undefined,
-    function (error) {
-      console.error('Error loading GLB:', error);
-    }
-  );
+const loader = new GLTFLoader();
+loader.load(
+  'https://dainty-selkie-99811a.netlify.app/sw-logo.glb',
+  function (gltf) {
+    model = gltf.scene;
+    model.scale.set(1, 1, 1);
+    model.rotation.x = Math.PI / 8;
+    model.rotation.y = Math.PI / 4;
+    scene.add(model);
+    animate();
+  },
+  undefined,
+  function (error) {
+    console.error('An error happened while loading the watermark:', error);
+  }
+);
+
 
   function animate() {
     requestAnimationFrame(animate);
