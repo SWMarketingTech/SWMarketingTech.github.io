@@ -14,7 +14,7 @@
 
   .portfolio-header {
     background-color: #145214;
-    color: white;
+    color: white
     overflow: visible;
     padding: 60px 0;
     text-align: center;
@@ -1447,6 +1447,28 @@ header,
 .blog-name.container a:hover {
   color: #ccc;
 }
+<!-- Spline Watermark -->
+<div id="watermark-container">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
+</div>
+
+<style>
+  #watermark-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    height: 200px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  #watermark-container spline-viewer {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
 
 
