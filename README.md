@@ -1256,44 +1256,29 @@
   </form>
 </div>
 
-<!-- Script includes -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+<!-- Spline Watermark -->
+<div id="watermark-container">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
+</div>
 
 <style>
-  #watermark-3d {
+  #watermark-container {
     position: fixed;
-    right: 20px;
     bottom: 20px;
-    width: 180px;
-    height: 180px;
+    right: 20px;
+    width: 200px;
+    height: 200px;
     z-index: 9999;
     pointer-events: none;
-    background: transparent;
   }
 
-  #watermark-3d canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
+  #watermark-container spline-viewer {
+    width: 100%;
+    height: 100%;
   }
 </style>
 
-<script>
-<div id="watermark-3d"></div>
-
-<div id="watermark-3d" style="position: fixed; bottom: 0; right: 0; width: 300px; height: 300px; z-index: 999;"></div>
-
-<!-- Spline 3D Watermark -->
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
-
-<div style="position: fixed; bottom: 0; right: 0; width: 200px; height: 200px; z-index: 999; pointer-events: none;">
-  <spline-viewer
-    url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"
-    style="width: 100%; height: 100%;"
-  ></spline-viewer>
-</div>
-</script>
 
 
   
@@ -1447,28 +1432,3 @@ header,
 .blog-name.container a:hover {
   color: #ccc;
 }
-<!-- Spline Watermark -->
-<div id="watermark-container">
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
-  <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
-</div>
-
-<style>
-  #watermark-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 200px;
-    height: 200px;
-    z-index: 9999;
-    pointer-events: none;
-  }
-
-  #watermark-container spline-viewer {
-    width: 100%;
-    height: 100%;
-  }
-</style>
-
-
-
