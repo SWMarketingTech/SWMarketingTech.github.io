@@ -1407,7 +1407,7 @@
 
 <!-- SW Watermark -->
 <div id="watermark-container">
-  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo%20(centered).png" alt="SW Logo" />
+  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
 </div>
 
 <style>
@@ -1415,25 +1415,19 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 240px; /* Wider box */
-    height: 120px; /* Slightly taller for balance */
+    width: 200px;
+    height: 200px;
     z-index: 9999;
     pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
   }
 
   #watermark-container img {
-    max-width: 100%; /* Fit within the box */
-    max-height: 100%;
-    opacity: 0.98;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    margin: auto; /* Ensures centering */
+    opacity: 0.5; /* Optional: make it semi-transparent */
   }
 </style>
-
 
 
   
