@@ -93,15 +93,15 @@
 
     <!-- OTHER BULLETIN SLIDES -->
     <div class="mySlides fade">
-      <div class="slide-text">🎉 New AI Video Generator Project Coming Soon!</div>
+      <div class="slide-text"> New AI Chat Bot Coming Soon! </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="slide-text">📎 Portfolio updated with financial dashboard samples</div>
+      <div class="slide-text"> Webpage portfolio located in UX?IX Designs! </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="slide-text">🧠 Tip of the Day: Simplify user journeys in data dashboards</div>
+      <div class="slide-text"> AI App in development! </div>
     </div>
 
   </div>
