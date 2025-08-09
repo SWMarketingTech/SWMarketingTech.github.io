@@ -78,10 +78,6 @@
 </div>
 
 <!-- MAIN PAGE CONTENT -->
-<div id="mainContent">
-    <h1>Welcome to the Rest of the Page</h1>
-    <p>This is where your portfolio or content will go.</p>
-</div>
 
 <script>
     const enterBtn = document.getElementById('enterBtn');
