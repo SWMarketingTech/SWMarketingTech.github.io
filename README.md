@@ -1405,7 +1405,28 @@
   </form>
 </div>
 
+ <!-- SW Watermark -->
+<div id="watermark-container">
+  <script type="module" src="(https://github.com/SWMarketingTech/SWFiles/blob/main/SW%20The%20Logo.jpg)"></script>
+  < url="https://github.com/SWMarketingTech/SWFiles/blob/main/SW%20The%20Logo.jpg"
+</div>
 
+<style>
+  #watermark-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    height: 200px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  #watermark-container spline-viewer {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
 
 
