@@ -1407,8 +1407,7 @@
 
  <!-- SW Watermark -->
 <div id="watermark-container">
-  <script type="module" src="(https://github.com/SWMarketingTech/SWFiles/blob/main/SW%20The%20Logo.jpg)"></script>
-  < url="https://github.com/SWMarketingTech/SWFiles/blob/main/SW%20The%20Logo.jpg"
+  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
 </div>
 
 <style>
@@ -1422,9 +1421,11 @@
     pointer-events: none;
   }
 
-  #watermark-container spline-viewer {
+  #watermark-container img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
+    opacity: 0.5; /* Optional: make it semi-transparent */
   }
 </style>
 
