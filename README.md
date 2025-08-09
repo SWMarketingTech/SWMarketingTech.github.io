@@ -1428,7 +1428,7 @@
     width: 250%;
     height: 200%;
     object-fit: contain;
-    opacity: 0.98; /* Optional: make it semi-transparent */
+    opacity: 0.84; /* Optional: make it semi-transparent */
   }
 </style>
 
