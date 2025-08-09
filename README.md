@@ -1416,7 +1416,7 @@
     bottom: 20px;
     right: 20px;
     width: 200px;
-    height: 50px;
+    height: 800px;
     z-index: 9999;
     pointer-events: none;
     justify-content: center;
@@ -1425,8 +1425,8 @@
   }
 
   #watermark-container img {
-    width: 100%;
-    height: 100%;
+    width: 250%;
+    height: 200%;
     object-fit: contain;
     opacity: 0.98; /* Optional: make it semi-transparent */
   }
