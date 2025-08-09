@@ -79,8 +79,199 @@
 
 <!-- MAIN PAGE CONTENT -->
 <div id="mainContent">
-    <h1>Welcome to the Rest of the Page</h1>
-    <p>This is where your portfolio or content will go.</p>
+    <!-- SLIDESHOW BULLETIN BOARD -->
+<div id="slideshow-board" style="margin-top: 50px;">
+  <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
+  <div class="slideshow-container">
+
+    <!-- FIRST SLIDE WITH TYPEWRITER EFFECT -->
+    <div class="mySlides fade" style="background-color: white;">
+      <div id="typewriter-slide">
+        <div id="typewriter"></div>
+      </div>
+    </div>
+
+    <!-- OTHER BULLETIN SLIDES -->
+    <div class="mySlides fade">
+      <div class="slide-text">🎉 New AI Video Generator Project Coming Soon!</div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="slide-text">📎 Portfolio updated with financial dashboard samples</div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="slide-text">🧠 Tip of the Day: Simplify user journeys in data dashboards</div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin-top: 10px;">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<style>
+  .slideshow-container {
+    max-width: 2000px;
+    height: 300px;
+    position: relative;
+    margin: 30px auto;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    background-color: #1b4e1b;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  }
+
+  .mySlides {
+    display: none;
+    text-align: center;
+    height: 100%;
+  }
+
+  .slide-text {
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #fffacd;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px #000;
+  }
+
+  #typewriter-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  #typewriter {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid black;
+    animation: blinkCaret 0.75s step-end infinite;
+    color: black;
+  }
+
+  @keyframes blinkCaret {
+    50% { border-color: transparent; }
+  }
+
+  .fade {
+    animation: fadeEffect 1.5s;
+  }
+
+  @keyframes fadeEffect {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.4s ease;
+  }
+
+  .active {
+    background-color: #fffacd;
+  }
+</style>
+
+<script>
+  // TYPEWRITER LOGIC
+  const messages = ["The CRM APP", "making work.......", "work."];
+  const element = document.getElementById("typewriter");
+  let messageIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentMessage = messages[messageIndex];
+    if (!isDeleting) {
+      element.textContent = currentMessage.slice(0, ++charIndex);
+      if (charIndex === currentMessage.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+        return;
+      }
+    } else {
+      element.textContent = currentMessage.slice(0, --charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        messageIndex = (messageIndex + 1) % messages.length;
+      }
+    }
+    setTimeout(type, isDeleting ? 40 : 100);
+  }
+
+  type();
+
+  // SLIDESHOW LOGIC
+  let slideIndex = 0;
+  function showSlides() {
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+
+    const delay = (slideIndex === 1) ? 15000 : 5000; // First slide: 15s, rest: 5s
+    setTimeout(showSlides, delay);
+  }
+
+  showSlides();
+</script>
+
+<!-- PORTFOLIO THUMBNAILS -->
+<div class="portfolio-container">
+ 
+  <a class="thumbnail" href="https://swmarketingfirm.blogspot.com/p/choose-one-body-margin-0-font-family.html" target="_blank">
+    <div class="icon"><i class="fas fa-file alt"></i></div>
+    <div class="label">UX/IX Designs</div>
+  </a>
+  <a class="thumbnail" href="https://github.com/SWMarketingTech/SWFiles/tree/main" target="_blank">
+    <div class="icon"><i class="fas fa-code"></i></div>
+    <div class="label">Software Development</div>
+  </a>
+  <a class="thumbnail" href="https://www.dropbox.com/home/Sample%20Writings" target="_blank">
+    <div class="icon"><i class="fas fa-pen-nib"></i></div>
+    <div class="label">Professional Writings</div>
+  </a>
+  <a class="thumbnail" href="https://www.dropbox.com/home/Financial%20Work" target="_blank">
+    <div class="icon"><i class="fas fa-chart-line"></i></div>
+    <div class="label">Financial Projects</div>
+  </a>
+  <a class="thumbnail" href="https://www.dropbox.com/home/Data%20Analytics" target="_blank">
+    <div class="icon"><i class="fas fa-database"></i></div>
+    <div class="label">Data Analytics</div>
+  </a>
+  <a class="thumbnail" href="https://www.dropbox.com/home/Business%20Presentations" target="_blank">
+    <div class="icon"><i class="fas fa-chalkboard"></i></div>
+    <div class="label">Presentations</div>
+  </a>
+</div>
+
 </div>
 
 <script>
@@ -553,198 +744,6 @@
   }
 </style>
 
-<!-- SLIDESHOW BULLETIN BOARD -->
-<div id="slideshow-board" style="margin-top: 50px;">
-  <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
-  <div class="slideshow-container">
-
-    <!-- FIRST SLIDE WITH TYPEWRITER EFFECT -->
-    <div class="mySlides fade" style="background-color: white;">
-      <div id="typewriter-slide">
-        <div id="typewriter"></div>
-      </div>
-    </div>
-
-    <!-- OTHER BULLETIN SLIDES -->
-    <div class="mySlides fade">
-      <div class="slide-text">🎉 New AI Video Generator Project Coming Soon!</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="slide-text">📎 Portfolio updated with financial dashboard samples</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="slide-text">🧠 Tip of the Day: Simplify user journeys in data dashboards</div>
-    </div>
-
-  </div>
-
-  <div style="text-align:center; margin-top: 10px;">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-<style>
-  .slideshow-container {
-    max-width: 2000px;
-    height: 300px;
-    position: relative;
-    margin: 30px auto;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    background-color: #1b4e1b;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  }
-
-  .mySlides {
-    display: none;
-    text-align: center;
-    height: 100%;
-  }
-
-  .slide-text {
-    font-size: 1.2rem;
-    padding: 20px;
-    color: #fffacd;
-    font-weight: 600;
-    text-shadow: 2px 2px 4px #000;
-  }
-
-  #typewriter-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-
-  #typewriter {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 2rem;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: .15em solid black;
-    animation: blinkCaret 0.75s step-end infinite;
-    color: black;
-  }
-
-  @keyframes blinkCaret {
-    50% { border-color: transparent; }
-  }
-
-  .fade {
-    animation: fadeEffect 1.5s;
-  }
-
-  @keyframes fadeEffect {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-
-  .dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 4px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.4s ease;
-  }
-
-  .active {
-    background-color: #fffacd;
-  }
-</style>
-
-<script>
-  // TYPEWRITER LOGIC
-  const messages = ["The CRM APP", "making work.......", "work."];
-  const element = document.getElementById("typewriter");
-  let messageIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    const currentMessage = messages[messageIndex];
-    if (!isDeleting) {
-      element.textContent = currentMessage.slice(0, ++charIndex);
-      if (charIndex === currentMessage.length) {
-        isDeleting = true;
-        setTimeout(type, 1500);
-        return;
-      }
-    } else {
-      element.textContent = currentMessage.slice(0, --charIndex);
-      if (charIndex === 0) {
-        isDeleting = false;
-        messageIndex = (messageIndex + 1) % messages.length;
-      }
-    }
-    setTimeout(type, isDeleting ? 40 : 100);
-  }
-
-  type();
-
-  // SLIDESHOW LOGIC
-  let slideIndex = 0;
-  function showSlides() {
-    const slides = document.getElementsByClassName("mySlides");
-    const dots = document.getElementsByClassName("dot");
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-
-    const delay = (slideIndex === 1) ? 15000 : 5000; // First slide: 15s, rest: 5s
-    setTimeout(showSlides, delay);
-  }
-
-  showSlides();
-</script>
-
-<!-- PORTFOLIO THUMBNAILS -->
-<div class="portfolio-container">
- 
-  <a class="thumbnail" href="https://swmarketingfirm.blogspot.com/p/choose-one-body-margin-0-font-family.html" target="_blank">
-    <div class="icon"><i class="fas fa-file alt"></i></div>
-    <div class="label">UX/IX Designs</div>
-  </a>
-  <a class="thumbnail" href="https://github.com/SWMarketingTech/SWFiles/tree/main" target="_blank">
-    <div class="icon"><i class="fas fa-code"></i></div>
-    <div class="label">Software Development</div>
-  </a>
-  <a class="thumbnail" href="https://www.dropbox.com/home/Sample%20Writings" target="_blank">
-    <div class="icon"><i class="fas fa-pen-nib"></i></div>
-    <div class="label">Professional Writings</div>
-  </a>
-  <a class="thumbnail" href="https://www.dropbox.com/home/Financial%20Work" target="_blank">
-    <div class="icon"><i class="fas fa-chart-line"></i></div>
-    <div class="label">Financial Projects</div>
-  </a>
-  <a class="thumbnail" href="https://www.dropbox.com/home/Data%20Analytics" target="_blank">
-    <div class="icon"><i class="fas fa-database"></i></div>
-    <div class="label">Data Analytics</div>
-  </a>
-  <a class="thumbnail" href="https://www.dropbox.com/home/Business%20Presentations" target="_blank">
-    <div class="icon"><i class="fas fa-chalkboard"></i></div>
-    <div class="label">Presentations</div>
-  </a>
-</div>
 
 
 
