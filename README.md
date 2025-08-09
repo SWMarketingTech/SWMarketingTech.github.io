@@ -1405,7 +1405,7 @@
   </form>
 </div>
 
- <!-- SW Watermark -->
+<!-- SW Watermark -->
 <div id="watermark-container">
   <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
 </div>
@@ -1419,13 +1419,17 @@
     height: 200px;
     z-index: 9999;
     pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
   }
 
   #watermark-container img {
-    width: 100%;
-    height: 100%;
+    max-width: 80%;
+    max-height: 80%;
+    opacity: 0.75; /* Dimmed transparency */
     object-fit: contain;
-    opacity: 0.75; /* Optional: make it semi-transparent */
   }
 </style>
 
