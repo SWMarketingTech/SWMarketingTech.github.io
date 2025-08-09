@@ -337,6 +337,20 @@
   }
 </style>
 
+<script>
+    const enterBtn = document.getElementById('enterBtn');
+    const intro = document.getElementById('intro');
+    const main = document.getElementById('main');
+
+    enterBtn.addEventListener('click', () => {
+      intro.style.transition = 'transform 1s ease-in-out';
+      intro.style.transform = 'translateY(-100%)';
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 1000);
+    });
+  </script>
+
 <!-- HEADER SECTION -->
 <div class="blog-name container">
   <div class="container section" id="header" name="Header">
