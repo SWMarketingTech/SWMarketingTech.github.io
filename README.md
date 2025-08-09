@@ -1416,7 +1416,7 @@
     bottom: 20px;
     right: 20px;
     width: 200px;
-    height: 200px;
+    height: 150px;
     z-index: 9999;
     pointer-events: none;
     display: flex;
@@ -1428,7 +1428,7 @@
   #watermark-container img {
     max-width: 80%;
     max-height: 80%;
-    opacity: 0.75; /* Dimmed transparency */
+    opacity: 0.98; /* Dimmed transparency */
     object-fit: contain;
   }
 </style>
