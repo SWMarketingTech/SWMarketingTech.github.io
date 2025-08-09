@@ -733,159 +733,202 @@
 
 
 <!-- TECHNICAL SKILLS SECTION -->
-<div class="skills-section" id="skills-trigger">
-  <h1 class="skills-header">What SW Specializes In...</h1>
-  <h2>Technical Skills</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills Section</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
 
-  <div class="skill">
-    <span class="skill-name">HTML &amp; CSS</span>
-    <div class="bar"><div class="fill" data-width="90%"></div></div>
-    <span class="percent" data-target="90">0%</span>
-  </div>
+    .skills-section {
+      background-color: transparent;
+      color: #228B22; /* Forest green */
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      perspective: 1000px;
+      transition: transform 0.2s ease;
+    }
 
-  <div class="skill">
-    <span class="skill-name">JavaScript</span>
-    <div class="bar"><div class="fill" data-width="80%"></div></div>
-    <span class="percent" data-target="80">0%</span>
-  </div>
+    .skills-header {
+      font-size: 34px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      color: #228B22;
+    }
 
-  <div class="skill">
-    <span class="skill-name">Python</span>
-    <div class="bar"><div class="fill" data-width="85%"></div></div>
-    <span class="percent" data-target="85">0%</span>
-  </div>
+    .skills-section h2 {
+      font-size: 26px;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #228B22;
+    }
 
-  <div class="skill">
-    <span class="skill-name">SQL</span>
-    <div class="bar"><div class="fill" data-width="75%"></div></div>
-    <span class="percent" data-target="75">0%</span>
-  </div>
-
-  <div class="skill">
-    <span class="skill-name">Power BI</span>
-    <div class="bar"><div class="fill" data-width="88%"></div></div>
-    <span class="percent" data-target="88">0%</span>
-  </div>
-</div>
-
-<style>
-  .skills-section {
-    background-color: #1b4e1b;
-    color: white;
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-  }
-
-  .skills-header {
-    font-size: 34px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  }
-
-  .skills-section h2 {
-    font-size: 26px;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-
-.skill {
-  margin-bottom: 20px;
-}
-
-.bar {
-  width: 100%;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  width: 0;
-  background-color: #3cb371;
-  transition: width 2s ease-in-out;
-  border-radius: 10px;
-}
-
-.percent {
-  margin-left: 10px;
-  font-weight: bold;
-  color: #fff;
-}
-
-
-  @media (max-width: 600px) {
     .skill {
-      flex-direction: column;
-      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .skill-name {
+      color: #228B22;
+      font-weight: bold;
     }
 
     .bar {
       width: 100%;
-      margin: 10px 0;
+      height: 20px;
+      background-color: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      background-color: #3cb371;
+      transition: width 2s ease-in-out;
+      border-radius: 10px;
     }
 
     .percent {
-      align-self: flex-end;
+      margin-left: 10px;
+      font-weight: bold;
+      color: #228B22;
     }
-  }
-</style>
 
-<script>
-  function enableHoverSkillAnimation(sectionId) {
-    const section = document.getElementById(sectionId);
-    const skills = section.querySelectorAll(".skill");
+    @media (max-width: 600px) {
+      .skill {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-    section.addEventListener("mouseenter", () => {
-      skills.forEach(skill => {
-        const fill = skill.querySelector(".fill");
-        const percent = skill.querySelector(".percent");
+      .bar {
+        width: 100%;
+        margin: 10px 0;
+      }
 
-        // Reset first
-        fill.style.width = "0%";
-        percent.innerText = "0%";
+      .percent {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
 
-        const targetWidth = fill.dataset.width;
-        const target = parseInt(percent.dataset.target);
+  <!-- TECHNICAL SKILLS SECTION -->
+  <div class="skills-section" id="skills-trigger">
+    <h1 class="skills-header">What SW Specializes In...</h1>
+    <h2>Technical Skills</h2>
 
-        setTimeout(() => {
-          // Animate fill
-          fill.style.width = targetWidth;
+    <div class="skill">
+      <span class="skill-name">HTML &amp; CSS</span>
+      <div class="bar"><div class="fill" data-width="90%"></div></div>
+      <span class="percent" data-target="90">0%</span>
+    </div>
 
-          // Animate counter
-          let count = 0;
-          const updateCount = () => {
-            if (count <= target) {
-              percent.innerText = count + "%";
-              count++;
-              setTimeout(updateCount, 20);
-            }
-          };
-          updateCount();
-        }, 100); // Slight delay ensures the reset is visible
+    <div class="skill">
+      <span class="skill-name">JavaScript</span>
+      <div class="bar"><div class="fill" data-width="80%"></div></div>
+      <span class="percent" data-target="80">0%</span>
+    </div>
+
+    <div class="skill">
+      <span class="skill-name">Python</span>
+      <div class="bar"><div class="fill" data-width="85%"></div></div>
+      <span class="percent" data-target="85">0%</span>
+    </div>
+
+    <div class="skill">
+      <span class="skill-name">SQL</span>
+      <div class="bar"><div class="fill" data-width="75%"></div></div>
+      <span class="percent" data-target="75">0%</span>
+    </div>
+
+    <div class="skill">
+      <span class="skill-name">Power BI</span>
+      <div class="bar"><div class="fill" data-width="88%"></div></div>
+      <span class="percent" data-target="88">0%</span>
+    </div>
+  </div>
+
+  <script>
+    // Animate skills on hover
+    function enableHoverSkillAnimation(sectionId) {
+      const section = document.getElementById(sectionId);
+      const skills = section.querySelectorAll(".skill");
+
+      section.addEventListener("mouseenter", () => {
+        skills.forEach(skill => {
+          const fill = skill.querySelector(".fill");
+          const percent = skill.querySelector(".percent");
+
+          // Reset first
+          fill.style.width = "0%";
+          percent.innerText = "0%";
+
+          const targetWidth = fill.dataset.width;
+          const target = parseInt(percent.dataset.target);
+
+          setTimeout(() => {
+            // Animate fill
+            fill.style.width = targetWidth;
+
+            // Animate counter
+            let count = 0;
+            const updateCount = () => {
+              if (count <= target) {
+                percent.innerText = count + "%";
+                count++;
+                setTimeout(updateCount, 20);
+              }
+            };
+            updateCount();
+          }, 100);
+        });
       });
+
+      section.addEventListener("mouseleave", () => {
+        skills.forEach(skill => {
+          const fill = skill.querySelector(".fill");
+          const percent = skill.querySelector(".percent");
+
+          fill.style.width = "0%";
+          percent.innerText = "0%";
+        });
+      });
+    }
+
+    enableHoverSkillAnimation("skills-trigger");
+
+    // Add 3D tilt effect
+    const section = document.getElementById("skills-trigger");
+
+    section.addEventListener("mousemove", (e) => {
+      const { width, height, left, top } = section.getBoundingClientRect();
+      const x = e.clientX - left;
+      const y = e.clientY - top;
+
+      const rotateX = ((y / height) - 0.5) * 10;
+      const rotateY = ((x / width) - 0.5) * -10;
+
+      section.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     section.addEventListener("mouseleave", () => {
-      skills.forEach(skill => {
-        const fill = skill.querySelector(".fill");
-        const percent = skill.querySelector(".percent");
-
-        // Reset everything
-        fill.style.width = "0%";
-        percent.innerText = "0%";
-      });
+      section.style.transform = `rotateX(0deg) rotateY(0deg)`;
     });
-  }
+  </script>
 
-  enableHoverSkillAnimation("skills-trigger");
-  enableHoverSkillAnimation("softskills-trigger");
-</script>
+</body>
+
 
 
 
