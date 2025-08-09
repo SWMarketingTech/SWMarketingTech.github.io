@@ -1,108 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homepage with Spline Intro</title>
-<style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden; /* Prevent scrolling initially */
-        font-family: Arial, sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage with Spline Intro</title>
+  <style>
+    /* Reset & Body Style */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Disable scroll until allowed */
+      font-family: Arial, sans-serif;
     }
 
-    /* Fullscreen intro */
-    #intro {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background: #000; /* fallback background */
+    /* Fullscreen Homepage */
+    #homepage {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     spline-viewer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    #enterBtn {
-        position: relative;
-        z-index: 2;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        background-color: forestgreen;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+    /* Button Style */
+    #enter-btn {
+      position: relative;
+      z-index: 2;
+      background-color: forestgreen;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    #enter-btn:hover {
+      background-color: #2e8b57;
     }
 
-    #enterBtn:hover {
-        background-color: #2e7d32;
+    /* Main Page Section */
+    #mainpage {
+      height: 100vh;
+      background: #f4f4f4;
+      padding: 50px;
     }
-
-    /* Rest of the page */
-    #mainContent {
-        min-height: 200vh;
-        background: linear-gradient(#fff, #ddd);
-        padding: 40px;
-    }
-
-    /* Slide effect when unlocking scroll */
-    .unlock-scroll {
-        overflow: auto;
-        scroll-behavior: smooth;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<!-- INTRO FULLSCREEN SPLINE -->
-<div id="intro">
+  <!-- Homepage Section -->
+  <section id="homepage">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.44/build/spline-viewer.js"></script>
     <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
-    <button id="enterBtn">Enter Here</button>
-</div>
+    <button id="enter-btn">Enter Here</button>
+  </section>
 
-<!-- MAIN PAGE CONTENT -->
-<div id="mainContent">
-    <h1>Welcome to the Rest of the Page</h1>
-    <p>This is where your portfolio or content will go.</p>
-</div>
+  <!-- Main Page Content -->
+  <section id="mainpage">
+    <h1>Welcome to the Main Page</h1>
+    <p>This is the rest of your content.</p>
+  </section>
 
-<script>
-    const enterBtn = document.getElementById('enterBtn');
-    const intro = document.getElementById('intro');
+  <script>
+    const enterBtn = document.getElementById('enter-btn');
 
     enterBtn.addEventListener('click', () => {
-        // Unlock scroll
-        document.body.classList.add('unlock-scroll');
-
-        // Smooth scroll to the next section
-        document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
-
-        // Hide intro after transition
-        setTimeout(() => {
-            intro.style.display = 'none';
-        }, 1000);
+      // Enable scrolling
+      document.body.style.overflow = 'auto';
+      // Smooth scroll to main page
+      document.getElementById('mainpage').scrollIntoView({ behavior: 'smooth' });
     });
-</script>
+  </script>
 
 </body>
 </html>
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
