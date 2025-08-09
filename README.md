@@ -1419,13 +1419,16 @@
     height: 200px;
     z-index: 9999;
     pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    background: transparent;  
   }
 
   #watermark-container img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    opacity: 0.5; /* Optional: make it semi-transparent */
+    opacity: 0.98; /* Optional: make it semi-transparent */
   }
 </style>
 
