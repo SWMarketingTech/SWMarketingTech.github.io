@@ -1415,8 +1415,8 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 200px;
-    height: 100px;
+    width: 240px; /* Wider box */
+    height: 120px; /* Slightly taller for balance */
     z-index: 9999;
     pointer-events: none;
     display: flex;
@@ -1426,10 +1426,11 @@
   }
 
   #watermark-container img {
-    max-width: 150%;
-    max-height: 150%;
-    opacity: 0.98; /* More dimmed transparency */
+    max-width: 100%; /* Fit within the box */
+    max-height: 100%;
+    opacity: 0.98;
     object-fit: contain;
+    margin: auto; /* Ensures centering */
   }
 </style>
 
