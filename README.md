@@ -1415,7 +1415,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 200px;
+    width: 180px;
     height: 80px;
     z-index: 9999;
     pointer-events: none;
@@ -1428,7 +1428,7 @@
     width: 250%;
     height: 200%;
     object-fit: contain;
-    opacity: 0.84; /* Optional: make it semi-transparent */
+    opacity: 0.94; /* Optional: make it semi-transparent */
   }
 </style>
 
