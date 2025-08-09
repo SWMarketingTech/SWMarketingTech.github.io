@@ -1416,7 +1416,7 @@
     bottom: 20px;
     right: 20px;
     width: 200px;
-    height: 800px;
+    height: 80px;
     z-index: 9999;
     pointer-events: none;
     justify-content: center;
