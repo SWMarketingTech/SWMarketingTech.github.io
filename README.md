@@ -1199,14 +1199,19 @@
       padding: 0;
     }
 
-    section {
+    #crm-section {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 40px;
+      padding: 0;
+      margin: 0;
     }
 
     .crm-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       align-items: center;
       background-color: rgba(255, 255, 255, 0.85);
@@ -1216,16 +1221,20 @@
       color: black;
       border-bottom: 2px solid #ddd;
       width: 100%;
-      max-width: 1200px;
-      margin-bottom: 40px;
       backdrop-filter: blur(4px);
-      border-radius: 12px;
     }
 
     .crm-header img {
       width: 32px;
       height: 32px;
       margin-right: 12px;
+    }
+
+    .crm-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 40px;
     }
 
     .phone-container {
@@ -1303,17 +1312,19 @@
       CRM App
     </div>
 
-    <div class="phone-container">
-      <div class="screen">
-        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
+    <div class="crm-content">
+      <div class="phone-container">
+        <div class="screen">
+          <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
+        </div>
       </div>
+
+      <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main/CRMDaily" target="_blank">
+        More Info
+      </a>
+
+      <div class="reader-effect" id="reader"></div>
     </div>
-
-    <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main/CRMDaily" target="_blank">
-      More Info
-    </a>
-
-    <div class="reader-effect" id="reader"></div>
   </section>
 
   <script>
@@ -1355,12 +1366,6 @@
   </script>
 
 </body>
-
-
-
-
-
-
 
 
 <!-- CONTACT FORM -->
