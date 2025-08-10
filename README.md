@@ -1075,7 +1075,9 @@
   </script>
 </section>
 
+<div class="think-bigger-wrapper">
 <!-- Think Bigger Webpage AD -->
+<section id="think-bigger-section">
 
 <section id="think-bigger-section" style="width: 100%; height: 100%; background-color: black; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;">
   <style>
@@ -1137,6 +1139,17 @@
     }
   </style>
 
+.think-bigger-wrapper {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  will-change: opacity, transform;
+}
+
+.think-bigger-wrapper.visible {
+  opacity: 1;
+  transform: scale(1);
+}
   <header><span>Think Bigger</span></header>
 
   <div class="banner">
@@ -1150,6 +1163,21 @@
   </div>
 
   <script>
+      const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  const sectionWrapper = document.querySelector(".think-bigger-wrapper");
+  if (sectionWrapper) {
+    observer.observe(sectionWrapper);
+  }
+
     const title = document.querySelector("#think-bigger-section header span");
 
     document.addEventListener("mousemove", (e) => {
