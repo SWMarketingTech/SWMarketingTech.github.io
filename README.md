@@ -1185,8 +1185,7 @@
 
 
 <!-- CRM APP -->
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>CRM App Showcase</title>
@@ -1208,9 +1207,16 @@
       color: black;
       border-bottom: 2px solid #ddd;
       z-index: 1000;
-      display: none; /* hidden by default */
       align-items: center;
       backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    header.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
     header img {
@@ -1220,7 +1226,6 @@
     }
 
     .sections-tab {
-      display: none; /* hidden by default */
       position: fixed;
       top: 50%;
       left: 0;
@@ -1229,6 +1234,14 @@
       padding: 1rem;
       border-right: 1px solid #ddd;
       z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    .sections-tab.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
     .sections-tab ul {
@@ -1275,7 +1288,7 @@
     }
 
     .reader-effect span {
-      opacity: 0.6; /* increased for visibility */
+      opacity: 0.6;
       transition: color 0.3s ease, opacity 0.3s ease;
     }
 
@@ -1358,77 +1371,69 @@
       More Info
     </a>
 
-    <div class="reader-effect" id="reader">
-      <!-- Words will be injected here -->
-    </div>
+    <div class="reader-effect" id="reader"></div>
   </section>
 
   <script>
-    const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
+    document.addEventListener('DOMContentLoaded', () => {
+      const section = document.getElementById('crm-section');
+      const crmHeader = document.querySelector('header');
+      const crmTab = document.querySelector('.sections-tab');
+      const tabItem = document.querySelector('.sections-tab li');
+      const reader = document.getElementById('reader');
 
-    const words = text.split(' ');
-    const reader = document.getElementById('reader');
+      // Reader paragraph setup
+      const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
 
-    reader.innerHTML = '';
-    words.forEach(word => {
-      const span = document.createElement('span');
-      span.textContent = word + ' ';
-      reader.appendChild(span);
-    });
+      const words = text.split(' ');
+      reader.innerHTML = '';
+      words.forEach(word => {
+        const span = document.createElement('span');
+        span.textContent = word + ' ';
+        reader.appendChild(span);
+      });
 
-    let index = 0;
-    let spans = reader.querySelectorAll('span');
-    let timer;
+      let index = 0;
+      const spans = reader.querySelectorAll('span');
+      let timer;
 
-    function highlightWord() {
-      if (index > 0) spans[index - 1].classList.remove('active');
-      if (index < spans.length) {
-        spans[index].classList.add('active');
-        index++;
-        timer = setTimeout(highlightWord, 350);
+      function highlightWord() {
+        if (index > 0) spans[index - 1].classList.remove('active');
+        if (index < spans.length) {
+          spans[index].classList.add('active');
+          index++;
+          timer = setTimeout(highlightWord, 350);
+        }
       }
-    }
 
-    function resetReader() {
-      clearTimeout(timer);
-      spans.forEach(span => span.classList.remove('active'));
-      index = 0;
+      function resetReader() {
+        clearTimeout(timer);
+        spans.forEach(span => span.classList.remove('active'));
+        index = 0;
+        highlightWord();
+      }
+
       highlightWord();
-    }
+      reader.addEventListener('mouseenter', resetReader);
 
-    highlightWord();
-    reader.addEventListener('mouseenter', () => {
-      resetReader();
-    });
+      // Visibility logic
+      function updateVisibility() {
+        const rect = section.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-    const section = document.getElementById('crm-section');
-    const crmHeader = document.querySelector('header');
-    const crmTab = document.querySelector('.sections-tab');
-    const tabItem = document.querySelector('.sections-tab li');
-
-    function updateVisibility() {
-      const rect = section.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-      crmHeader.style.display = inView ? 'flex' : 'none';
-      crmTab.style.display = inView ? 'block' : 'none';
-      tabItem.classList.toggle('active', inView);
-    }
-
-    window.addEventListener('scroll', updateVisibility);
-    window.addEventListener('load', () => {
-      const rect = section.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (!inView) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        crmHeader.classList.toggle('visible', inView);
+        crmTab.classList.toggle('visible', inView);
+        tabItem.classList.toggle('active', inView);
       }
 
       updateVisibility();
+      window.addEventListener('scroll', updateVisibility);
+      setTimeout(updateVisibility, 500); // fallback after assets load
     });
   </script>
 
 </body>
+
 
 
 
