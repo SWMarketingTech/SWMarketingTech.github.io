@@ -1186,6 +1186,8 @@
 
 <!-- CRM APP -->
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>CRM App Showcase</title>
@@ -1197,79 +1199,6 @@
       padding: 0;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px 40px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: black;
-      border-bottom: 2px solid #ddd;
-      z-index: 1000;
-      align-items: center;
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease;
-    }
-
-    header.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    header img {
-      width: 32px;
-      height: 32px;
-      margin-right: 12px;
-    }
-
-    .sections-tab {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      background: #ffffff;
-      padding: 1rem;
-      border-right: 1px solid #ddd;
-      z-index: 1001;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease;
-    }
-
-    .sections-tab.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .sections-tab ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .sections-tab li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .sections-tab li.active {
-      transform: scale(1.05);
-      opacity: 1;
-    }
-
-    .tab-icon {
-      width: 24px;
-      height: 24px;
-      margin-right: 0.5rem;
-    }
-
     section {
       display: flex;
       flex-direction: column;
@@ -1277,25 +1206,26 @@
       padding: 60px 40px;
     }
 
-    .reader-effect {
-      font-size: 1.6rem;
-      max-width: 800px;
-      text-align: left;
-      margin-top: 40px;
-      line-height: 1.8;
-      color: black;
-      cursor: pointer;
-    }
-
-    .reader-effect span {
-      opacity: 0.6;
-      transition: color 0.3s ease, opacity 0.3s ease;
-    }
-
-    .reader-effect span.active {
-      color: forestgreen;
+    .crm-header {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px 40px;
+      font-size: 2rem;
       font-weight: bold;
-      opacity: 1;
+      color: black;
+      border-bottom: 2px solid #ddd;
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+    }
+
+    .crm-header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
     }
 
     .phone-container {
@@ -1342,25 +1272,37 @@
     .info-button:hover {
       background-color: darkgreen;
     }
+
+    .reader-effect {
+      font-size: 1.6rem;
+      max-width: 800px;
+      text-align: left;
+      margin-top: 40px;
+      line-height: 1.8;
+      color: black;
+      cursor: pointer;
+    }
+
+    .reader-effect span {
+      opacity: 0.6;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .reader-effect span.active {
+      color: forestgreen;
+      font-weight: bold;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
 
-  <nav class="sections-tab">
-    <ul>
-      <li data-section="crm-section" class="active">
-        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" class="tab-icon" />
-        <span>CRM App</span>
-      </li>
-    </ul>
-  </nav>
-
-  <header>
-    <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" />
-    CRM App
-  </header>
-
   <section id="crm-section">
+    <div class="crm-header">
+      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" />
+      CRM App
+    </div>
+
     <div class="phone-container">
       <div class="screen">
         <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
@@ -1376,13 +1318,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const section = document.getElementById('crm-section');
-      const crmHeader = document.querySelector('header');
-      const crmTab = document.querySelector('.sections-tab');
-      const tabItem = document.querySelector('.sections-tab li');
       const reader = document.getElementById('reader');
-
-      // Reader paragraph setup
       const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
 
       const words = text.split(' ');
@@ -1415,24 +1351,11 @@
 
       highlightWord();
       reader.addEventListener('mouseenter', resetReader);
-
-      // Visibility logic
-      function updateVisibility() {
-        const rect = section.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-        crmHeader.classList.toggle('visible', inView);
-        crmTab.classList.toggle('visible', inView);
-        tabItem.classList.toggle('active', inView);
-      }
-
-      updateVisibility();
-      window.addEventListener('scroll', updateVisibility);
-      setTimeout(updateVisibility, 500); // fallback after assets load
     });
   </script>
 
 </body>
+
 
 
 
