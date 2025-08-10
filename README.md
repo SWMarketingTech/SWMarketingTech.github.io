@@ -1280,7 +1280,7 @@
       if (index < spans.length) {
         spans[index].classList.add('active');
         index++;
-        timer = setTimeout(highlightWord, 1500); // 1.5 seconds per word
+        timer = setTimeout(highlightWord, 350); // 1.5 seconds per word
       }
     }
 
