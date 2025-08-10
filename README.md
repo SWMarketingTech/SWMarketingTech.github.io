@@ -1198,6 +1198,44 @@
       padding: 0;
     }
 
+    /* Left Sections Tab */
+    .sections-tab {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background: #ffffff;
+      padding: 1rem;
+      border-right: 1px solid #ddd;
+      z-index: 1001;
+    }
+
+    .sections-tab ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sections-tab li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .sections-tab li.active {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    .tab-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -1205,9 +1243,17 @@
       padding: 20px 40px;
       font-size: 2rem;
       font-weight: bold;
-      color: forestgreen;
+      color: black;
       border-bottom: 2px solid #ddd;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
     }
 
     section {
@@ -1286,8 +1332,20 @@
 </head>
 <body>
 
+  <!-- Left Sections Tab -->
+  <nav class="sections-tab">
+    <ul>
+      <li data-section="crm-section" class="active">
+        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM Logo" class="tab-icon" />
+        <span>CRM App</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Header with Logo -->
   <header>
-    CRM App <span style="color: black;">C</span>
+    <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM Logo" />
+    CRM App
   </header>
 
   <section id="crm-section">
@@ -1307,6 +1365,7 @@
   </section>
 
   <script>
+    // Reader effect
     const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
 
     const words = text.split(' ');
@@ -1340,14 +1399,23 @@
     }
 
     highlightWord();
-
-    // Reset when cursor hovers over the reader effect
     reader.addEventListener('mouseenter', () => {
       resetReader();
+    });
+
+    // Scroll-based tab activation
+    const section = document.getElementById('crm-section');
+    const tabItem = document.querySelector('.sections-tab li');
+
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+      tabItem.classList.toggle('active', inView);
     });
   </script>
 
 </body>
+
 
 
 <!-- CONTACT FORM -->
