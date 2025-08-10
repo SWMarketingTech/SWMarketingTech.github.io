@@ -1199,11 +1199,11 @@
     }
 
     .reader-effect {
-      font-size: 1.2rem;
-      max-width: 700px;
-      text-align: center;
+      font-size: 1.6rem; /* Increased font size */
+      max-width: 800px;
+      text-align: left; /* Left-aligned text */
       margin-bottom: 40px;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     .reader-effect span {
@@ -1220,9 +1220,9 @@
       width: 360px;
       height: 720px;
       background-color: transparent;
-      border: 2px solid rgba(0, 0, 0, 0); /* fully transparent */
+      border: 2px solid rgba(0, 0, 0, 0);
       border-radius: 40px;
-      box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* no visible shadow */
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1263,6 +1263,8 @@
     const words = text.split(' ');
     const reader = document.getElementById('reader');
 
+    // Create spans
+    reader.innerHTML = '';
     words.forEach(word => {
       const span = document.createElement('span');
       span.textContent = word + ' ';
@@ -1270,19 +1272,35 @@
     });
 
     let index = 0;
-    const spans = reader.querySelectorAll('span');
+    let spans = reader.querySelectorAll('span');
+    let timer;
 
     function highlightWord() {
       if (index > 0) spans[index - 1].classList.remove('active');
       if (index < spans.length) {
         spans[index].classList.add('active');
         index++;
-        setTimeout(highlightWord, 350); // 1.5 seconds per word
+        timer = setTimeout(highlightWord, 1500); // 1.5 seconds per word
       }
     }
 
+    function resetReader() {
+      clearTimeout(timer);
+      spans.forEach(span => span.classList.remove('active'));
+      index = 0;
+      highlightWord();
+    }
+
     highlightWord();
+
+    // Reset on scroll
+    window.addEventListener('scroll', () => {
+      resetReader();
+    });
   </script>
+
+</body>
+
 
 
 
