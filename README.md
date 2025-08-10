@@ -1102,21 +1102,18 @@
     }
 
     .product-image {
-      width: 150px;
-      height: 100px;
-      object-fit: cover;
+      width: 800px;
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-      transform: scale(0.5);
+      transform: scale(0.3);
       opacity: 0;
-      transition: transform 1s ease, opacity 1s ease;
+      transition: transform 1s ease-out, opacity 1s ease-out;
     }
 
     .product-image.expand {
       transform: scale(1);
       opacity: 1;
-      width: 800px;
-      height: auto;
     }
 
     .product-description {
