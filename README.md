@@ -1198,7 +1198,6 @@
       padding: 0;
     }
 
-    /* CRM Header (hidden by default) */
     header {
       position: sticky;
       top: 0;
@@ -1209,7 +1208,7 @@
       color: black;
       border-bottom: 2px solid #ddd;
       z-index: 1000;
-      display: none;
+      display: flex; /* Changed from 'none' to 'flex' */
       align-items: center;
       backdrop-filter: blur(4px);
     }
@@ -1220,9 +1219,8 @@
       margin-right: 12px;
     }
 
-    /* Left Sections Tab (hidden by default) */
     .sections-tab {
-      display: none;
+      display: block; /* Changed from 'none' to 'block' */
       position: fixed;
       top: 50%;
       left: 0;
@@ -1335,7 +1333,6 @@
 </head>
 <body>
 
-  <!-- Left Sections Tab -->
   <nav class="sections-tab">
     <ul>
       <li data-section="crm-section" class="active">
@@ -1345,7 +1342,6 @@
     </ul>
   </nav>
 
-  <!-- CRM Header (only visible in CRM section) -->
   <header>
     <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" />
     CRM App
@@ -1368,7 +1364,6 @@
   </section>
 
   <script>
-    // Reader effect
     const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
 
     const words = text.split(' ');
@@ -1406,7 +1401,6 @@
       resetReader();
     });
 
-    // Scroll-based visibility for header and tab
     const section = document.getElementById('crm-section');
     const crmHeader = document.querySelector('header');
     const crmTab = document.querySelector('.sections-tab');
@@ -1414,7 +1408,7 @@
 
     function updateVisibility() {
       const rect = section.getBoundingClientRect();
-      const inView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
       crmHeader.style.display = inView ? 'flex' : 'none';
       crmTab.style.display = inView ? 'block' : 'none';
@@ -1422,10 +1416,14 @@
     }
 
     window.addEventListener('scroll', updateVisibility);
-    window.addEventListener('load', updateVisibility);
+    window.addEventListener('load', () => {
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      updateVisibility();
+    });
   </script>
 
 </body>
+
 
 
 
