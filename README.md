@@ -1208,7 +1208,7 @@
       color: black;
       border-bottom: 2px solid #ddd;
       z-index: 1000;
-      display: flex; /* Changed from 'none' to 'flex' */
+      display: none; /* hidden by default */
       align-items: center;
       backdrop-filter: blur(4px);
     }
@@ -1220,7 +1220,7 @@
     }
 
     .sections-tab {
-      display: block; /* Changed from 'none' to 'block' */
+      display: none; /* hidden by default */
       position: fixed;
       top: 50%;
       left: 0;
@@ -1275,7 +1275,7 @@
     }
 
     .reader-effect span {
-      opacity: 0.3;
+      opacity: 0.6; /* increased for visibility */
       transition: color 0.3s ease, opacity 0.3s ease;
     }
 
@@ -1417,12 +1417,19 @@
 
     window.addEventListener('scroll', updateVisibility);
     window.addEventListener('load', () => {
-      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (!inView) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       updateVisibility();
     });
   </script>
 
 </body>
+
 
 
 
