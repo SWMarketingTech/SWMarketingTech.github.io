@@ -1300,132 +1300,107 @@
   </div>
 </section>
 
-<!-- CRM APP UPDATE -->
-<section id="crm-logo-type" style="width: 100%; background-color: #fff; color: #000; font-family: 'Segoe UI', sans-serif; padding: 1rem;">
+<!-- CRM APP -->
+<head>
+  <meta charset="UTF-8">
+  <title>CRM App Showcase</title>
   <style>
-    #crm-logo-type .header-line {
-      font-size: 20px;
-      font-weight: normal;
-      letter-spacing: 0.8px;
-      min-height: 2.5em;
-      white-space: pre;
-      text-align: left;
+    body {
+      background: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
     }
 
-    #crm-logo-type p {
-      font-size: 18px;
-      margin-top: 0.75rem;
-      text-align: left;
-      line-height: 1.5;
+    .reader-effect {
+      font-size: 1.2rem;
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.6;
     }
 
-    #crm-logo-type a.button-link {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      font-size: 16px;
-      background-color: #000;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.3s ease;
+    .reader-effect span {
+      color: black;
+      transition: color 0.3s ease;
     }
 
-    #crm-logo-type a.button-link:hover {
-      background-color: #333;
+    .reader-effect span.active {
+      color: forestgreen;
+      font-weight: bold;
+    }
+
+    .phone-container {
+      width: 360px;
+      height: 720px;
+      background-color: transparent;
+      border: 2px solid rgba(0, 0, 0, 0); /* fully transparent */
+      border-radius: 40px;
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* no visible shadow */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: floatRotate 6s infinite ease-in-out;
+      transform-style: preserve-3d;
+      overflow: visible;
+    }
+
+    @keyframes floatRotate {
+      0% { transform: rotateX(0deg) rotateY(0deg) translateY(0px); }
+      50% { transform: rotateX(10deg) rotateY(10deg) translateY(-10px); }
+      100% { transform: rotateX(0deg) rotateY(0deg) translateY(0px); }
+    }
+
+    .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 40px;
     }
   </style>
+</head>
+<body>
 
-  <div>
-    <div class="header-line">
-      CRM APP <span id="logoType"></span>
+  <div class="reader-effect" id="reader">
+    <!-- Words will be injected here -->
+  </div>
+
+  <div class="phone-container">
+    <div class="screen">
+      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
     </div>
-    <p>
-      This is the CRM app currently in development. What SW is trying to encapsulate with this app isn’t anything that hasn’t necessarily been seen before. More so, SW is trying to create the greatest version of a business commodity that has become a necessity. An end to common bugs, convenient interfaces, modern nostalgic designs, and helpful configurations. The production of this said app is at display for the audience's discretion.
-    </p>
-    <a href="https://github.com/SWMarketingTech/SWFiles" class="button-link" target="_blank">More Info</a>
   </div>
 
   <script>
-    const logoTarget = document.getElementById("logoType");
-    const logoText = " [Input Logo Here]";
-    let logoInterval;
+    const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
 
-    function typeLogo() {
-      clearInterval(logoInterval);
-      logoTarget.textContent = "";
-      let i = 0;
-      logoInterval = setInterval(() => {
-        if (i < logoText.length) {
-          logoTarget.textContent += logoText.charAt(i);
-          i++;
-        } else {
-          clearInterval(logoInterval);
-        }
-      }, 50);
+    const words = text.split(' ');
+    const reader = document.getElementById('reader');
+
+    words.forEach(word => {
+      const span = document.createElement('span');
+      span.textContent = word + ' ';
+      reader.appendChild(span);
+    });
+
+    let index = 0;
+    const spans = reader.querySelectorAll('span');
+
+    function highlightWord() {
+      if (index > 0) spans[index - 1].classList.remove('active');
+      if (index < spans.length) {
+        spans[index].classList.add('active');
+        index++;
+        setTimeout(highlightWord, 350); // 1.5 seconds per word
+      }
     }
 
-    document.getElementById("crm-logo-type").addEventListener("mouseenter", typeLogo);
+    highlightWord();
   </script>
-</section>>
 
-<!-- CRM APP Pictures -->
-<section class="crm-visuals">
-  <div class="image-container">
-    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%201.png" alt="CRM Visual 1" />
-    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%201a.png" alt="CRM Visual 2" />
-    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/crm%20app%20cerulean%202.png" alt="CRM Visual 3" />
-  </div>
-</section>
 
-<style>
-  .crm-visuals {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-    background-color: transparent;
-    overflow: hidden;
-  }
-
-  .image-container {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .image-container img {
-    width: 230px;
-    opacity: 0;
-    animation: fadeIn 1.5s forwards;
-  }
-
-  .image-container img:nth-child(1) {
-    animation-delay: 0.5s;
-  }
-
-  .image-container img:nth-child(2) {
-    animation-delay: 1.5s;
-  }
-
-  .image-container img:nth-child(3) {
-    animation-delay: 2.5s;
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: scale(1.02);
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .image-container img {
-      width: 160px;
-    }
-  }
-</style>
 
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
