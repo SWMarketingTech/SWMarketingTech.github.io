@@ -1076,95 +1076,112 @@
 </section>
 
 <!-- Think Bigger Webpage AD -->
-<section id="think-bigger-section" style="width: 100%; height: 100%; background-color: black; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;">
-  <style>
-    #think-bigger-section {
-      padding: 4rem 1rem;
-    }
+<div class="think-bigger-wrapper">
+  <section id="think-bigger-section">
+    <style>
+      .think-bigger-wrapper {
+        opacity: 0;
+        transform: scale(0.6);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+        will-change: opacity, transform;
+      }
 
-    #think-bigger-section header {
-      text-align: center;
-      font-size: 6rem;
-      font-weight: bold;
-      color: white;
-      text-shadow: 3px 3px 0 #444, -1px -1px 0 #888;
-      letter-spacing: 2px;
-      margin-bottom: 2rem;
-    }
+      .think-bigger-wrapper.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-    #think-bigger-section .banner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+      #think-bigger-section {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        overflow-x: hidden;
+        padding: 4rem 1rem;
+      }
 
-    .product-image {
-      width: 800px;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-      transform: scale(0.3);
-      opacity: 0;
-      transition: transform 1s ease-out, opacity 1s ease-out;
-    }
+      #think-bigger-section header {
+        text-align: center;
+        font-size: 6rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 3px 3px 0 #444, -1px -1px 0 #888;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+      }
 
-    .product-image.expand {
-      transform: scale(1);
-      opacity: 1;
-    }
+      #think-bigger-section .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-    .product-description {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 300px;
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 1rem;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
+      .product-image {
+        width: 800px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease;
+      }
 
-    .banner:hover .product-description {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  </style>
+      .product-description {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 1rem;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
 
-  <header><span>Think Bigger</span></header>
+      .banner:hover .product-description {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-  <div class="banner">
-    <img class="product-image" src="https://dlcdnwebimgs.asus.com/files/media/cf9d4ac3-7540-4386-a70a-abcc28e23c2b/v1/features/images/large/1x/kv.jpg" alt="Product Image">
-    <div class="product-description">
-      <h2>ZT Book Pro XL</h2>
-      <p>
-        Experience dual-screen productivity with cutting-edge design. Powered by Intel Core and NVIDIA graphics, this laptop redefines creative performance.
-      </p>
+      .product-image:hover {
+        transform: scale(1.03);
+      }
+    </style>
+
+    <header><span>Think Bigger</span></header>
+
+    <div class="banner">
+      <img class="product-image" src="https://dlcdnwebimgs.asus.com/files/media/cf9d4ac3-7540-4386-a70a-abcc28e23c2b/v1/features/images/large/1x/kv.jpg" alt="Product Image">
+      <div class="product-description">
+        <h2>ZT Book Pro XL</h2>
+        <p>
+          Experience dual-screen productivity with cutting-edge design. Powered by Intel Core and NVIDIA graphics, this laptop redefines creative performance.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+</div>
 
-  <script>
-    const image = document.querySelector(".product-image");
+<script>
+  const wrapper = document.querySelector(".think-bigger-wrapper");
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          image.classList.add("expand");
-        } else {
-          image.classList.remove("expand");
-        }
-      },
-      { threshold: 0.3 }
-    );
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        wrapper.classList.add("visible");
+      } else {
+        wrapper.classList.remove("visible");
+      }
+    },
+    { threshold: 0.3 }
+  );
 
-    observer.observe(image);
-  </script>
-</section>
+  observer.observe(wrapper);
+</script>
 
 <!-- Ashton Villas Webpage Ad -->
 
