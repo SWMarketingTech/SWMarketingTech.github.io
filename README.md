@@ -1185,6 +1185,8 @@
 
 
 <!-- CRM APP -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>CRM App Showcase</title>
@@ -1219,18 +1221,21 @@
       font-size: 1.6rem;
       max-width: 800px;
       text-align: left;
-      margin-bottom: 20px;
+      margin-top: 40px;
       line-height: 1.8;
+      color: black;
+      cursor: pointer;
     }
 
     .reader-effect span {
-      color: black;
-      transition: color 0.3s ease;
+      opacity: 0.3;
+      transition: color 0.3s ease, opacity 0.3s ease;
     }
 
     .reader-effect span.active {
       color: forestgreen;
       font-weight: bold;
+      opacity: 1;
     }
 
     .phone-container {
@@ -1271,7 +1276,7 @@
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .info-button:hover {
@@ -1286,18 +1291,18 @@
   </header>
 
   <section id="crm-section">
-    <div class="reader-effect" id="reader">
-      <!-- Words will be injected here -->
+    <div class="phone-container">
+      <div class="screen">
+        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
+      </div>
     </div>
 
     <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main/CRMDaily" target="_blank">
       More Info
     </a>
 
-    <div class="phone-container">
-      <div class="screen">
-        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
-      </div>
+    <div class="reader-effect" id="reader">
+      <!-- Words will be injected here -->
     </div>
   </section>
 
@@ -1323,7 +1328,7 @@
       if (index < spans.length) {
         spans[index].classList.add('active');
         index++;
-        timer = setTimeout(highlightWord, 350); // 350ms per word
+        timer = setTimeout(highlightWord, 350);
       }
     }
 
@@ -1336,20 +1341,13 @@
 
     highlightWord();
 
-    // Reset only when section is scrolled past
-    const section = document.getElementById('crm-section');
-    window.addEventListener('scroll', () => {
-      const rect = section.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) {
-        resetReader();
-      }
+    // Reset when cursor hovers over the reader effect
+    reader.addEventListener('mouseenter', () => {
+      resetReader();
     });
   </script>
 
 </body>
-
-
-
 
 
 <!-- CONTACT FORM -->
