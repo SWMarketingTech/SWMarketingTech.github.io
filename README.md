@@ -1198,8 +1198,31 @@
       padding: 0;
     }
 
-    /* Left Sections Tab */
+    /* CRM Header (hidden by default) */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+      border-bottom: 2px solid #ddd;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+
+    header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    /* Left Sections Tab (hidden by default) */
     .sections-tab {
+      display: none;
       position: fixed;
       top: 50%;
       left: 0;
@@ -1234,26 +1257,6 @@
       width: 24px;
       height: 24px;
       margin-right: 0.5rem;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #ffffff;
-      padding: 20px 40px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: black;
-      border-bottom: 2px solid #ddd;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-    }
-
-    header img {
-      width: 32px;
-      height: 32px;
-      margin-right: 12px;
     }
 
     section {
@@ -1336,15 +1339,15 @@
   <nav class="sections-tab">
     <ul>
       <li data-section="crm-section" class="active">
-        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM Logo" class="tab-icon" />
+        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" class="tab-icon" />
         <span>CRM App</span>
       </li>
     </ul>
   </nav>
 
-  <!-- Header with Logo -->
+  <!-- CRM Header (only visible in CRM section) -->
   <header>
-    <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM Logo" />
+    <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/CRM%20APP%20Logo%202.jpg?raw=true" alt="CRM Logo" />
     CRM App
   </header>
 
@@ -1403,18 +1406,27 @@
       resetReader();
     });
 
-    // Scroll-based tab activation
+    // Scroll-based visibility for header and tab
     const section = document.getElementById('crm-section');
+    const crmHeader = document.querySelector('header');
+    const crmTab = document.querySelector('.sections-tab');
     const tabItem = document.querySelector('.sections-tab li');
 
-    window.addEventListener('scroll', () => {
+    function updateVisibility() {
       const rect = section.getBoundingClientRect();
       const inView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+
+      crmHeader.style.display = inView ? 'flex' : 'none';
+      crmTab.style.display = inView ? 'block' : 'none';
       tabItem.classList.toggle('active', inView);
-    });
+    }
+
+    window.addEventListener('scroll', updateVisibility);
+    window.addEventListener('load', updateVisibility);
   </script>
 
 </body>
+
 
 
 
