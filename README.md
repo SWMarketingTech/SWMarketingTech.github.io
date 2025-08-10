@@ -1192,17 +1192,34 @@
     body {
       background: #f4f4f4;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
+      padding: 20px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: forestgreen;
+      border-bottom: 2px solid #ddd;
+      z-index: 1000;
+    }
+
+    section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px;
+      padding: 60px 40px;
     }
 
     .reader-effect {
-      font-size: 1.6rem; /* Increased font size */
+      font-size: 1.6rem;
       max-width: 800px;
-      text-align: left; /* Left-aligned text */
-      margin-bottom: 40px;
+      text-align: left;
+      margin-bottom: 20px;
       line-height: 1.8;
     }
 
@@ -1229,6 +1246,7 @@
       animation: floatRotate 6s infinite ease-in-out;
       transform-style: preserve-3d;
       overflow: visible;
+      margin-bottom: 30px;
     }
 
     @keyframes floatRotate {
@@ -1243,19 +1261,45 @@
       object-fit: contain;
       border-radius: 40px;
     }
+
+    .info-button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+
+    .info-button:hover {
+      background-color: darkgreen;
+    }
   </style>
 </head>
 <body>
 
-  <div class="reader-effect" id="reader">
-    <!-- Words will be injected here -->
-  </div>
+  <header>
+    CRM App <span style="color: black;">C</span>
+  </header>
 
-  <div class="phone-container">
-    <div class="screen">
-      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
+  <section id="crm-section">
+    <div class="reader-effect" id="reader">
+      <!-- Words will be injected here -->
     </div>
-  </div>
+
+    <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main/CRMDaily" target="_blank">
+      More Info
+    </a>
+
+    <div class="phone-container">
+      <div class="screen">
+        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/nobackground%20cutout%20.png?raw=true" alt="CRM App Interface">
+      </div>
+    </div>
+  </section>
 
   <script>
     const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with app it isn't anything out of the ordinary but just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
@@ -1263,7 +1307,6 @@
     const words = text.split(' ');
     const reader = document.getElementById('reader');
 
-    // Create spans
     reader.innerHTML = '';
     words.forEach(word => {
       const span = document.createElement('span');
@@ -1280,7 +1323,7 @@
       if (index < spans.length) {
         spans[index].classList.add('active');
         index++;
-        timer = setTimeout(highlightWord, 350); // 1.5 seconds per word
+        timer = setTimeout(highlightWord, 350); // 350ms per word
       }
     }
 
@@ -1293,13 +1336,18 @@
 
     highlightWord();
 
-    // Reset on scroll
+    // Reset only when section is scrolled past
+    const section = document.getElementById('crm-section');
     window.addEventListener('scroll', () => {
-      resetReader();
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        resetReader();
+      }
     });
   </script>
 
 </body>
+
 
 
 
