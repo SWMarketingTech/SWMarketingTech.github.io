@@ -79,168 +79,75 @@
 
 <!-- MAIN PAGE CONTENT -->
 <div id="mainContent">
-    <!-- SLIDESHOW BULLETIN BOARD -->
-<div id="slideshow-board" style="margin-top: 50px;">
-  <h2 style="text-align: center;">📌 SW Bulletin Board</h2>
-  <div class="slideshow-container">
-
-    <!-- FIRST SLIDE WITH TYPEWRITER EFFECT -->
-    <div class="mySlides fade" style="background-color: white;">
-      <div id="typewriter-slide">
-        <div id="typewriter"></div>
-      </div>
-    </div>
-
-    <!-- OTHER BULLETIN SLIDES -->
-    <div class="mySlides fade">
-      <div class="slide-text"> New AI Chat Bot Coming Soon! </div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="slide-text"> Webpage portfolio located in UX?IX Designs! </div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="slide-text"> AI App in development! </div>
-    </div>
-
-  </div>
-
-  <div style="text-align:center; margin-top: 10px;">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+<div class="sw-logo-container">
+  <div class="sw-logo">SW</div>
+  <div class="sw-words fade-in" id="sw-word" aria-live="polite">Marketing</div>
 </div>
 
 <style>
-  .slideshow-container {
-    max-width: 2000px;
-    height: 300px;
-    position: relative;
-    margin: 30px auto;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    background-color: #1b4e1b;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  }
-
-  .mySlides {
-    display: none;
-    text-align: center;
-    height: 100%;
-  }
-
-  .slide-text {
-    font-size: 1.2rem;
-    padding: 20px;
-    color: #fffacd;
-    font-weight: 600;
-    text-shadow: 2px 2px 4px #000;
-  }
-
-  #typewriter-slide {
+  .sw-logo-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100%;
+    gap: 1rem;
+    font-family: Impact, sans-serif;
+    padding: 2rem;
   }
 
-  #typewriter {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 2rem;
+  .sw-logo {
+    font-size: 6rem;
+    color: hsl(94, 100%, 20%);
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: .15em solid black;
-    animation: blinkCaret 0.75s step-end infinite;
+    transition: transform 0.6s ease;
+  }
+
+  .sw-logo:hover {
+    transform: scale(1.05);
+  }
+
+  .sw-words {
+    font-size: 1.5rem;
     color: black;
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
 
-  @keyframes blinkCaret {
-    50% { border-color: transparent; }
-  }
-
-  .fade {
-    animation: fadeEffect 1.5s;
-  }
-
-  @keyframes fadeEffect {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-
-  .dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 4px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.4s ease;
-  }
-
-  .active {
-    background-color: #fffacd;
+  .sw-words.fade-in {
+    opacity: 1;
   }
 </style>
 
 <script>
-  // TYPEWRITER LOGIC
-  const messages = ["The CRM APP", "making work.......", "work."];
-  const element = document.getElementById("typewriter");
-  let messageIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+  const words = [
+    "UX/IX",
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Java",
+    "SQL",
+    "Power BI",
+    "Front-end Developer",
+    "Marketing",
+    "Microsoft Azure Cloud Specialist",
+    "Design",
+    "Graphic Design & Animation",
+    "Sales",
+    "AI Automation and Development",
+    "Cyber Security"
+  ];
 
-  function type() {
-    const currentMessage = messages[messageIndex];
-    if (!isDeleting) {
-      element.textContent = currentMessage.slice(0, ++charIndex);
-      if (charIndex === currentMessage.length) {
-        isDeleting = true;
-        setTimeout(type, 1500);
-        return;
-      }
-    } else {
-      element.textContent = currentMessage.slice(0, --charIndex);
-      if (charIndex === 0) {
-        isDeleting = false;
-        messageIndex = (messageIndex + 1) % messages.length;
-      }
-    }
-    setTimeout(type, isDeleting ? 40 : 100);
+  let index = 0;
+  const wordElement = document.getElementById("sw-word");
+
+  function showNextWord() {
+    wordElement.classList.remove("fade-in");
+    setTimeout(() => {
+      index = (index + 1) % words.length;
+      wordElement.textContent = words[index];
+      wordElement.classList.add("fade-in");
+    }, 500);
   }
 
-  type();
-
-  // SLIDESHOW LOGIC
-  let slideIndex = 0;
-  function showSlides() {
-    const slides = document.getElementsByClassName("mySlides");
-    const dots = document.getElementsByClassName("dot");
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-
-    const delay = (slideIndex === 1) ? 15000 : 5000; // First slide: 15s, rest: 5s
-    setTimeout(showSlides, delay);
-  }
-
-  showSlides();
+  setInterval(showNextWord, 3000);
 </script>
 
 <!-- PORTFOLIO THUMBNAILS -->
