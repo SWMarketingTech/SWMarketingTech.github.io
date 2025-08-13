@@ -88,33 +88,112 @@
   .sw-logo-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     font-family: Impact, sans-serif;
-    padding: 2rem;
+    padding: 3rem;
+    background: linear-gradient(to right, #f8f8f8, #eaeaea);
   }
 
   .sw-logo {
     font-size: 20rem;
     color: hsl(94, 100%, 20%);
     font-weight: bold;
-    transition: transform 0.6s ease;
+    transform: skewX(-10deg);
+    transition: transform 0.6s ease, text-shadow 0.6s ease;
+    text-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.2),
+      0 8px 20px rgba(0, 128, 0, 0.3),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
   }
 
   .sw-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) skewX(-10deg);
+    text-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.3),
+      0 12px 30px rgba(0, 128, 0, 0.4),
+      inset 0 0 15px rgba(255, 255, 255, 0.3);
   }
 
   .sw-words {
-    font-size: 5rem;
+    font-size: 3rem;
     color: black;
     opacity: 0;
     transition: opacity 0.5s ease;
+    font-style: ;
   }
 
   .sw-words.fade-in {
     opacity: 1;
   }
 </style>
+
+<script>
+  const words = [
+    "UX/IX",
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Java",
+    "SQL",
+    "Power BI",
+    "Front-end Developer",
+    "Marketing",
+    "Microsoft Azure Cloud Specialist",
+    "Design",
+    "Graphic Design & Animation",
+    "Sales",
+    "AI Automation and Development",
+    "Cyber Security"
+  ];
+
+  let index = 0;
+  const wordElement = document.getElementById("sw-word");
+
+  function showNextWord() {
+    wordElement.classList.remove("fade-in");
+    setTimeout(() => {
+      index = (index + 1) % words.length;
+      wordElement.textContent = words[index];
+      wordElement.classList.add("fade-in");
+    }, 500);
+  }
+
+  setInterval(showNextWord, 3000);
+</script>
+
+<script>
+  const words = [
+    "UX/IX",
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Java",
+    "SQL",
+    "Power BI",
+    "Front-end Developer",
+    "Marketing",
+    "Microsoft Azure Cloud Specialist",
+    "Design",
+    "Graphic Design & Animation",
+    "Sales",
+    "AI Automation and Development",
+    "Cyber Security"
+  ];
+
+  let index = 0;
+  const wordElement = document.getElementById("sw-word");
+
+  function showNextWord() {
+    wordElement.classList.remove("fade-in");
+    setTimeout(() => {
+      index = (index + 1) % words.length;
+      wordElement.textContent = words[index];
+      wordElement.classList.add("fade-in");
+    }, 500);
+  }
+
+  setInterval(showNextWord, 3000);
+</script>
 
 <script>
   const words = [
