@@ -94,7 +94,7 @@
   }
 
   .sw-logo {
-    font-size: 6rem;
+    font-size: 20rem;
     color: hsl(94, 100%, 20%);
     font-weight: bold;
     transition: transform 0.6s ease;
@@ -105,7 +105,7 @@
   }
 
   .sw-words {
-    font-size: 1.5rem;
+    font-size: 5rem;
     color: black;
     opacity: 0;
     transition: opacity 0.5s ease;
