@@ -343,6 +343,39 @@
   </style>
 <body>
 
+<script>
+(function () {
+  const btn   = document.getElementById('enterBtn');
+  const intro = document.getElementById('intro');
+  const main  = document.getElementById('mainContent');
+  if (!btn || !intro || !main) return;
+
+  btn.addEventListener('click', () => {
+    // 1) Force-enable scrolling on BOTH <html> and <body>
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
+
+    // 2) Hard override in case any later CSS sets overflow:hidden again
+    let s = document.getElementById('unlock-scroll-style');
+    if (!s) {
+      s = document.createElement('style');
+      s.id = 'unlock-scroll-style';
+      s.textContent = 'html,body{overflow:auto !important;height:auto !important;}';
+      document.head.appendChild(s);
+    }
+
+    // 3) Fade out + remove the fixed intro overlay so it can’t block clicks/scroll
+    intro.style.transition = 'opacity 400ms ease';
+    intro.style.opacity = '0';
+    intro.style.pointerEvents = 'none';
+    setTimeout(() => { intro.style.display = 'none'; }, 420);
+
+    // 4) Smoothly scroll to your main content
+    main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
   <!-- Scene 1 -->
   <div class="scene active" id="scene1">
     <div class="typing-box" id="typing-box"></div>
