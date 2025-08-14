@@ -229,7 +229,206 @@
   setInterval(showNextWord, 3000);
 </script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SW Sequential Scenes</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      font-family: Impact, sans-serif;
+      overflow: hidden;
+    }
 
+    .scene {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Scene 1: Typing */
+    .typing-box {
+      font-size: 3rem;
+      color: black;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent; }
+    }
+
+    .slide-left {
+      animation: slideLeft 0.6s forwards;
+    }
+
+    .slide-right {
+      animation: slideRight 0.6s forwards;
+    }
+
+    @keyframes slideLeft {
+      to { transform: translateX(-520%);}
+    }
+
+    @keyframes slideRight {
+      to { transform: translateX(520%);}
+    }
+
+    /* Scene 2: Trail to Paragraph */
+    .trail-container {
+      position: relative;
+      width: 80%;
+      max-width: 1000px;
+      text-align: left;
+      line-height: 2.5rem;
+      font-size: 2rem;
+    }
+
+    .final-word {
+      visibility: hidden;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .animated-word {
+      position: absolute;
+      font-size: 2rem;
+      color: black;
+      white-space: nowrap;
+      pointer-events: none;
+      transform: translate(var(--x), var(--y)) scale(0.2) rotate(180deg);
+      opacity: 0;
+      transition: transform 2s ease, opacity 2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scene 1 -->
+  <div class="scene active" id="scene1">
+    <div class="typing-box" id="typing-box"></div>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="scene" id="scene2">
+    <div class="trail-container" id="trail"></div>
+  </div>
+
+  <script>
+    const words = [
+      "UX/IX", "HTML", "CSS", "Javascript", "Java",
+      "SQL", "Power BI", "Front-end Developer", "Marketing"
+    ];
+    let typingIndex = 0;
+    const typingBox = document.getElementById("typing-box");
+
+    function typeWord(word, callback) {
+      let charIndex = 0;
+      typingBox.textContent = "";
+      const interval = setInterval(() => {
+        typingBox.textContent += word[charIndex];
+        charIndex++;
+        if (charIndex === word.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            typingBox.classList.add(typingIndex % 2 === 0 ? "slide-left" : "slide-right");
+            setTimeout(() => {
+              typingBox.classList.remove("slide-left", "slide-right");
+              callback();
+            }, 600);
+          }, 1000);
+        }
+      }, 100);
+    }
+
+    function runTypingScene() {
+      if (typingIndex < words.length) {
+        typeWord(words[typingIndex], () => {
+          typingIndex++;
+          runTypingScene();
+        });
+      } else {
+        document.getElementById("scene1").classList.remove("active");
+        document.getElementById("scene2").classList.add("active");
+        runTrailScene();
+      }
+    }
+
+    runTypingScene();
+
+    function runTrailScene() {
+      const paragraph = "SW is an individual and collective firm that utilizes the skillsets listed. The priority is to formally package and present concepts and designs that are entirely outside of the realm of all encompassing thought. This is where creativity comes from.";
+      const words = paragraph.split(" ");
+      const trail = document.getElementById("trail");
+
+      const finalSpans = [];
+
+      // Step 1: Create invisible final layout
+      words.forEach((word, i) => {
+        const span = document.createElement("span");
+        span.className = "final-word";
+        span.textContent = word;
+        trail.appendChild(span);
+        trail.appendChild(document.createTextNode(" "));
+        finalSpans.push(span);
+      });
+
+      // Step 2: Wait for layout, then animate clones
+      setTimeout(() => {
+        finalSpans.forEach((targetSpan, i) => {
+          const rect = targetSpan.getBoundingClientRect();
+          const parentRect = trail.getBoundingClientRect();
+
+          const x = rect.left - parentRect.left;
+          const y = rect.top - parentRect.top;
+
+          const clone = document.createElement("span");
+          clone.className = "animated-word";
+          clone.textContent = targetSpan.textContent;
+
+          const offsetX = `${Math.random() * 600 - 300}px`;
+          const offsetY = `${Math.random() * 400 - 200}px`;
+          clone.style.setProperty("--x", offsetX);
+          clone.style.setProperty("--y", offsetY);
+
+          clone.style.left = `${x}px`;
+          clone.style.top = `${y}px`;
+
+          trail.appendChild(clone);
+
+          requestAnimationFrame(() => {
+            clone.style.transform = "translate(0, 0) scale(1) rotate(0deg)";
+            clone.style.opacity = "1";
+          });
+
+          setTimeout(() => {
+            clone.style.opacity = "0";
+            targetSpan.style.visibility = "visible";
+          }, 2500 + i * 100);
+        });
+      }, 100);
+    }
+  </script>
+</body>
+</html>
 
 
 <!-- PORTFOLIO THUMBNAILS -->
