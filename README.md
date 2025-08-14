@@ -319,7 +319,6 @@
       transition: transform 2s ease, opacity 2s ease;
     }
   </style>
-</head>
 <body>
 
   <!-- Scene 1 -->
@@ -427,9 +426,6 @@
       }, 100);
     }
   </script>
-</body>
-</html>
-
 
 <!-- PORTFOLIO THUMBNAILS -->
 <div class="portfolio-container">
