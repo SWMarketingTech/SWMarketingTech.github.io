@@ -76,6 +76,28 @@
     <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
     <button id="enterBtn">Enter Here</button>
 </div>
+<script>
+  (function () {
+    const intro = document.getElementById('intro');
+    const btn = document.getElementById('enterBtn');
+    const main = document.getElementById('mainContent');
+
+    if (btn && intro && main) {
+      btn.addEventListener('click', () => {
+        // re-enable page scrolling
+        document.body.style.overflow = 'auto';
+
+        // fade out & then remove the fixed intro overlay
+        intro.style.transition = 'opacity 500ms ease';
+        intro.style.opacity = '0';
+        setTimeout(() => { intro.style.display = 'none'; }, 500);
+
+        // scroll to your main content
+        main.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
 
 <!-- MAIN PAGE CONTENT -->
 <div id="mainContent">
