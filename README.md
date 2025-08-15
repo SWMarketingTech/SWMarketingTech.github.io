@@ -1252,7 +1252,7 @@
 
   <script>
     const typeTarget = document.getElementById("autoText");
-    const message = "Welcome to the SW Portfolio page. This isn't a formal site. It's just a bulletin board to put out different concepts and designs. This allows the audience to see a range of styles and capabilities. But honestly..................... there's nothing that can't be done here!";
+    const message = "Welcome to the SW Portfolio page. This isn't a formal site. It's just a bulletin board to put out different concepts and designs. This allows the audience to see a range of styles and capabilities. SW specializes in marketing and communications, but focuses primarily on UX/CX/IX as a technical niche. Communication is huge, and so is marketing because of the ability to relay messages to the audience. Since the world shifted in the digital age, the standard of communication has shifted. IX/UX/CX is the perfect continuation of communication in the world of marketing and tech.  Testing creativity is the focus. But honestly..................... there's nothing that can't be done here!";
     let interval;
 
     function autoType() {
