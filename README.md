@@ -304,7 +304,196 @@
 </body>
 </html>
 
+<!-- AI HELP BOT -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Help Pop-Up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
 
+    .ai-help-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #0078d4;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .ai-popup-wrapper {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      display: none;
+      z-index: 999;
+    }
+
+    .bubble-container {
+      position: absolute;
+      bottom: 110px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: auto;
+    }
+
+    .bubble {
+      background-color: forestgreen;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .ai-popup {
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ai-popup video {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px;
+      pointer-events: auto;
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    .ai-popup audio {
+      display: none;
+    }
+
+    .ai-popup-close {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #0078d4;
+      z-index: 1002;
+    }
+
+    .subtitle {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: #ffeb3b;
+      text-shadow: 1px 1px 2px black;
+      z-index: 1003;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ai-help-button" onclick="togglePopup()">Need AI Help?</div>
+
+  <div class="ai-popup-wrapper" id="aiPopupWrapper">
+    <div class="bubble-container">
+      <div class="bubble" onclick="handleBubbleClick('Contact SW')">Contact SW</div>
+      <div class="bubble" onclick="handleBubbleClick('Portfolio Library')">Portfolio Library</div>
+      <div class="bubble" onclick="handleBubbleClick('CRM APP (Prologue)')">CRM APP (Prologue)</div>
+    </div>
+
+    <div class="ai-popup" id="aiPopup">
+      <div class="ai-popup-close" onclick="togglePopup()">✖</div>
+
+      <video id="aiVideo" autoplay muted loop disablePictureInPicture controlsList="nodownload">
+        <source src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/yt1z.net%20-%20World%20s%20first%20AI%20presenter%20unveiled%20in%20China%20(144p).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <audio id="aiVoiceover">
+        <source src="https://github.com/SWMarketingTech/SWFiles/blob/main/Vocalized%20by%20Adam%20Elevenlabs%20-%20theaivoicegenerator.com%20-%202025-08-14.mp3?raw=true" type="audio/mpeg">
+        Your browser does not support the audio tag.
+      </audio>
+
+      <div class="subtitle" id="subtitleText"></div>
+    </div>
+  </div>
+
+  <script>
+    const subtitles = [
+      { time: 0, text: "Welcome to the SW Portfolio Showroom." },
+      { time: 3, text: "I’ll be your AI Help Assistant." },
+      { time: 6, text: "You can select an option or type in your search below." },
+      { time: 10, text: "If I can't assist, your request will be forwarded to SW." },
+      { time: 13, text: "They’ll reply promptly and professionally." }
+    ];
+
+    let subtitleInterval;
+
+    function togglePopup() {
+      const wrapper = document.getElementById("aiPopupWrapper");
+      const video = document.getElementById("aiVideo");
+      const voiceover = document.getElementById("aiVoiceover");
+      const subtitleText = document.getElementById("subtitleText");
+
+      if (wrapper.style.display === "none" || wrapper.style.display === "") {
+        wrapper.style.display = "block";
+
+        video.addEventListener('loadedmetadata', () => {
+          video.currentTime = 8;
+        }, { once: true });
+
+        voiceover.currentTime = 0;
+        voiceover.play();
+
+        subtitleText.textContent = "";
+        let index = 0;
+        subtitleInterval = setInterval(() => {
+          const currentTime = voiceover.currentTime;
+          if (index < subtitles.length && currentTime >= subtitles[index].time) {
+            subtitleText.textContent = subtitles[index].text;
+            index++;
+          }
+        }, 500);
+      } else {
+        wrapper.style.display = "none";
+        video.pause();
+        video.currentTime = 0;
+        voiceover.pause();
+        voiceover.currentTime = 0;
+        clearInterval(subtitleInterval);
+        document.getElementById("subtitleText").textContent = "";
+      }
+    }
+
+    function handleBubbleClick(label) {
+      console.log(`Bubble clicked: ${label}`);
+      // Add custom logic here if needed
+    }
+  </script>
+
+</body>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
