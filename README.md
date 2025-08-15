@@ -798,7 +798,61 @@
 }
   
 
+<!-- STICKY HEADER STYLING -->
+<style>
+  .blog-name.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: rgba(20, 82, 20, 0.95); /* Forest green semi-transparent */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  }
 
+  .blog-name.container h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+  .portfolio-link {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  .portfolio-link:hover {
+    color: #ddd;
+  }
+
+  .sw-text {
+    font-family: 'Amasis MT Pro Black', serif;
+    color: #145214; /* Forest green */
+    font-size: 38px;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+
+  .loading-counter {
+    font-family: monospace;
+    font-size: 16px;
+    color: #ffffff;
+    margin-left: 10px;
+    visibility: hidden;
+  }
+
+  /* Ensure space for fixed header */
+  #main {
+    padding-top: 100px;
+  }
+</style>
 
 <!-- LOADING COUNTER SCRIPT -->
 <script>
