@@ -410,15 +410,6 @@
       z-index: 1003;
       pointer-events: none;
     }
-
-    section {
-      padding: 60px 20px;
-      height: 600px;
-    }
-
-    #contact-sw { background: #f0f0f0; }
-    #portfolio-library { background: #e0e0e0; }
-    #crm-prologue { background: #d0d0d0; }
   </style>
 </head>
 <body>
@@ -448,32 +439,6 @@
       <div class="subtitle" id="subtitleText"></div>
     </div>
   </div>
-
-  <!-- Target Sections -->
-  <section id="contact-sw">
-    <h2>Contact SW</h2>
-    <p><div class="contact-wrapper">
-  <h2>Contact SW Marketing</h2>
-  <form class="contact-form" action="mailto:swmarketingfirm@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your Name" required>
-    <input type="email" name="Email" placeholder="Your Email" required>
-    <input type="tel" name="Phone" placeholder="Your Phone Number" required>
-    <textarea name="Message" placeholder="Your Message..." required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</div>
-</p>
-  </section>
-
-  <section id="portfolio-library">
-    <h2>Portfolio Library</h2>
-    <p>Showcase of projects and modules...</p>
-  </section>
-
-  <section id="crm-prologue">
-    <h2>CRM APP (Prologue)</h2>
-    <p>Intro and walkthrough of CRM application...</p>
-  </section>
 
   <script>
     const subtitles = [
@@ -523,34 +488,10 @@
     }
 
     function handleBubbleClick(label) {
-      let targetId = '';
-
-      switch (label) {
-        case 'Contact SW':
-          targetId = 'contact-sw';
-          break;
-        case 'Portfolio Library':
-          targetId = 'portfolio-library';
-          break;
-        case 'CRM APP (Prologue)':
-          targetId = 'crm-prologue';
-          break;
-        default:
-          console.log(`Bubble clicked: ${label}`);
-          return;
-      }
-
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const yOffset = -20; // adjust if you have a fixed header
-        const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        togglePopup();
-      }
+      console.log(`Bubble clicked: ${label}`);
+      // Add custom logic here if needed
     }
   </script>
-</body>
-</html>
 
 </body>
 
