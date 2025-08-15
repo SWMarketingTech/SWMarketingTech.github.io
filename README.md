@@ -452,7 +452,17 @@
   <!-- Target Sections -->
   <section id="contact-sw">
     <h2>Contact SW</h2>
-    <p>Details and contact form go here...</p>
+    <p><div class="contact-wrapper">
+  <h2>Contact SW Marketing</h2>
+  <form class="contact-form" action="mailto:swmarketingfirm@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+    <textarea name="Message" placeholder="Your Message..." required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+</p>
   </section>
 
   <section id="portfolio-library">
