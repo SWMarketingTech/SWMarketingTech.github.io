@@ -817,7 +817,7 @@
     padding: 0;
     font-size: 32px;
     font-weight: bold;
-    line-height: 1.2;
+      
   }
 
   .portfolio-link {
