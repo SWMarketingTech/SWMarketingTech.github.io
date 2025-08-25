@@ -90,10 +90,12 @@
     background: black;
   }
 
+  /* Center button in intro */
   #enterBtn {
     position: absolute;
-    bottom: 50px;
-    left: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: forestgreen;
     color: white;
     border: none;
@@ -176,6 +178,7 @@
     btn.textContent = originalText;
   });
 </script>
+
 
 
 <!-- MAIN PAGE CONTENT -->
