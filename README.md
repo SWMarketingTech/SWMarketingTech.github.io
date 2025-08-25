@@ -72,32 +72,111 @@
 
 <!-- INTRO FULLSCREEN SPLINE -->
 <div id="intro">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.44/build/spline-viewer.js"></script>
-    <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
-    <button id="enterBtn">Enter Here</button>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.44/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/EBbJDLbOuItb8tLY/scene.splinecode"></spline-viewer>
+  <button id="enterBtn">hier eintragen</button>
 </div>
+
+<style>
+  /* Intro styling */
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    overflow: hidden;
+    background: black;
+  }
+
+  #enterBtn {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+  #enterBtn:hover {
+    background-color: #2e7d32;
+  }
+
+  /* Hide sticky header by default */
+  .blog-name.container {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 0.6s ease;
+  }
+  /* When active, slide in */
+  .blog-name.container.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
 <script>
-  (function () {
-    const intro = document.getElementById('intro');
-    const btn = document.getElementById('enterBtn');
-    const main = document.getElementById('mainContent');
+  const intro = document.getElementById('intro');
+  const btn = document.getElementById('enterBtn');
+  const header = document.querySelector('.blog-name.container');
 
-    if (btn && intro && main) {
-      btn.addEventListener('click', () => {
-        // re-enable page scrolling
-        document.body.style.overflow = 'auto';
+  // Lock scroll initially
+  document.body.style.overflow = "hidden";
 
-        // fade out & then remove the fixed intro overlay
-        intro.style.transition = 'opacity 500ms ease';
-        intro.style.opacity = '0';
-        setTimeout(() => { intro.style.display = 'none'; }, 500);
+  btn.addEventListener('click', () => {
+    // Unlock scroll
+    document.body.style.overflow = "auto";
 
-        // scroll to your main content
-        main.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-  })();
+    // Fade out intro
+    intro.style.transition = 'opacity 0.6s ease';
+    intro.style.opacity = '0';
+    setTimeout(() => {
+      intro.style.display = 'none';
+
+      // Slide in header
+      header.classList.add("active");
+    }, 600);
+
+    // Scroll to content
+    document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Button hover "counter effect"
+  const originalText = "hier eintragen";
+  const targetText = "enter here";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  btn.addEventListener("mouseenter", () => {
+    let i = 0;
+    const interval = setInterval(() => {
+      btn.textContent = targetText
+        .split("")
+        .map((letter, index) => {
+          if (index < i) {
+            return targetText[index];
+          }
+          return characters[Math.floor(Math.random() * characters.length)];
+        })
+        .join("");
+
+      if (i >= targetText.length) {
+        clearInterval(interval);
+      }
+      i++;
+    }, 50);
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    btn.textContent = originalText;
+  });
 </script>
+
 
 <!-- MAIN PAGE CONTENT -->
 <div id="mainContent">
