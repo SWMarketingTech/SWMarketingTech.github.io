@@ -1547,7 +1547,7 @@
   <title>Rotating Vertical Collage</title>
 
   <style>
-    /* Header animation (slower: 10s) */
+    /* Header animation (10s cycle) */
     @keyframes fadeInLeft {
       0% { opacity: 0; transform: translateX(-40px); }
       20% { opacity: 1; transform: translateX(0); }
@@ -1555,32 +1555,34 @@
       100% { opacity: 0; transform: translateX(-40px); }
     }
 
-    /* Section wrapper */
+    /* Portfolio Section wrapper */
     .portfolio-section {
+      position: relative;   /* scope sticky to this section */
       width: 100%;
       background: #fff;
-      padding: 0;
+      padding: 0 0 100px 0; /* padding-bottom ensures header stops before next section */
     }
 
-    /* Header inside section */
+    /* Sticky Header inside portfolio */
     .crm-header {
-      position: relative; /* stays inside section */
+      position: sticky;
+      top: 0;
       z-index: 10;
       display: flex;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.95); /* less transparent */
+      background-color: rgba(255, 255, 255, 0.95); 
       padding: 10px 30px;
       font-size: 2rem;
       font-weight: bold;
       color: black;
-      border-bottom: 3px solid #aaa; /* stronger visible border */
+      border-bottom: 3px solid #aaa;
       width: 100%;
       backdrop-filter: blur(2px);
       height: 70px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* depth effect */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* Logo wrapper */
+    /* Logo */
     .logo-wrapper {
       width: 60px;
       height: 70px;
@@ -1592,7 +1594,7 @@
     .logo-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* show entire logo incl. border */
+      object-fit: contain; /* full logo with borders */
     }
 
     .crm-header span {
@@ -1603,7 +1605,7 @@
       display: inline-block;
     }
 
-    /* Body + collage styles */
+    /* Collage styles */
     body {
       margin: 0;
       background: #ffffff;
@@ -1611,7 +1613,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px;
       overflow-x: hidden;
     }
 
@@ -1621,6 +1622,7 @@
       gap: 18px;
       background: #ffffff;
       max-width: 1800px;
+      margin-top: 20px;
     }
 
     .collage img {
@@ -1647,6 +1649,43 @@
       41%  { transform: translateY(130%); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
+
+    /* Contact form section (example) */
+    .contact-section {
+      width: 100%;
+      padding: 80px 20px;
+      background: #f2f2f2;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact-section form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .contact-section button {
+      padding: 12px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -1672,9 +1711,6 @@
       <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
     </div>
   </section>
-
-</body>
-</html>
 
 
 
