@@ -1559,22 +1559,23 @@
 
     /* Header */
     .crm-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.95); 
-      padding: 20px 40px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: black;
-      border-bottom: 2px solid #ddd;
-      width: 100%;
-      backdrop-filter: blur(4px);
-      height: 60px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;   /* full solid white */
+  padding: 20px 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  border-bottom: 2px solid #ddd;
+  width: 100%;
+  backdrop-filter: blur(4px);  /* optional – works even with solid bg */
+  height: 75px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
 
     .crm-header img {
       width: 42px;
