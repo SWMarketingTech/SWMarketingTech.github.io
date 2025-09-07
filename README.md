@@ -1540,6 +1540,7 @@
 </body>
 
 <!-- UX PORTFOLIO -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1547,23 +1548,16 @@
   <title>Rotating Vertical Collage</title>
 
   <style>
-    /* Header animation (10s cycle) */
-    @keyframes fadeInLeft {
-      0% { opacity: 0; transform: translateX(-40px); }
-      20% { opacity: 1; transform: translateX(0); }
-      80% { opacity: 1; transform: translateX(0); }
-      100% { opacity: 0; transform: translateX(-40px); }
-    }
-
     /* Portfolio Section wrapper */
     .portfolio-section {
       position: relative;   /* scope sticky to this section */
       width: 100%;
       background: #fff;
-      padding: 0 0 100px 0; /* padding-bottom ensures header stops before next section */
+      padding: 0 0 100px 0;
+      overflow: hidden;  /* contain animations inside this section */
     }
 
-    /* Sticky Header inside portfolio */
+    /* Header */
     .crm-header {
       position: sticky;
       top: 0;
@@ -1571,38 +1565,41 @@
       display: flex;
       align-items: center;
       background-color: rgba(255, 255, 255, 0.95); 
-      padding: 10px 30px;
+      padding: 20px 40px;
       font-size: 2rem;
       font-weight: bold;
       color: black;
-      border-bottom: 3px solid #aaa;
+      border-bottom: 2px solid #ddd;
       width: 100%;
-      backdrop-filter: blur(2px);
-      height: 70px;
+      backdrop-filter: blur(4px);
+      height: 60px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* Logo */
-    .logo-wrapper {
-      width: 60px;
-      height: 70px;
-      margin-right: 18px;
-      display: flex;
-      align-items: center;
+    .crm-header img {
+      width: 42px;
+      height: 42px;
+      margin-right: 14px;
+      object-fit: contain;
+      border: 1px solid #ccc; /* makes logo visible */
+      border-radius: 6px;
+      background: #fff; /* ensures no blending with header */
     }
 
-    .logo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* full logo with borders */
-    }
-
+    /* Header animation (10s cycle) */
     .crm-header span {
       font-family: 'Brush Script MT', cursive;
       font-size: 2.2rem;
       line-height: 1;
       animation: fadeInLeft 10s ease-in-out infinite;
       display: inline-block;
+    }
+
+    @keyframes fadeInLeft {
+      0% { opacity: 0; transform: translateX(-40px); }
+      20% { opacity: 1; transform: translateX(0); }
+      80% { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0; transform: translateX(-40px); }
     }
 
     /* Collage styles */
@@ -1625,7 +1622,8 @@
       margin-top: 20px;
     }
 
-    .collage img {
+    /* Image animations only inside portfolio section */
+    .portfolio-section .collage img {
       width: 130%;
       display: block;
       background: #ffffff;
@@ -1633,14 +1631,14 @@
     }
 
     /* Stagger animation delays */
-    .collage img:nth-child(1) { animation-delay: 0s; }
-    .collage img:nth-child(2) { animation-delay: 3s; }
-    .collage img:nth-child(3) { animation-delay: 6s; }
-    .collage img:nth-child(4) { animation-delay: 9s; }
-    .collage img:nth-child(5) { animation-delay: 1.5s; }
-    .collage img:nth-child(6) { animation-delay: 4.5s; }
-    .collage img:nth-child(7) { animation-delay: 7.5s; }
-    .collage img:nth-child(8) { animation-delay: 10.5s; }
+    .portfolio-section .collage img:nth-child(1) { animation-delay: 0s; }
+    .portfolio-section .collage img:nth-child(2) { animation-delay: 3s; }
+    .portfolio-section .collage img:nth-child(3) { animation-delay: 6s; }
+    .portfolio-section .collage img:nth-child(4) { animation-delay: 9s; }
+    .portfolio-section .collage img:nth-child(5) { animation-delay: 1.5s; }
+    .portfolio-section .collage img:nth-child(6) { animation-delay: 4.5s; }
+    .portfolio-section .collage img:nth-child(7) { animation-delay: 7.5s; }
+    .portfolio-section .collage img:nth-child(8) { animation-delay: 10.5s; }
 
     /* Float upward only */
     @keyframes floatUp {
@@ -1650,7 +1648,7 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* Contact form section (example) */
+    /* Contact form section */
     .contact-section {
       width: 100%;
       padding: 80px 20px;
@@ -1693,9 +1691,7 @@
   <section class="portfolio-section">
     <!-- Header -->
     <header class="crm-header">
-      <div class="logo-wrapper">
-        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg" alt="SW Logo" />
-      </div>
+      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
       <span>Portfolio</span>
     </header>
 
