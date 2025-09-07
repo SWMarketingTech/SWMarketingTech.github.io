@@ -1547,56 +1547,60 @@
   <title>Rotating Vertical Collage</title>
 
   <style>
-    /* Fade-in text animation */
+    /* Header animation (slower: 10s) */
     @keyframes fadeInLeft {
-      0%   { opacity: 0; transform: translateX(-40px); }
-      20%  { opacity: 1; transform: translateX(0); }
-      80%  { opacity: 1; transform: translateX(0); }
+      0% { opacity: 0; transform: translateX(-40px); }
+      20% { opacity: 1; transform: translateX(0); }
+      80% { opacity: 1; transform: translateX(0); }
       100% { opacity: 0; transform: translateX(-40px); }
     }
 
-    /* Sticky header */
+    /* Section wrapper */
+    .portfolio-section {
+      width: 100%;
+      background: #fff;
+      padding: 0;
+    }
+
+    /* Header inside section */
     .crm-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: relative; /* stays inside section */
+      z-index: 10;
       display: flex;
-      align-items: center; /* center logo + Portfolio vertically */
-      background-color: rgba(255, 255, 255, 0.85);
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.95); /* less transparent */
       padding: 10px 30px;
       font-size: 2rem;
       font-weight: bold;
       color: black;
-      border-bottom: 2px solid #ddd;
+      border-bottom: 3px solid #aaa; /* stronger visible border */
       width: 100%;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(2px);
       height: 70px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* depth effect */
     }
 
-    /* Logo wrapper for cropping */
+    /* Logo wrapper */
     .logo-wrapper {
-      width: 52px;
-      height: 60px;        /* show more of the logo so SW is visible */
-      overflow: hidden;
+      width: 60px;
+      height: 70px;
       margin-right: 18px;
       display: flex;
       align-items: center;
-      margin-top: 4px;     /* drops SW slightly lower */
     }
 
     .logo-wrapper img {
-      width: 52px;
-      height: 85px;
-      object-fit: contain;
-      object-position: middle; /* 👈 focus on top part (green SW) */
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* show entire logo incl. border */
     }
 
     .crm-header span {
       font-family: 'Brush Script MT', cursive;
       font-size: 2.2rem;
       line-height: 1;
-      display: inline-block;
       animation: fadeInLeft 10s ease-in-out infinite;
+      display: inline-block;
     }
 
     /* Body + collage styles */
@@ -1608,7 +1612,7 @@
       flex-direction: column;
       align-items: center;
       padding: 40px;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .collage {
@@ -1626,7 +1630,7 @@
       animation: floatUp 12s linear infinite;
     }
 
-    /* staggered animation */
+    /* Stagger animation delays */
     .collage img:nth-child(1) { animation-delay: 0s; }
     .collage img:nth-child(2) { animation-delay: 3s; }
     .collage img:nth-child(3) { animation-delay: 6s; }
@@ -1636,36 +1640,42 @@
     .collage img:nth-child(7) { animation-delay: 7.5s; }
     .collage img:nth-child(8) { animation-delay: 10.5s; }
 
+    /* Float upward only */
     @keyframes floatUp {
       0%   { transform: translateY(0); opacity: 1; }
       40%  { transform: translateY(-130%); opacity: 0; }
-      41%  { transform: translateY(130%); opacity: 0; } /* instant reset */
+      41%  { transform: translateY(130%); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="crm-header">
-    <div class="logo-wrapper">
-      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
-    </div>
-    <span>Portfolio</span>
-  </header>
 
-  <!-- Collage --> (still portfolio)
-  <div class="collage">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20three%20banking%20(1st%20image)%20no%20background.png" alt="Banking App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20the%20red%20corvette%20iphone%20frame%20no%20frame.png" alt="Red Corvette App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20these%20two%20photos%20tesla%20iphone%20frame%20no%20background.png" alt="Tesla App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/render%20the%20visual%20wi%20latest%20design%20(no%20background).jpg" alt="Latest Design">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/use%20square%20widgets%20ubest%20one%20(no%20backround).jpg" alt="Square Widgets">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
-  </div>
+  <section class="portfolio-section">
+    <!-- Header -->
+    <header class="crm-header">
+      <div class="logo-wrapper">
+        <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg" alt="SW Logo" />
+      </div>
+      <span>Portfolio</span>
+    </header>
+
+    <!-- Collage --> (still portfolio)
+    <div class="collage">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20three%20banking%20(1st%20image)%20no%20background.png" alt="Banking App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20the%20red%20corvette%20iphone%20frame%20no%20frame.png" alt="Red Corvette App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20these%20two%20photos%20tesla%20iphone%20frame%20no%20background.png" alt="Tesla App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/render%20the%20visual%20wi%20latest%20design%20(no%20background).jpg" alt="Latest Design">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/use%20square%20widgets%20ubest%20one%20(no%20backround).jpg" alt="Square Widgets">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
+    </div>
+  </section>
+
 </body>
 </html>
+
 
 
 <!-- CONTACT FORM -->
