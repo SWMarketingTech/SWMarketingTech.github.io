@@ -1547,17 +1547,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotating Vertical Collage</title>
 
-  <style>
-    /* Portfolio Section wrapper */
-    .portfolio-section {
-      position: relative;   /* scope sticky to this section */
-      width: 100%;
-      background: #fff;
-      padding: 0 0 100px 0;
-      overflow: hidden;  /* contain animations inside this section */
-    }
-
-    /* Header */
+ /* Header */
     .crm-header {
   position: sticky;
   top: 0;
@@ -1585,6 +1575,17 @@
       border: 1px solid #ccc; /* makes logo visible */
       border-radius: 6px;
       background: #fff; /* ensures no blending with header */
+    }
+  <style>
+    /* Portfolio Section wrapper */
+    .portfolio-section {
+      position: relative;   /* scope sticky to this section */
+      width: 100%;
+      background: #fff;
+      padding: 0 0 100px 0;
+    }
+
+
     }
 
     /* Header animation (10s cycle) */
