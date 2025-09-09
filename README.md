@@ -1555,6 +1555,51 @@
       background: #fff;
       padding: 0 0 100px 0;
     }
+/* Portfolio Header - matches CRM APP style */
+.portfolio-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;   /* full solid white */
+  padding: 20px 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  border-bottom: 2px solid #ddd;
+  width: 100%;
+  backdrop-filter: blur(4px);  /* works even with solid bg */
+  height: 75px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.portfolio-header img {
+  width: 42px;
+  height: 42px;
+  margin-right: 14px;
+  object-fit: contain;
+  border: 1px solid #ccc; /* makes logo visible */
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* Animated Title */
+.portfolio-header span {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2.2rem;
+  line-height: 1;
+  animation: fadeInLeft 10s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-40px); }
+  20% { opacity: 1; transform: translateX(0); }
+  80% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-40px); }
+}
 
     /* Header (copied from CRM APP style) */
     .crm-header {
@@ -1641,10 +1686,11 @@
 
   <section class="portfolio-section">
     <!-- Header (CRM APP style) -->
-    <header class="crm-header">
-      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
-      <span>Portfolio</span>
-    </header>
+    <header class="portfolio-header">
+  <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
+  <span>Portfolio</span>
+</header>
+
 
     <!-- Collage --> (still UX Portfolio)
     <div class="collage">
