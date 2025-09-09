@@ -1545,37 +1545,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotating Vertical Collage</title>
+  <title>UX Portfolio</title>
 
- /* Header */
-    .crm-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;   /* full solid white */
-  padding: 20px 40px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: black;
-  border-bottom: 2px solid #ddd;
-  width: 100%;
-  backdrop-filter: blur(4px);  /* optional – works even with solid bg */
-  height: 75px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-
-    .crm-header img {
-      width: 42px;
-      height: 42px;
-      margin-right: 14px;
-      object-fit: contain;
-      border: 1px solid #ccc; /* makes logo visible */
-      border-radius: 6px;
-      background: #fff; /* ensures no blending with header */
-    }
   <style>
     /* Portfolio Section wrapper */
     .portfolio-section {
@@ -1585,23 +1556,39 @@
       padding: 0 0 100px 0;
     }
 
-
+    /* Header (copied from CRM APP style) */
+    .crm-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 20px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+      border-bottom: 2px solid #ddd;
+      width: 100%;
+      backdrop-filter: blur(4px);
+      height: 75px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* Header animation (10s cycle) */
+    .crm-header img {
+      width: 42px;
+      height: 42px;
+      margin-right: 14px;
+      object-fit: contain;
+      border: 1px solid #ccc; /* optional, for visibility */
+      border-radius: 6px;
+      background: #fff;
+    }
+
     .crm-header span {
-      font-family: 'Brush Script MT', cursive;
-      font-size: 2.2rem;
-      line-height: 1;
-      animation: fadeInLeft 10s ease-in-out infinite;
-      display: inline-block;
-    }
-
-    @keyframes fadeInLeft {
-      0% { opacity: 0; transform: translateX(-40px); }
-      20% { opacity: 1; transform: translateX(0); }
-      80% { opacity: 1; transform: translateX(0); }
-      100% { opacity: 0; transform: translateX(-40px); }
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     /* Collage styles */
@@ -1624,7 +1611,6 @@
       margin-top: 20px;
     }
 
-    /* Image animations only inside portfolio section */
     .portfolio-section .collage img {
       width: 130%;
       display: block;
@@ -1649,55 +1635,18 @@
       41%  { transform: translateY(130%); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
-
-    /* Contact form section */
-    .contact-section {
-      width: 100%;
-      padding: 80px 20px;
-      background: #f2f2f2;
-      text-align: center;
-    }
-
-    .contact-section h2 {
-      margin-bottom: 20px;
-    }
-
-    .contact-section form {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-section input,
-    .contact-section textarea {
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .contact-section button {
-      padding: 12px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
   <section class="portfolio-section">
-    <!-- Header -->
+    <!-- Header (CRM APP style) -->
     <header class="crm-header">
       <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
       <span>Portfolio</span>
     </header>
 
-    <!-- Collage --> (still portfolio)
+    <!-- Collage --> (still UX Portfolio)
     <div class="collage">
       <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
       <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
@@ -1709,6 +1658,8 @@
       <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
     </div>
   </section>
+
+</body>
 
 
 
