@@ -1540,31 +1540,32 @@
 </body>
 
 <!-- UX PORTFOLIO -->
-<!-- ===== UX PORTFOLIO (header styled to match CRM APP) ===== -->
 <section id="ux-portfolio">
   <style>
+    /* Scope everything to this section so it won't affect others */
     #ux-portfolio {
       position: relative;      /* keeps sticky header scoped to this section */
       background: #fff;
-      padding: 0 0 100px 0;
-      overflow: hidden;        /* contain animations */
+      padding: 0 0 100px 0;    /* room so sticky header doesn't overlap next section */
+      overflow: hidden;        /* keep image animations inside this section */
     }
 
-    /* Header — now exactly like CRM APP */
+    /* Header — EXACT match to CRM APP header */
     #ux-portfolio .crm-header {
       position: sticky;
       top: 0;
       z-index: 1000;
       display: flex;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.85); /* same transparency */
+      background-color: rgba(255, 255, 255, 0.85);
       padding: 20px 40px;
       font-size: 2rem;
       font-weight: bold;
       color: black;
-      border-bottom: 2px solid #ddd; /* gray underline */
+      border-bottom: 2px solid #ddd;
       width: 100%;
       backdrop-filter: blur(4px);
+      /* (no fixed height in CRM APP header) */
     }
 
     #ux-portfolio .crm-header img {
@@ -1602,6 +1603,7 @@
     #ux-portfolio .collage img:nth-child(7) { animation-delay: 7.5s; }
     #ux-portfolio .collage img:nth-child(8) { animation-delay: 10.5s; }
 
+    /* Up-only loop */
     @keyframes floatUp {
       0%   { transform: translateY(0); opacity: 1; }
       40%  { transform: translateY(-130%); opacity: 0; }
@@ -1610,7 +1612,7 @@
     }
   </style>
 
-  <!-- Header (now styled to match CRM APP header) -->
+  <!-- Header (keeps logo + title, matches CRM APP style) -->
   <header class="crm-header">
     <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
     Portfolio
@@ -1628,6 +1630,7 @@
     <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
   </div>
 </section>
+
 
 
 
