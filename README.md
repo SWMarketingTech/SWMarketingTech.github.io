@@ -1551,8 +1551,16 @@
       overflow: hidden;        /* keep image animations inside this section */
     }
 
-    /* Header — EXACT match to CRM APP header */
-    #ux-portfolio .crm-header {
+    #crm-section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .crm-header {
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -1566,8 +1574,21 @@
       border-bottom: 2px solid #ddd;
       width: 100%;
       backdrop-filter: blur(4px);
-      /* (no fixed height in CRM APP header) */
     }
+
+    .crm-header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .crm-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 40px;
+    }
+
 
     #ux-portfolio .crm-header img {
       width: 32px;
