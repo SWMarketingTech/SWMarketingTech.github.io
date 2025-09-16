@@ -1539,25 +1539,19 @@
 
 </body>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UX Portfolio</title>
+<!-- UX PORTFOLIO -->
+<section id="ux-portfolio">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-    }
-
     /* Scope everything to this section */
     #ux-portfolio {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      margin: 0;
       background: #fff;
-      padding: 0 0 100px 0;
-      overflow: hidden;
+      overflow: hidden;  /* contain collage animation */
     }
 
     /* Header — matches CRM APP style */
@@ -1590,14 +1584,13 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       max-width: 1800px;
-      margin: 20px auto 0;
-      background: #fff;
+      margin: 20px auto 60px;
     }
 
+    /* Image motion only inside UX Portfolio */
     #ux-portfolio .collage img {
       width: 130%;
       display: block;
-      background: #ffffff;
       animation: floatUp 12s linear infinite;
     }
 
@@ -1611,6 +1604,7 @@
     #ux-portfolio .collage img:nth-child(7) { animation-delay: 7.5s; }
     #ux-portfolio .collage img:nth-child(8) { animation-delay: 10.5s; }
 
+    /* Float up effect */
     @keyframes floatUp {
       0%   { transform: translateY(0); opacity: 1; }
       40%  { transform: translateY(-130%); opacity: 0; }
@@ -1618,104 +1612,8 @@
       100% { transform: translateY(0);     opacity: 1; }
     }
   </style>
-</head>
-<body>
 
-  <!-- UX PORTFOLIO SECTION -->
-  <section id="ux-portfolio">
-    <header class="crm-header">
-      <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
-      Portfolio
-    </header>
-
-    <div class="collage">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20three%20banking%20(1st%20image)%20no%20background.png" alt="Banking App">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20the%20red%20corvette%20iphone%20frame%20no%20frame.png" alt="Red Corvette App">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20these%20two%20photos%20tesla%20iphone%20frame%20no%20background.png" alt="Tesla App">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/render%20the%20visual%20wi%20latest%20design%20(no%20background).jpg" alt="Latest Design">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/use%20square%20widgets%20ubest%20one%20(no%20backround).jpg" alt="Square Widgets">
-      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
-    </div>
-  </section>
-
-</body>
-</html>
-<!-- UX PORTFOLIO -->
-<section id="ux-portfolio">
-  <style>
-    /* Scope everything to this section so it won't affect others */
-    #ux-portfolio {
-      position: relative;      /* keeps sticky header scoped to this section */
-      background: #fff;
-      padding: 0 0 100px 0;    /* room so sticky header doesn't overlap next section */
-      overflow: hidden;        /* keep image animations inside this section */
-    }
-
-    /* Header — EXACT match to CRM APP header */
-    #ux-portfolio .crm-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px 40px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: black;
-      border-bottom: 2px solid #ddd;
-      width: 100%;
-      backdrop-filter: blur(4px);
-      /* (no fixed height in CRM APP header) */
-    }
-
-    #ux-portfolio .crm-header img {
-      width: 32px;
-      height: 32px;
-      margin-right: 12px;
-      object-fit: contain;
-    }
-
-    /* Collage grid */
-    #ux-portfolio .collage {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      max-width: 1800px;
-      margin: 20px auto 0;
-      background: #fff;
-    }
-
-    /* Image motion only in this section */
-    #ux-portfolio .collage img {
-      width: 130%;
-      display: block;
-      background: #ffffff;
-      animation: floatUp 12s linear infinite;
-    }
-
-    /* Staggered delays */
-    #ux-portfolio .collage img:nth-child(1) { animation-delay: 0s; }
-    #ux-portfolio .collage img:nth-child(2) { animation-delay: 3s; }
-    #ux-portfolio .collage img:nth-child(3) { animation-delay: 6s; }
-    #ux-portfolio .collage img:nth-child(4) { animation-delay: 9s; }
-    #ux-portfolio .collage img:nth-child(5) { animation-delay: 1.5s; }
-    #ux-portfolio .collage img:nth-child(6) { animation-delay: 4.5s; }
-    #ux-portfolio .collage img:nth-child(7) { animation-delay: 7.5s; }
-    #ux-portfolio .collage img:nth-child(8) { animation-delay: 10.5s; }
-
-    /* Up-only loop */
-    @keyframes floatUp {
-      0%   { transform: translateY(0); opacity: 1; }
-      40%  { transform: translateY(-130%); opacity: 0; }
-      41%  { transform: translateY(130%);  opacity: 0; } /* jump to bottom */
-      100% { transform: translateY(0);     opacity: 1; }
-    }
-  </style>
-
-  <!-- Header (keeps logo + title, matches CRM APP style) -->
+  <!-- Header (CRM APP style) -->
   <header class="crm-header">
     <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
     Portfolio
@@ -1733,6 +1631,7 @@
     <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
   </div>
 </section>
+
 
 
 
