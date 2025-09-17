@@ -1545,23 +1545,21 @@
     /* Scope everything to this section */
     #ux-portfolio {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: block;
       padding: 0;
       margin: 0;
       background: #fff;
-      overflow: hidden;  /* contain collage animation */
+      /* remove overflow hidden so sticky header works */
     }
 
-    /* Header — matches CRM APP style */
+    /* Header — sticky only inside this section */
     #ux-portfolio .crm-header {
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10;
       display: flex;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.95);
       padding: 20px 40px;
       font-size: 2rem;
       font-weight: bold;
@@ -1631,6 +1629,7 @@
     <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
   </div>
 </section>
+
 
 
 
