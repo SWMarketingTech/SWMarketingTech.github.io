@@ -1644,46 +1644,6 @@
     </div>
   </section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const reader = document.getElementById('reader');
-      const text = `Business is something that comes in all different shapes and sizes. If there's one thing man can't measure it's talent, but it doesn't hurt to try! Honestly though, with this app it isn't anything out of the ordinary. It is just an attempt to see if I could make some hits where others have had misses. I wanted to see if I could use this tool to provide any level of assistance or increased provision to daily the hustle and bustle of a businessman in the fast-paced sales and marketing world. With this app there are various improved enhancements regarding tracking teams and clientele.`;
-
-      const words = text.split(' ');
-      reader.innerHTML = '';
-      words.forEach(word => {
-        const span = document.createElement('span');
-        span.textContent = word + ' ';
-        reader.appendChild(span);
-      });
-
-      let index = 0;
-      const spans = reader.querySelectorAll('span');
-      let timer;
-
-      function highlightWord() {
-        if (index > 0) spans[index - 1].classList.remove('active');
-        if (index < spans.length) {
-          spans[index].classList.add('active');
-          index++;
-          timer = setTimeout(highlightWord, 350);
-        }
-      }
-
-      function resetReader() {
-        clearTimeout(timer);
-        spans.forEach(span => span.classList.remove('active'));
-        index = 0;
-        highlightWord();
-      }
-
-      highlightWord();
-      reader.addEventListener('mouseenter', resetReader);
-    });
-
-</section>
-
-
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
