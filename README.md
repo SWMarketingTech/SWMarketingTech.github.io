@@ -1550,7 +1550,7 @@
       background: #fff;
     }
 
-    /* Header — sticky only inside this section */
+    /* Header */
     #ux-portfolio .crm-header {
       position: sticky;
       top: 0;
@@ -1574,9 +1574,9 @@
       object-fit: contain;
     }
 
-    /* Collage wrapper clips the animation */
+    /* Collage wrapper clips animation */
     #ux-portfolio .collage-wrapper {
-      overflow: hidden; /* containment for animation */
+      overflow: hidden;
       width: 100%;
     }
 
@@ -1589,14 +1589,13 @@
       margin: 20px auto 60px;
     }
 
-    /* Image motion only inside UX Portfolio */
+    /* Images animation */
     #ux-portfolio .collage img {
       width: 130%;
       display: block;
       animation: floatUp 12s linear infinite;
     }
 
-      
     /* Staggered delays */
     #ux-portfolio .collage img:nth-child(1) { animation-delay: 0s; }
     #ux-portfolio .collage img:nth-child(2) { animation-delay: 3s; }
@@ -1607,12 +1606,41 @@
     #ux-portfolio .collage img:nth-child(7) { animation-delay: 7.5s; }
     #ux-portfolio .collage img:nth-child(8) { animation-delay: 10.5s; }
 
-    /* Float up effect */
     @keyframes floatUp {
       0%   { transform: translateY(0); opacity: 1; }
       40%  { transform: translateY(-130%); opacity: 0; }
       41%  { transform: translateY(130%);  opacity: 0; }
       100% { transform: translateY(0);     opacity: 1; }
+    }
+
+    /* More Info Button */
+    #ux-portfolio .info-button {
+      display: inline-block;
+      margin-top: 40px; /* pushed down below collage */
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    #ux-portfolio .info-button:hover {
+      background-color: darkgreen;
+    }
+
+    /* Paragraph under button */
+    #ux-portfolio .portfolio-text {
+      max-width: 900px;
+      margin: 30px auto 60px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+      text-align: center;
+      padding: 0 20px;
     }
   </style>
 
@@ -1636,13 +1664,22 @@
     </div>
   </div>
 
-        <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main/CRMDaily" target="_blank">
-        More Info
-      </a>
+  <!-- More Info button -->
+  <div style="text-align: center;">
+    <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main" target="_blank">
+      More Info
+    </a>
+  </div>
 
-      <div class="reader-effect" id="reader"></div>
-    </div>
-  </section>
+  <!-- Portfolio text -->
+  <p class="portfolio-text">
+    Here is an official UX/IX/CX portfolio. This page is where a wide variety and array of content can be viewed. 
+    These designs are varied with a level of experience, but the intent is to display extent. 
+    The intention of this design is to show range and creativity. 
+    This is to let the audience know that whatever they're looking for can be found. 
+    Some of these designs are raw or in early development and can be expanded upon if necessary.
+  </p>
+</section>
 
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
