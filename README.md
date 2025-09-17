@@ -1596,6 +1596,42 @@
       animation: floatUp 12s linear infinite;
     }
 
+    .info-button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .info-button:hover {
+      background-color: darkgreen;
+    }
+
+    .reader-effect {
+      font-size: 1.6rem;
+      max-width: 800px;
+      text-align: left;
+      margin-top: 40px;
+      line-height: 1.8;
+      color: black;
+      cursor: pointer;
+    }
+
+    .reader-effect span {
+      opacity: 0.6;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .reader-effect span.active {
+      color: forestgreen;
+      font-weight: bold;
+      opacity: 1;
+      
     /* Staggered delays */
     #ux-portfolio .collage img:nth-child(1) { animation-delay: 0s; }
     #ux-portfolio .collage img:nth-child(2) { animation-delay: 3s; }
