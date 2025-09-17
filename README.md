@@ -1596,21 +1596,6 @@
       animation: floatUp 12s linear infinite;
     }
 
-    .info-button {
-      padding: 12px 24px;
-      font-size: 1rem;
-      background-color: forestgreen;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      margin-bottom: 20px;
-    }
-
-    .info-button:hover {
-      background-color: darkgreen;
-    }
       
     /* Staggered delays */
     #ux-portfolio .collage img:nth-child(1) { animation-delay: 0s; }
