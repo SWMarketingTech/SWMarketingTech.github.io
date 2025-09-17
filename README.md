@@ -1684,12 +1684,6 @@
 </section>
 
 
-
-
-
-
-
-
 <!-- CONTACT FORM -->
 <div class="contact-wrapper">
   <h2>Contact SW Marketing</h2>
