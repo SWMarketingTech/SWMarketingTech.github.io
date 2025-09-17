@@ -1542,14 +1542,12 @@
 <!-- UX PORTFOLIO -->
 <section id="ux-portfolio">
   <style>
-    /* Scope everything to this section */
     #ux-portfolio {
       position: relative;
       display: block;
       padding: 0;
       margin: 0;
       background: #fff;
-      /* remove overflow hidden so sticky header works */
     }
 
     /* Header — sticky only inside this section */
@@ -1574,6 +1572,12 @@
       height: 32px;
       margin-right: 12px;
       object-fit: contain;
+    }
+
+    /* Collage wrapper clips the animation */
+    #ux-portfolio .collage-wrapper {
+      overflow: hidden; /* containment for animation */
+      width: 100%;
     }
 
     /* Collage grid */
@@ -1611,24 +1615,27 @@
     }
   </style>
 
-  <!-- Header (CRM APP style) -->
+  <!-- Header -->
   <header class="crm-header">
     <img src="https://github.com/SWMarketingTech/SWFiles/blob/main/Portfolio%20P%20Snippet.jpg?raw=true" alt="SW Logo" />
     Portfolio
   </header>
 
-  <!-- Collage -->
-  <div class="collage">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20three%20banking%20(1st%20image)%20no%20background.png" alt="Banking App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20the%20red%20corvette%20iphone%20frame%20no%20frame.png" alt="Red Corvette App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20these%20two%20photos%20tesla%20iphone%20frame%20no%20background.png" alt="Tesla App">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/render%20the%20visual%20wi%20latest%20design%20(no%20background).jpg" alt="Latest Design">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/use%20square%20widgets%20ubest%20one%20(no%20backround).jpg" alt="Square Widgets">
-    <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
+  <!-- Collage with wrapper -->
+  <div class="collage-wrapper">
+    <div class="collage">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(savibgs%20goal)%20mo%20background.png" alt="Savings App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20a%20banking%20app%20(transactions%20screen)%20no%20background.png" alt="Transactions App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/Create%20three%20banking%20(1st%20image)%20no%20background.png" alt="Banking App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20the%20red%20corvette%20iphone%20frame%20no%20frame.png" alt="Red Corvette App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20these%20two%20photos%20tesla%20iphone%20frame%20no%20background.png" alt="Tesla App">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/render%20the%20visual%20wi%20latest%20design%20(no%20background).jpg" alt="Latest Design">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/use%20square%20widgets%20ubest%20one%20(no%20backround).jpg" alt="Square Widgets">
+      <img src="https://github.com/SWMarketingTech/SWFiles/raw/main/put%20this%20photo%20in%20an%20fruit%20ad%20iphone%20frame%20no%20background.png" alt="Fruit Ad">
+    </div>
   </div>
 </section>
+
 
 
 
