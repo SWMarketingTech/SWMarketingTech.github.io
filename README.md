@@ -1636,10 +1636,10 @@
     #ux-portfolio .portfolio-text {
       max-width: 900px;
       margin: 30px auto 60px;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       line-height: 1.8;
       color: #333;
-      text-align: center;
+      text-align: left;
       padding: 0 20px;
     }
   </style>
@@ -1679,6 +1679,7 @@
     This is to let the audience know that whatever they're looking for can be found. 
     Some of these designs are raw or in early development and can be expanded upon if necessary.
   </p>
+
 </section>
 
 <!-- CONTACT FORM -->
