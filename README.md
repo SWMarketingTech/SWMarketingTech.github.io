@@ -1611,26 +1611,6 @@
     .info-button:hover {
       background-color: darkgreen;
     }
-
-    .reader-effect {
-      font-size: 1.6rem;
-      max-width: 800px;
-      text-align: left;
-      margin-top: 40px;
-      line-height: 1.8;
-      color: black;
-      cursor: pointer;
-    }
-
-    .reader-effect span {
-      opacity: 0.6;
-      transition: color 0.3s ease, opacity 0.3s ease;
-    }
-
-    .reader-effect span.active {
-      color: forestgreen;
-      font-weight: bold;
-      opacity: 1;
       
     /* Staggered delays */
     #ux-portfolio .collage img:nth-child(1) { animation-delay: 0s; }
