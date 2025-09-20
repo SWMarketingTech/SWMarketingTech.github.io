@@ -1,7 +1,3 @@
-portfolio/index.html
-
-Coming Soon...
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,28 +7,22 @@ Coming Soon...
 
   <style>
     :root {
-      --bg: #0f1115;
-      --card: #0f1318;
+      --bg: #ffffff; /* white background */
+      --card: #f2f2f2; /* lighter gray for cards */
       --accent: #08a0ff;
-      --glass: rgba(255, 255, 255, 0.04);
-      --text: #e6eef8;
-      --muted: rgba(230, 238, 248, 0.6);
+      --glass: rgba(0, 0, 0, 0.04); /* faint transparent gray */
+      --text: #000000; /* black text */
+      --muted: rgba(0, 0, 0, 0.6); /* dark gray muted text */
     }
 
     /* ---- Basic reset ---- */
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #071018 0%, #0f1115 100%);
+      background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -70,34 +60,36 @@ Coming Soon...
       -webkit-overflow-scrolling: touch;
     }
 
-    .portfolio-row::-webkit-scrollbar {
-      height: 10px;
-    }
-
+    .portfolio-row::-webkit-scrollbar { height: 10px; }
     .portfolio-row::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(0,0,0,0.12);
       border-radius: 6px;
     }
 
+    /* portfolio item (initial + hover) */
     .portfolio-item {
       width: 300px;
       min-width: 240px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, var(--glass) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, var(--glass) 100%);
       border-radius: 12px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
-      transition: transform 220ms cubic-bezier(.2, .9, .2, 1), box-shadow 220ms;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms, opacity 260ms;
       cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0,0,0,0.06);
       transform-origin: center;
+
+      /* start state for float-in */
+      opacity: 0;
+      transform: translateX(-60px);
     }
 
-    /* subtle pop on hover */
+    /* subtle pop on hover (keeps working after animation) */
     .portfolio-item:focus,
     .portfolio-item:hover {
       transform: translateY(-6px) scale(1.04);
-      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.7);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
       outline: none;
     }
 
@@ -110,22 +102,10 @@ Coming Soon...
       vertical-align: middle;
     }
 
-    .meta {
-      padding: 12px;
-    }
+    .meta { padding: 12px; }
+    .title { font-weight: 600; font-size: 15px; margin: 0 0 6px 0; }
+    .tags { font-size: 12px; color: var(--muted); }
 
-    .title {
-      font-weight: 600;
-      font-size: 15px;
-      margin: 0 0 6px 0;
-    }
-
-    .tags {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* little corner play icon for video items */
     .play-badge {
       position: absolute;
       top: 10px;
@@ -142,7 +122,7 @@ Coming Soon...
       border: 1px solid rgba(8, 160, 255, 0.12);
     }
 
-    /* overlay / lightbox */
+    /* overlay / lightbox (unchanged) */
     .overlay {
       position: fixed;
       inset: 0;
@@ -156,31 +136,25 @@ Coming Soon...
       z-index: 1200;
     }
 
-    .overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .overlay.open { opacity: 1; pointer-events: auto; }
 
     .lightbox {
       width: min(1100px, 94%);
       max-height: 92vh;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius: 12px;
       overflow: hidden;
       transform: translateY(18px) scale(.98);
-      transition: transform 360ms cubic-bezier(.2, .9, .2, 1), opacity 240ms;
-      box-shadow: 0 28px 80px rgba(3, 8, 20, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: transform 360ms cubic-bezier(.2,.9,.2,1), opacity 240ms;
+      box-shadow: 0 28px 80px rgba(3,8,20,0.07);
+      border: 1px solid rgba(0,0,0,0.06);
       display: flex;
       gap: 0;
       flex-direction: column;
     }
 
-    .overlay.open .lightbox {
-      transform: translateY(0) scale(1);
-    }
+    .overlay.open .lightbox { transform: translateY(0) scale(1); }
 
-    /* content inside lightbox */
     .light-media {
       width: 100%;
       aspect-ratio: 16/9;
@@ -205,29 +179,16 @@ Coming Soon...
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(0,0,0,0.04);
     }
 
-    .light-info .left {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .light-info h2 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .light-info p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .light-info .left { display: flex; flex-direction: column; gap: 6px; }
+    .light-info h2 { margin: 0; font-size: 16px; }
+    .light-info p { margin: 0; color: var(--muted); font-size: 13px; }
 
     .close-btn {
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0,0,0,0.06);
       color: var(--text);
       padding: 8px 12px;
       font-size: 13px;
@@ -235,27 +196,26 @@ Coming Soon...
       cursor: pointer;
     }
 
-    /* small responsive tweaks */
     @media (max-width: 640px) {
-      .portfolio-item {
-        min-width: 78%;
-        width: 78%;
-      }
-
-      .lightbox {
-        width: 95%;
-      }
-
-      .light-info {
-        padding: 10px;
-      }
+      .portfolio-item { min-width: 78%; width: 78%; }
+      .lightbox { width: 95%; }
+      .light-info { padding: 10px; }
     }
 
-    /* small helper for focus */
-    .portfolio-item:focus {
-      box-shadow: 0 14px 30px rgba(2, 6, 23, 0.7);
-      transform: translateY(-4px) scale(1.03);
+    /* ---------- float in from left animation ---------- */
+    @keyframes floatInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
+
+    /* animate-in class used by JS; animation-delay is set inline in JS for staggering */
+    .portfolio-item.animate-in {
+      animation-name: floatInLeft;
+      animation-duration: 520ms;
+      animation-timing-function: cubic-bezier(.2,.9,.2,1);
+      animation-fill-mode: forwards;
+    }
+
   </style>
 </head>
 <body>
@@ -366,7 +326,7 @@ Coming Soon...
   </div>
 
   <script>
-    /* JS code left untouched — only indentation cleaned */
+    /* JS code — cleaned and extended for float-in effect */
     const items = Array.from(document.querySelectorAll('.portfolio-item'));
     const overlay = document.getElementById('overlay');
     const lightMedia = document.getElementById('light-media');
@@ -433,6 +393,7 @@ Coming Soon...
       openLightbox(idx);
     }
 
+    // keyboard, click, hover, focus handlers (unchanged)
     items.forEach((item, i) => {
       item.addEventListener('keydown', (ev) => {
         if (ev.key === 'Enter' || ev.key === ' ') {
@@ -482,12 +443,82 @@ Coming Soon...
       }
     });
 
+    // IntersectionObserver to animate thumbnails as they enter the viewport
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const it = entry.target;
+          const idx = items.indexOf(it);
+          // stagger based on index (max 0.45s)
+          const delay = Math.min(idx * 0.08, 0.45);
+          it.style.animationDelay = `${delay}s`;
+          it.classList.add('animate-in');
+
+          // prefetch image/video for lightbox
           const src = it.dataset.src;
           if (src && !it.dataset.prefetched) {
             const link = document.createElement('link');
             link.rel = 'preload';
-            link.as = (it.dataset.type === 'video') ? 'video' : '
+            link.as = (it.dataset.type === 'video') ? 'video' : 'image';
+            link.href = src;
+            document.head.appendChild(link);
+            it.dataset.prefetched = true;
+          }
+
+          observer.unobserve(it); // animate once
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // start observing all items
+    items.forEach(item => observer.observe(item));
+  </script>
+</body>
+<body>
+
+<!-- SW Watermark -->
+<div id="watermark-container">
+  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
+</div>
+<head>
+<style>
+
+#watermark-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 180px;
+  height: 80px;
+  z-index: 1; /* Lower than popup */
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+#watermark-container img {
+  width: 250%;
+  height: 200%;
+  object-fit: contain;
+  opacity: 0.4;
+}
+#popup {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 200px;
+  background: white;
+  z-index: 100; /* Higher than watermark */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+
+
+
+
+</style>
+</head>
+</body>
