@@ -1666,7 +1666,7 @@
 
   <!-- More Info button -->
   <div style="text-align: center;">
-    <a class="info-button" href="https://github.com/SWMarketingTech/SWFiles/tree/main" target="_blank">
+    <a class="info-button" href="https://swmarketingtech.github.io/portfolio/index.html" target="_blank">
       More Info
     </a>
   </div>
