@@ -337,7 +337,7 @@
 <!-- PORTFOLIO THUMBNAILS -->
 <div class="portfolio-container">
  
-  <a class="thumbnail" href="https://swmarketingfirm.blogspot.com/p/choose-one-body-margin-0-font-family.html" target="_blank">
+  <a class="thumbnail" href="https://swmarketingtech.github.io/portfolio/index.html" target="_blank">
     <div class="icon"><i class="fas fa-file alt"></i></div>
     <div class="label">UX/IX Designs</div>
   </a>
