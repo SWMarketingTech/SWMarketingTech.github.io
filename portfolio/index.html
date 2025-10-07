@@ -7,18 +7,16 @@
 
   <style>
     :root {
-      --bg: #ffffff; /* white background */
-      --card: #f2f2f2; /* lighter gray for cards */
+      --bg: #ffffff;
+      --card: #f2f2f2;
       --accent: #08a0ff;
-      --glass: rgba(0, 0, 0, 0.04); /* faint transparent gray */
-      --text: #000000; /* black text */
-      --muted: rgba(0, 0, 0, 0.6); /* dark gray muted text */
+      --glass: rgba(0, 0, 0, 0.04);
+      --text: #000000;
+      --muted: rgba(0, 0, 0, 0.6);
     }
 
-    /* ---- Basic reset ---- */
     * { box-sizing: border-box; }
     html, body { height: 100%; }
-
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -49,7 +47,6 @@
       font-size: 13px;
     }
 
-    /* ---- Row of works (single row horizontal scroll) ---- */
     .portfolio-row {
       display: flex;
       gap: 18px;
@@ -59,14 +56,12 @@
       scrollbar-width: thin;
       -webkit-overflow-scrolling: touch;
     }
-
     .portfolio-row::-webkit-scrollbar { height: 10px; }
     .portfolio-row::-webkit-scrollbar-thumb {
       background: rgba(0,0,0,0.12);
       border-radius: 6px;
     }
 
-    /* portfolio item (initial + hover) */
     .portfolio-item {
       width: 300px;
       min-width: 240px;
@@ -79,21 +74,16 @@
       cursor: pointer;
       border: 1px solid rgba(0,0,0,0.06);
       transform-origin: center;
-
-      /* start state for float-in */
       opacity: 0;
       transform: translateX(-60px);
     }
 
-    /* subtle pop on hover (keeps working after animation) */
-    .portfolio-item:focus,
     .portfolio-item:hover {
       transform: translateY(-6px) scale(1.04);
       box-shadow: 0 18px 40px rgba(0,0,0,0.12);
       outline: none;
     }
 
-    /* thumbnail image */
     .thumb {
       display: block;
       width: 100%;
@@ -122,7 +112,6 @@
       border: 1px solid rgba(8, 160, 255, 0.12);
     }
 
-    /* overlay / lightbox (unchanged) */
     .overlay {
       position: fixed;
       inset: 0;
@@ -149,28 +138,40 @@
       box-shadow: 0 28px 80px rgba(3,8,20,0.07);
       border: 1px solid rgba(0,0,0,0.06);
       display: flex;
-      gap: 0;
       flex-direction: column;
     }
-
     .overlay.open .lightbox { transform: translateY(0) scale(1); }
 
+    /* scrollable media container: contains every media (one per item) horizontally */
     .light-media {
       width: 100%;
-      aspect-ratio: 16/9;
+      max-height: 92vh;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
       background: #000;
+      align-items: center;
+    }
+
+    .light-media .media-frame {
+      flex: 0 0 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      scroll-snap-align: center;
+      height: calc(min(60vh, 80vh));
+      background: #000;
       position: relative;
     }
 
     .light-media img,
     .light-media video {
-      width: 100%;
-      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      background: #000;
+      display: block;
     }
 
     .light-info {
@@ -181,8 +182,6 @@
       gap: 12px;
       border-top: 1px solid rgba(0,0,0,0.04);
     }
-
-    .light-info .left { display: flex; flex-direction: column; gap: 6px; }
     .light-info h2 { margin: 0; font-size: 16px; }
     .light-info p { margin: 0; color: var(--muted); font-size: 13px; }
 
@@ -199,23 +198,18 @@
     @media (max-width: 640px) {
       .portfolio-item { min-width: 78%; width: 78%; }
       .lightbox { width: 95%; }
-      .light-info { padding: 10px; }
     }
 
-    /* ---------- float in from left animation ---------- */
     @keyframes floatInLeft {
       from { opacity: 0; transform: translateX(-60px); }
       to   { opacity: 1; transform: translateX(0); }
     }
-
-    /* animate-in class used by JS; animation-delay is set inline in JS for staggering */
     .portfolio-item.animate-in {
       animation-name: floatInLeft;
       animation-duration: 520ms;
       animation-timing-function: cubic-bezier(.2,.9,.2,1);
       animation-fill-mode: forwards;
     }
-
   </style>
 </head>
 <body>
@@ -226,83 +220,49 @@
     </div>
   </header>
 
-  <!-- Row of works -->
   <section class="portfolio-row" aria-label="Portfolio works">
-    <!-- ITEM 1: App design -->
+    <!-- thumbnails (use your real image urls in data-src/src) -->
     <article class="portfolio-item" tabindex="0"
       data-type="image"
-      data-title="Mobile App — Finance Tracker"
-      data-desc="A clean, minimal app UI for tracking budgets and expenses."
-      data-src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
-      <div class="play-badge" aria-hidden="true" style="display:none">IMG</div>
+      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png"
+      data-title="Mobile App — Weather Scene"
+      data-desc="A clean, minimal app UI to get weather, news, and traffic based on any location.">
       <img class="thumb"
-        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png"
         alt="App mockup screenshot">
       <div class="meta">
-        <div class="title">Finance Tracker (App)</div>
-        <div class="tags">UI / UX • Mobile • Case Study</div>
+        <div class="title">Weather News (App)</div>
+        <div class="tags">UI / UX • Mobile • App Prototype</div>
       </div>
     </article>
 
-    <!-- ITEM 2: Webpage design -->
     <article class="portfolio-item" tabindex="0"
       data-type="image"
-      data-title="E-commerce Landing Page"
-      data-desc="High-converting landing page concept for a product launch."
-      data-src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png"
+      data-title="Travel App Interface"
+      data-desc="Concept for a menu selection page.">
       <img class="thumb"
-        src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-        alt="Landing page screenshot">
+        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png"
+        alt="Travel App Concept">
       <div class="meta">
-        <div class="title">Product Launch — Landing</div>
-        <div class="tags">Web Design • Conversion</div>
+        <div class="title">Travel App — Interface</div>
+        <div class="tags">UI/UX • App Design</div>
       </div>
     </article>
 
-    <!-- ITEM 3: Product placement ad (video) -->
-    <article class="portfolio-item" tabindex="0"
-      data-type="video"
-      data-title="Smart Bottle — Product Demo"
-      data-desc="Short 8s demo showing product features and animation."
-      data-src="videos/sample-bottle-demo.mp4">
-      <div class="play-badge" aria-hidden="true">▶</div>
-      <img class="thumb"
-        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-        alt="Product thumbnail">
-      <div class="meta">
-        <div class="title">Smart Bottle — Ad</div>
-        <div class="tags">Ad • Motion • Product</div>
-      </div>
-    </article>
 
-    <!-- ITEM 4: App animation (video) -->
-    <article class="portfolio-item" tabindex="0"
-      data-type="video"
-      data-title="Onboarding Flow — Animation"
-      data-desc="Animated onboarding micro-interactions for a fitness app."
-      data-src="videos/sample-onboarding.mp4">
-      <div class="play-badge" aria-hidden="true">▶</div>
-      <img class="thumb"
-        src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-        alt="Onboarding thumbnail">
-      <div class="meta">
-        <div class="title">Onboarding Animations</div>
-        <div class="tags">Motion • Mobile</div>
-      </div>
-    </article>
 
-    <!-- ITEM 5: Product placement (image) -->
     <article class="portfolio-item" tabindex="0"
       data-type="image"
-      data-title="Retail Shelf — Product Placement"
-      data-desc="In-store product placement mockup and photography direction."
-      data-src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png"
+      data-title="UX / UI — GPS APP"
+      data-desc="In-app GPS mockup visual.">
       <img class="thumb"
-        src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-        alt="Shelf display">
+        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png"
+        alt="GPS app mockup screenshot">
       <div class="meta">
-        <div class="title">Retail Placement</div>
-        <div class="tags">Photography • Merchandising</div>
+        <div class="title">GPS Navigator</div>
+        <div class="tags">UI • Navigation</div>
       </div>
     </article>
   </section>
@@ -311,6 +271,7 @@
   <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="lightbox" role="document">
       <div class="light-media" id="light-media" aria-live="polite"></div>
+
       <div class="light-info">
         <div class="left">
           <h2 id="light-title">Title</h2>
@@ -326,7 +287,6 @@
   </div>
 
   <script>
-    /* JS code — cleaned and extended for float-in effect */
     const items = Array.from(document.querySelectorAll('.portfolio-item'));
     const overlay = document.getElementById('overlay');
     const lightMedia = document.getElementById('light-media');
@@ -335,190 +295,243 @@
     const closeBtn = document.getElementById('closeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    let hoverTimers = new Map();
+
+    // current visible index inside the lightbox
     let currentIndex = -1;
+    // whether the light-media is populated
+    let built = false;
+
+    // Build one media frame per portfolio item (called once)
+    function buildLightMedia() {
+      if (built) return;
+      items.forEach((it, idx) => {
+        const type = (it.dataset.type || 'image').toLowerCase();
+        const src = it.dataset.src || '';
+        const frame = document.createElement('div');
+        frame.className = 'media-frame';
+        frame.dataset.index = idx;
+
+        if (type === 'video') {
+          const v = document.createElement('video');
+          v.src = src;
+          v.controls = true;
+          v.preload = 'metadata';
+          v.playsInline = true;
+          v.muted = true;
+          v.style.maxWidth = '100%';
+          v.style.maxHeight = '100%';
+          frame.appendChild(v);
+        } else {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = it.dataset.title || '';
+          img.loading = 'lazy';
+          frame.appendChild(img);
+        }
+        lightMedia.appendChild(frame);
+      });
+
+      // update title/desc when scroll finishes or on scroll
+      lightMedia.addEventListener('scroll', throttle(onLightMediaScroll, 80), { passive: true });
+
+      // allow dragging with mouse to scroll horizontally (improves desktop UX)
+      enableDragScroll(lightMedia);
+
+      built = true;
+    }
 
     function openLightbox(index) {
-      if (index < 0 || index >= items.length) return;
-      currentIndex = index;
-      const item = items[index];
-      const type = item.dataset.type || 'image';
-      const src = item.dataset.src;
-      const title = item.dataset.title || '';
-      const desc = item.dataset.desc || '';
-
-      lightMedia.innerHTML = '';
-      lightTitle.textContent = title;
-      lightDesc.textContent = desc;
-
-      if (type === 'video') {
-        const video = document.createElement('video');
-        video.src = src;
-        video.setAttribute('playsinline', '');
-        video.muted = true;
-        video.autoplay = true;
-        video.loop = false;
-        video.controls = true;
-        video.style.maxHeight = '92vh';
-        video.oncanplay = () => video.play().catch(() => { });
-        lightMedia.appendChild(video);
-      } else {
-        const img = document.createElement('img');
-        img.alt = title;
-        img.src = src;
-        lightMedia.appendChild(img);
-      }
+      if (!items.length) return;
+      if (index < 0) index = 0;
+      if (index >= items.length) index = items.length - 1;
+      buildLightMedia();
 
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
-      closeBtn.focus();
+
+      // scroll to the desired index element (center)
+      scrollToIndex(index, false);
+      updateCaptionForIndex(index);
+      currentIndex = index;
+
+      // pause all videos except the focused one after slight delay (allow scroll)
+      setTimeout(() => updateVideoPlayback(), 300);
     }
 
     function closeLightbox() {
-      const vid = lightMedia.querySelector('video');
-      if (vid) {
-        vid.pause();
-        vid.src = '';
-      }
+      // pause any playing videos
+      const vids = lightMedia.querySelectorAll('video');
+      vids.forEach(v => { try { v.pause(); } catch(e){}});
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
       currentIndex = -1;
     }
 
+    // scroll container to child index
+    function scrollToIndex(index, smooth = true) {
+      const child = lightMedia.children[index];
+      if (!child) return;
+      const left = child.offsetLeft;
+      lightMedia.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
+    }
+
     function goto(offset) {
-      if (currentIndex === -1) return;
+      if (!built) return;
       let idx = currentIndex + offset;
       if (idx < 0) idx = items.length - 1;
       if (idx >= items.length) idx = 0;
-      openLightbox(idx);
+      scrollToIndex(idx);
+      // we'll update caption on scroll event, but update now for immediacy
+      updateCaptionForIndex(idx);
+      currentIndex = idx;
+      setTimeout(() => updateVideoPlayback(), 300);
     }
 
-    // keyboard, click, hover, focus handlers (unchanged)
-    items.forEach((item, i) => {
-      item.addEventListener('keydown', (ev) => {
-        if (ev.key === 'Enter' || ev.key === ' ') {
-          ev.preventDefault();
-          openLightbox(i);
+    // compute nearest index from scrollLeft
+    function nearestIndexFromScroll() {
+      const w = lightMedia.clientWidth || 1;
+      const scrollLeft = lightMedia.scrollLeft;
+      const idx = Math.round(scrollLeft / w);
+      // clamp
+      return Math.max(0, Math.min(items.length - 1, idx));
+    }
+
+    // update caption based on index
+    function updateCaptionForIndex(idx) {
+      const it = items[idx];
+      if (!it) return;
+      lightTitle.textContent = it.dataset.title || '';
+      lightDesc.textContent = it.dataset.desc || '';
+      currentIndex = idx;
+    }
+
+    // handle scroll -> update caption and video play state
+    function onLightMediaScroll() {
+      const idx = nearestIndexFromScroll();
+      if (idx !== currentIndex) {
+        updateCaptionForIndex(idx);
+        updateVideoPlayback();
+      }
+    }
+
+    // Play only the video in view (if any), pause others
+    function updateVideoPlayback() {
+      const frames = Array.from(lightMedia.children);
+      frames.forEach((frame, i) => {
+        const v = frame.querySelector('video');
+        if (!v) return;
+        if (i === currentIndex) {
+          // try to play (may be blocked by browser autoplay rules; keep muted true)
+          v.currentTime = 0;
+          v.muted = true;
+          v.play().catch(()=>{});
+        } else {
+          try { v.pause(); } catch(e){}
         }
       });
+    }
 
-      item.addEventListener('click', () => openLightbox(i));
-
-      item.addEventListener('mouseenter', () => {
-        const t = setTimeout(() => openLightbox(i), 800);
-        hoverTimers.set(item, t);
+    // add keyboard & click handlers
+    function addEventHandlers() {
+      items.forEach((item, i) => {
+        item.addEventListener('click', () => openLightbox(i));
+        item.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            openLightbox(i);
+          }
+        });
       });
 
-      item.addEventListener('mouseleave', () => {
-        const t = hoverTimers.get(item);
-        if (t) clearTimeout(t);
-        hoverTimers.delete(item);
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', () => goto(-1));
+      nextBtn.addEventListener('click', () => goto(1));
+
+      overlay.addEventListener('click', (e) => {
+        // click outside lightbox closes
+        if (e.target === overlay) closeLightbox();
       });
 
-      item.addEventListener('focus', () => {
-        const t = setTimeout(() => openLightbox(i), 1200);
-        hoverTimers.set(item, t);
-      });
-
-      item.addEventListener('blur', () => {
-        const t = hoverTimers.get(item);
-        if (t) clearTimeout(t);
-        hoverTimers.delete(item);
-      });
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeLightbox();
-    });
-
-    prevBtn.addEventListener('click', () => goto(-1));
-    nextBtn.addEventListener('click', () => goto(1));
-
-    document.addEventListener('keydown', (e) => {
-      if (overlay.classList.contains('open')) {
+      document.addEventListener('keydown', (e) => {
+        if (!overlay.classList.contains('open')) return;
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowLeft') goto(-1);
         if (e.key === 'ArrowRight') goto(1);
+      });
+    }
+
+    // small throttle helper
+    function throttle(fn, wait) {
+      let last = 0;
+      return function(...args) {
+        const now = Date.now();
+        if (now - last >= wait) {
+          last = now;
+          fn.apply(this, args);
+        }
       }
+    }
+
+    // enable drag-to-scroll for a container
+    function enableDragScroll(container) {
+      let isDown = false;
+      let startX, scrollLeft;
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        container.classList.add('dragging');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+      window.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('dragging');
+      });
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX);
+        container.scrollLeft = scrollLeft - walk;
+      });
+      // touch support is native (no custom handlers needed)
+    }
+
+    // animate thumbnails in on load (like your original)
+    window.addEventListener('load', () => {
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('animate-in'), i * 100);
+      });
     });
 
-    // IntersectionObserver to animate thumbnails as they enter the viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const it = entry.target;
-          const idx = items.indexOf(it);
-          // stagger based on index (max 0.45s)
-          const delay = Math.min(idx * 0.08, 0.45);
-          it.style.animationDelay = `${delay}s`;
-          it.classList.add('animate-in');
-
-          // prefetch image/video for lightbox
-          const src = it.dataset.src;
-          if (src && !it.dataset.prefetched) {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = (it.dataset.type === 'video') ? 'video' : 'image';
-            link.href = src;
-            document.head.appendChild(link);
-            it.dataset.prefetched = true;
-          }
-
-          observer.unobserve(it); // animate once
-        }
-      });
-    }, { threshold: 0.12 });
-
-    // start observing all items
-    items.forEach(item => observer.observe(item));
+    // init handlers now
+    addEventHandlers();
   </script>
+
+  <!-- SW Watermark -->
+  <div id="watermark-container">
+    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
+  </div>
+
+  <style>
+    #watermark-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 180px;
+      height: 80px;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+    #watermark-container img {
+      width: 250%;
+      height: 200%;
+      object-fit: contain;
+      opacity: 0.4;
+    }
+  </style>
 </body>
-<body>
-
-<!-- SW Watermark -->
-<div id="watermark-container">
-  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
-</div>
-<head>
-<style>
-
-#watermark-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 180px;
-  height: 80px;
-  z-index: 1; /* Lower than popup */
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-#watermark-container img {
-  width: 250%;
-  height: 200%;
-  object-fit: contain;
-  opacity: 0.4;
-}
-#popup {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 300px;
-  height: 200px;
-  background: white;
-  z-index: 100; /* Higher than watermark */
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-
-
-
-
-
-</style>
-</head>
-</body>
+</html>
