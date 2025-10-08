@@ -25,7 +25,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: #000; /* fallback background */
+        background: #000;
     }
 
     spline-viewer {
@@ -54,17 +54,26 @@
         background-color: #2e7d32;
     }
 
-    /* Rest of the page */
     #mainContent {
         min-height: 200vh;
         background: linear-gradient(#fff, #ddd);
         padding: 40px;
     }
 
-    /* Slide effect when unlocking scroll */
     .unlock-scroll {
         overflow: auto;
         scroll-behavior: smooth;
+    }
+
+    /* Hide sticky header by default */
+    .blog-name.container {
+        opacity: 0;
+        transform: translateY(-50px);
+        transition: all 0.6s ease;
+    }
+    .blog-name.container.active {
+        opacity: 1;
+        transform: translateY(0);
     }
 </style>
 </head>
@@ -77,52 +86,6 @@
   <button id="enterBtn">hier eintragen</button>
 </div>
 
-<style>
-  /* Intro styling */
-  #intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 9999;
-    overflow: hidden;
-    background: black;
-  }
-
-  /* Center button in intro */
-  #enterBtn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: forestgreen;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 1;
-    transition: background 0.3s ease;
-  }
-  #enterBtn:hover {
-    background-color: #2e7d32;
-  }
-
-  /* Hide sticky header by default */
-  .blog-name.container {
-    opacity: 0;
-    transform: translateY(-50px);
-    transition: all 0.6s ease;
-  }
-  /* When active, slide in */
-  .blog-name.container.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
 <script>
   const intro = document.getElementById('intro');
   const btn = document.getElementById('enterBtn');
@@ -131,22 +94,27 @@
   // Lock scroll initially
   document.body.style.overflow = "hidden";
 
+  // PASSWORD-PROTECTED ENTRY
   btn.addEventListener('click', () => {
-    // Unlock scroll
-    document.body.style.overflow = "auto";
+    const password = prompt("Please enter the password to continue:");
 
-    // Fade out intro
-    intro.style.transition = 'opacity 0.6s ease';
-    intro.style.opacity = '0';
-    setTimeout(() => {
-      intro.style.display = 'none';
+    if (password === "welcome2024") {
+      // Unlock scroll
+      document.body.style.overflow = "auto";
 
-      // Slide in header
-      header.classList.add("active");
-    }, 600);
+      // Fade out intro
+      intro.style.transition = 'opacity 0.6s ease';
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        if (header) header.classList.add("active");
+      }, 600);
 
-    // Scroll to content
-    document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+      // Scroll to content
+      document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+    } else if (password !== null) {
+      alert("Incorrect password. Please try again.");
+    }
   });
 
   // Button hover "counter effect"
@@ -160,16 +128,11 @@
       btn.textContent = targetText
         .split("")
         .map((letter, index) => {
-          if (index < i) {
-            return targetText[index];
-          }
+          if (index < i) return targetText[index];
           return characters[Math.floor(Math.random() * characters.length)];
         })
         .join("");
-
-      if (i >= targetText.length) {
-        clearInterval(interval);
-      }
+      if (i >= targetText.length) clearInterval(interval);
       i++;
     }, 50);
   });
@@ -179,14 +142,12 @@
   });
 </script>
 
-
-
 <!-- MAIN PAGE CONTENT -->
 <div id="mainContent">
-<div class="sw-logo-container">
-  <div class="sw-logo">SW</div>
-  <div class="sw-words fade-in" id="sw-word" aria-live="polite">Marketing</div>
-</div>
+  <div class="sw-logo-container">
+    <div class="sw-logo">SW</div>
+    <div class="sw-words fade-in" id="sw-word" aria-live="polite">Marketing</div>
+  </div>
 
 <style>
   .sw-logo-container {
@@ -223,7 +184,6 @@
     color: black;
     opacity: 0;
     transition: opacity 0.5s ease;
-    font-style: ;
   }
 
   .sw-words.fade-in {
@@ -264,73 +224,6 @@
 
   setInterval(showNextWord, 3000);
 </script>
-
-<script>
-  const words = [
-    "UX/IX",
-    "HTML",
-    "CSS",
-    "Javascript",
-    "Java",
-    "SQL",
-    "Power BI",
-    "Front-end Developer",
-    "Marketing",
-    "Microsoft Azure Cloud Specialist",
-    "Design",
-    "Graphic Design & Animation",
-    "Sales",
-    "AI Automation and Development",
-    "Cyber Security"
-  ];
-
-  let index = 0;
-  const wordElement = document.getElementById("sw-word");
-
-  function showNextWord() {
-    wordElement.classList.remove("fade-in");
-    setTimeout(() => {
-      index = (index + 1) % words.length;
-      wordElement.textContent = words[index];
-      wordElement.classList.add("fade-in");
-    }, 500);
-  }
-
-  setInterval(showNextWord, 3000);
-</script>
-
-<script>
-  const words = [
-    "UX/IX",
-    "HTML",
-    "CSS",
-    "Javascript",
-    "Java",
-    "SQL",
-    "Power BI",
-    "Front-end Developer",
-    "Marketing",
-    "Microsoft Azure Cloud Specialist",
-    "Design",
-    "Graphic Design & Animation",
-    "Sales",
-    "AI Automation and Development",
-    "Cyber Security"
-  ];
-
-  let index = 0;
-  const wordElement = document.getElementById("sw-word");
-
-  function showNextWord() {
-    wordElement.classList.remove("fade-in");
-    setTimeout(() => {
-      index = (index + 1) % words.length;
-      wordElement.textContent = words[index];
-      wordElement.classList.add("fade-in");
-    }, 500);
-  }
-
-  setInterval(showNextWord, 3000);
 </script>
 
 
