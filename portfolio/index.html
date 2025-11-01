@@ -1,537 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio — Works</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portfolio — Works</title>
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --card: #f2f2f2;
-      --accent: #08a0ff;
-      --glass: rgba(0, 0, 0, 0.04);
-      --text: #000000;
-      --muted: rgba(0, 0, 0, 0.6);
-    }
+<style>
+:root {
+  --bg: #ffffff;
+  --card: #f2f2f2;
+  --accent: #08a0ff;
+  --glass: rgba(0, 0, 0, 0.04);
+  --text: #000000;
+  --muted: rgba(0, 0, 0, 0.6);
+}
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      padding: 32px;
-    }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+  background: var(--bg);
+  color: var(--text);
+  padding: 32px;
+}
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+h1 { margin: 0; font-size: 20px; font-weight: 600; }
+.lead { color: var(--muted); font-size: 13px; }
 
-    h1 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: 0.6px;
-      font-weight: 600;
-    }
+.portfolio-row {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 18px 6px;
+  scrollbar-width: thin;
+}
+.portfolio-item {
+  width: 300px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, var(--glass) 100%);
+  cursor: pointer;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+}
+.portfolio-item:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
 
-    .lead {
-      color: var(--muted);
-      font-size: 13px;
-    }
+.thumb {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+.meta { padding: 12px; }
+.title { font-weight: 600; font-size: 15px; margin: 0 0 6px 0; }
+.tags { font-size: 12px; color: var(--muted); }
 
-    .portfolio-row {
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      overflow-x: auto;
-      padding: 18px 6px;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-    }
-    .portfolio-row::-webkit-scrollbar { height: 10px; }
-    .portfolio-row::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.12);
-      border-radius: 6px;
-    }
+/* Hover Zoom Popup */
+.hover-zoom {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.hover-zoom img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: scale(0.95);
+  transition: transform 0.35s ease;
+}
+.hover-zoom.show {
+  opacity: 1;
+  pointer-events: none; /* This prevents flicker by letting the cursor “pass through” */
+}
+.hover-zoom.show img {
+  transform: scale(1);
+}
 
-    .portfolio-item {
-      width: 300px;
-      min-width: 240px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, var(--glass) 100%);
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms, opacity 260ms;
-      cursor: pointer;
-      border: 1px solid rgba(0,0,0,0.06);
-      transform-origin: center;
-      opacity: 0;
-      transform: translateX(-60px);
-    }
-
-    .portfolio-item:hover {
-      transform: translateY(-6px) scale(1.04);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-      outline: none;
-    }
-
-    .thumb {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover;
-      vertical-align: middle;
-    }
-
-    .meta { padding: 12px; }
-    .title { font-weight: 600; font-size: 15px; margin: 0 0 6px 0; }
-    .tags { font-size: 12px; color: var(--muted); }
-
-    .play-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: linear-gradient(90deg, rgba(8, 160, 255, 0.14), rgba(8, 160, 255, 0.08));
-      backdrop-filter: blur(6px);
-      padding: 8px;
-      border-radius: 8px;
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      font-size: 12px;
-      color: var(--accent);
-      border: 1px solid rgba(8, 160, 255, 0.12);
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(1, 2, 6, 0.62);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 260ms ease;
-      z-index: 1200;
-    }
-
-    .overlay.open { opacity: 1; pointer-events: auto; }
-
-    .lightbox {
-      width: min(1100px, 94%);
-      max-height: 92vh;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 12px;
-      overflow: hidden;
-      transform: translateY(18px) scale(.98);
-      transition: transform 360ms cubic-bezier(.2,.9,.2,1), opacity 240ms;
-      box-shadow: 0 28px 80px rgba(3,8,20,0.07);
-      border: 1px solid rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-    }
-    .overlay.open .lightbox { transform: translateY(0) scale(1); }
-
-    /* scrollable media container: contains every media (one per item) horizontally */
-    .light-media {
-      width: 100%;
-      max-height: 92vh;
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      background: #000;
-      align-items: center;
-    }
-
-    .light-media .media-frame {
-      flex: 0 0 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      scroll-snap-align: center;
-      height: calc(min(60vh, 80vh));
-      background: #000;
-      position: relative;
-    }
-
-    .light-media img,
-    .light-media video {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .light-info {
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-top: 1px solid rgba(0,0,0,0.04);
-    }
-    .light-info h2 { margin: 0; font-size: 16px; }
-    .light-info p { margin: 0; color: var(--muted); font-size: 13px; }
-
-    .close-btn {
-      background: transparent;
-      border: 1px solid rgba(0,0,0,0.06);
-      color: var(--text);
-      padding: 8px 12px;
-      font-size: 13px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 640px) {
-      .portfolio-item { min-width: 78%; width: 78%; }
-      .lightbox { width: 95%; }
-    }
-
-    @keyframes floatInLeft {
-      from { opacity: 0; transform: translateX(-60px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    .portfolio-item.animate-in {
-      animation-name: floatInLeft;
-      animation-duration: 520ms;
-      animation-timing-function: cubic-bezier(.2,.9,.2,1);
-      animation-fill-mode: forwards;
-    }
-  </style>
+/* Watermark */
+#watermark-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  height: 40px;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+#watermark-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.4;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>My Work Showcase</h1>
-    <div class="lead">
-      Hover a thumbnail (or hold) to expand — click or press Enter to open full view.
+
+<header>
+  <h1>My Work Showcase</h1>
+  <div class="lead">Hover a thumbnail to preview it in full.</div>
+</header>
+
+<section class="portfolio-row" aria-label="Portfolio works">
+  <article class="portfolio-item" data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png">
+    <img class="thumb" src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png" alt="Weather App UI">
+    <div class="meta">
+      <div class="title">Weather News (App)</div>
+      <div class="tags">UI / UX • Mobile</div>
     </div>
-  </header>
+  </article>
 
-  <section class="portfolio-row" aria-label="Portfolio works">
-    <!-- thumbnails (use your real image urls in data-src/src) -->
-    <article class="portfolio-item" tabindex="0"
-      data-type="image"
-      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png"
-      data-title="Mobile App — Weather Scene"
-      data-desc="A clean, minimal app UI to get weather, news, and traffic based on any location.">
-      <img class="thumb"
-        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/make%20the%20background%20(weather%20app).png"
-        alt="App mockup screenshot">
-      <div class="meta">
-        <div class="title">Weather News (App)</div>
-        <div class="tags">UI / UX • Mobile • App Prototype</div>
-      </div>
-    </article>
-
-    <article class="portfolio-item" tabindex="0"
-      data-type="image"
-      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png"
-      data-title="Travel App Interface"
-      data-desc="Concept for a menu selection page.">
-      <img class="thumb"
-        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png"
-        alt="Travel App Concept">
-      <div class="meta">
-        <div class="title">Travel App — Interface</div>
-        <div class="tags">UI/UX • App Design</div>
-      </div>
-    </article>
-
-
-
-    <article class="portfolio-item" tabindex="0"
-      data-type="image"
-      data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png"
-      data-title="UX / UI — GPS APP"
-      data-desc="In-app GPS mockup visual.">
-      <img class="thumb"
-        src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png"
-        alt="GPS app mockup screenshot">
-      <div class="meta">
-        <div class="title">GPS Navigator</div>
-        <div class="tags">UI • Navigation</div>
-      </div>
-    </article>
-  </section>
-
-  <!-- Lightbox overlay -->
-  <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="lightbox" role="document">
-      <div class="light-media" id="light-media" aria-live="polite"></div>
-
-      <div class="light-info">
-        <div class="left">
-          <h2 id="light-title">Title</h2>
-          <p id="light-desc">Description</p>
-        </div>
-        <div class="right">
-          <button id="prevBtn" class="close-btn" title="Previous">‹</button>
-          <button id="nextBtn" class="close-btn" title="Next">›</button>
-          <button id="closeBtn" class="close-btn" aria-label="Close (Esc)">Close ✕</button>
-        </div>
-      </div>
+  <article class="portfolio-item" data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png">
+    <img class="thumb" src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Create%20a%20travel%20app%20.png" alt="Travel App">
+    <div class="meta">
+      <div class="title">Travel App Interface</div>
+      <div class="tags">UI / UX • App Design</div>
     </div>
-  </div>
+  </article>
 
-  <script>
-    const items = Array.from(document.querySelectorAll('.portfolio-item'));
-    const overlay = document.getElementById('overlay');
-    const lightMedia = document.getElementById('light-media');
-    const lightTitle = document.getElementById('light-title');
-    const lightDesc = document.getElementById('light-desc');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+  <article class="portfolio-item" data-src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png">
+    <img class="thumb" src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/create%20an%20image%20for%20gps.png" alt="GPS App">
+    <div class="meta">
+      <div class="title">GPS Navigator</div>
+      <div class="tags">UI • Navigation</div>
+    </div>
+  </article>
+</section>
 
-    // current visible index inside the lightbox
-    let currentIndex = -1;
-    // whether the light-media is populated
-    let built = false;
+<!-- Hover Zoom Overlay -->
+<div id="hoverZoom" class="hover-zoom">
+  <img id="zoomImg" src="" alt="Preview">
+</div>
 
-    // Build one media frame per portfolio item (called once)
-    function buildLightMedia() {
-      if (built) return;
-      items.forEach((it, idx) => {
-        const type = (it.dataset.type || 'image').toLowerCase();
-        const src = it.dataset.src || '';
-        const frame = document.createElement('div');
-        frame.className = 'media-frame';
-        frame.dataset.index = idx;
+<!-- SW Watermark -->
+<div id="watermark-container">
+  <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo">
+</div>
 
-        if (type === 'video') {
-          const v = document.createElement('video');
-          v.src = src;
-          v.controls = true;
-          v.preload = 'metadata';
-          v.playsInline = true;
-          v.muted = true;
-          v.style.maxWidth = '100%';
-          v.style.maxHeight = '100%';
-          frame.appendChild(v);
-        } else {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = it.dataset.title || '';
-          img.loading = 'lazy';
-          frame.appendChild(img);
-        }
-        lightMedia.appendChild(frame);
-      });
+<script>
+const items = document.querySelectorAll('.portfolio-item');
+const hoverZoom = document.getElementById('hoverZoom');
+const zoomImg = document.getElementById('zoomImg');
+let hoverTimeout;
 
-      // update title/desc when scroll finishes or on scroll
-      lightMedia.addEventListener('scroll', throttle(onLightMediaScroll, 80), { passive: true });
+// Show zoomed image on hover (smooth, no flicker)
+items.forEach(item => {
+  const src = item.dataset.src;
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(hoverTimeout);
+    zoomImg.src = src;
+    hoverZoom.classList.add('show');
+  });
+  item.addEventListener('mouseleave', () => {
+    // delay hide slightly for smoother transition
+    hoverTimeout = setTimeout(() => hoverZoom.classList.remove('show'), 120);
+  });
+});
+</script>
 
-      // allow dragging with mouse to scroll horizontally (improves desktop UX)
-      enableDragScroll(lightMedia);
-
-      built = true;
-    }
-
-    function openLightbox(index) {
-      if (!items.length) return;
-      if (index < 0) index = 0;
-      if (index >= items.length) index = items.length - 1;
-      buildLightMedia();
-
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-
-      // scroll to the desired index element (center)
-      scrollToIndex(index, false);
-      updateCaptionForIndex(index);
-      currentIndex = index;
-
-      // pause all videos except the focused one after slight delay (allow scroll)
-      setTimeout(() => updateVideoPlayback(), 300);
-    }
-
-    function closeLightbox() {
-      // pause any playing videos
-      const vids = lightMedia.querySelectorAll('video');
-      vids.forEach(v => { try { v.pause(); } catch(e){}});
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      currentIndex = -1;
-    }
-
-    // scroll container to child index
-    function scrollToIndex(index, smooth = true) {
-      const child = lightMedia.children[index];
-      if (!child) return;
-      const left = child.offsetLeft;
-      lightMedia.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
-    }
-
-    function goto(offset) {
-      if (!built) return;
-      let idx = currentIndex + offset;
-      if (idx < 0) idx = items.length - 1;
-      if (idx >= items.length) idx = 0;
-      scrollToIndex(idx);
-      // we'll update caption on scroll event, but update now for immediacy
-      updateCaptionForIndex(idx);
-      currentIndex = idx;
-      setTimeout(() => updateVideoPlayback(), 300);
-    }
-
-    // compute nearest index from scrollLeft
-    function nearestIndexFromScroll() {
-      const w = lightMedia.clientWidth || 1;
-      const scrollLeft = lightMedia.scrollLeft;
-      const idx = Math.round(scrollLeft / w);
-      // clamp
-      return Math.max(0, Math.min(items.length - 1, idx));
-    }
-
-    // update caption based on index
-    function updateCaptionForIndex(idx) {
-      const it = items[idx];
-      if (!it) return;
-      lightTitle.textContent = it.dataset.title || '';
-      lightDesc.textContent = it.dataset.desc || '';
-      currentIndex = idx;
-    }
-
-    // handle scroll -> update caption and video play state
-    function onLightMediaScroll() {
-      const idx = nearestIndexFromScroll();
-      if (idx !== currentIndex) {
-        updateCaptionForIndex(idx);
-        updateVideoPlayback();
-      }
-    }
-
-    // Play only the video in view (if any), pause others
-    function updateVideoPlayback() {
-      const frames = Array.from(lightMedia.children);
-      frames.forEach((frame, i) => {
-        const v = frame.querySelector('video');
-        if (!v) return;
-        if (i === currentIndex) {
-          // try to play (may be blocked by browser autoplay rules; keep muted true)
-          v.currentTime = 0;
-          v.muted = true;
-          v.play().catch(()=>{});
-        } else {
-          try { v.pause(); } catch(e){}
-        }
-      });
-    }
-
-    // add keyboard & click handlers
-    function addEventHandlers() {
-      items.forEach((item, i) => {
-        item.addEventListener('click', () => openLightbox(i));
-        item.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter' || ev.key === ' ') {
-            ev.preventDefault();
-            openLightbox(i);
-          }
-        });
-      });
-
-      closeBtn.addEventListener('click', closeLightbox);
-      prevBtn.addEventListener('click', () => goto(-1));
-      nextBtn.addEventListener('click', () => goto(1));
-
-      overlay.addEventListener('click', (e) => {
-        // click outside lightbox closes
-        if (e.target === overlay) closeLightbox();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (!overlay.classList.contains('open')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') goto(-1);
-        if (e.key === 'ArrowRight') goto(1);
-      });
-    }
-
-    // small throttle helper
-    function throttle(fn, wait) {
-      let last = 0;
-      return function(...args) {
-        const now = Date.now();
-        if (now - last >= wait) {
-          last = now;
-          fn.apply(this, args);
-        }
-      }
-    }
-
-    // enable drag-to-scroll for a container
-    function enableDragScroll(container) {
-      let isDown = false;
-      let startX, scrollLeft;
-      container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        container.classList.add('dragging');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-      });
-      window.addEventListener('mouseup', () => {
-        isDown = false;
-        container.classList.remove('dragging');
-      });
-      container.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX);
-        container.scrollLeft = scrollLeft - walk;
-      });
-      // touch support is native (no custom handlers needed)
-    }
-
-    // animate thumbnails in on load (like your original)
-    window.addEventListener('load', () => {
-      items.forEach((item, i) => {
-        setTimeout(() => item.classList.add('animate-in'), i * 100);
-      });
-    });
-
-    // init handlers now
-    addEventHandlers();
-  </script>
-
-  <!-- SW Watermark -->
-  <div id="watermark-container">
-    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/SW%20The%20Logo.jpg" alt="SW Logo" />
-  </div>
-
-  <style>
-    #watermark-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 180px;
-      height: 80px;
-      z-index: 1;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: transparent;
-    }
-    #watermark-container img {
-      width: 250%;
-      height: 200%;
-      object-fit: contain;
-      opacity: 0.4;
-    }
-  </style>
 </body>
 </html>
+
