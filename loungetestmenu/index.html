@@ -26,14 +26,21 @@
             padding: 40px;
         }
 
+        .logo-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
         .logo-container {
             perspective: 1000px;
             display: inline-block;
-            margin-bottom: 30px;
         }
 
         .logo {
-            width: 300px;
+            width: 500px;
             height: auto;
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
             transition: transform 0.1s ease-out;
@@ -42,12 +49,11 @@
 
         .animated-text {
             font-family: 'Brush Script MT', cursive;
-            font-size: 64px;
+            font-size: 72px;
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 30px 0;
             display: inline-block;
         }
 
@@ -66,6 +72,7 @@
         .selector-container {
             margin-top: 40px;
             display: inline-block;
+            width: 100%;
         }
 
         .selector-pane {
@@ -75,6 +82,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             background: #0B5269;
             padding: 8px;
+            margin: 0 auto;
+            width: fit-content;
         }
 
         .selector-btn {
@@ -106,11 +115,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Lounge%20Logo%20transarent%20background%20(hopefully).png" alt="Lounge Logo" class="logo" id="logo">
+        <div class="logo-text-container">
+            <div class="logo-container">
+                <a href="https://swmarketingtech.github.io/loungepage/index.html">
+                    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Lounge%20Logo%20transarent%20background%20(hopefully).png" alt="Lounge Logo" class="logo" id="logo">
+                </a>
+            </div>
+            
+            <div class="animated-text" id="animatedText"></div>
         </div>
-        
-        <div class="animated-text" id="animatedText"></div>
         
         <div class="selector-container">
             <div class="selector-pane">
@@ -161,15 +174,13 @@
         fullScreenBtn.addEventListener('click', () => {
             fullScreenBtn.classList.add('active');
             mobileBtn.classList.remove('active');
-            // Add your navigation logic here
-            console.log('Full Screen version selected');
+            window.location.href = 'https://swmarketingtech.github.io/loungetest/index.html';
         });
 
         mobileBtn.addEventListener('click', () => {
             mobileBtn.classList.add('active');
             fullScreenBtn.classList.remove('active');
-            // Add your navigation logic here
-            console.log('Mobile version selected');
+            window.location.href = 'https://swmarketingtech.github.io/loungetestmobile/index.html';
         });
     </script>
 </body>
