@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lounge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            right: 40px;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 60px 60px;
+        }
+
+        .section {
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .split-layout {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .split-layout.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .split-left, .split-right {
+            flex: 1;
+        }
+
+        .split-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .description p {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible .description p {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .description p:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .description p:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .description p:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .three-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .three-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .two-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .two-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .center-text {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition-delay: 0.3s;
+        }
+
+        .section.visible .center-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .full-width-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-with-arrow {
+            position: relative;
+            display: inline-block;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .image-with-arrow:hover .arrow {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (max-width: 968px) {
+            .header {
+                right: 20px;
+                top: 10px;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .content {
+                padding: 100px 30px 40px;
+            }
+
+            .split-layout, .split-layout.reverse {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .three-images {
+                grid-template-columns: 1fr;
+            }
+
+            .two-images {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Lounge%20Logo%20transarent%20background%20(hopefully).png" alt="Lounge Logo" class="logo">
+    </div>
+
+    <div class="content">
+        <!-- Section 1: Home image with description -->
+        <div class="section">
+            <div class="split-layout">
+                <div class="split-left">
+                    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Home.png" alt="Home" class="split-image">
+                </div>
+                <div class="split-right">
+                    <div class="description">
+                        <p>With the first wireframe, my immediate goal was to alleviate the jargon on the page. What I mean by this is that we live in the age of social media, and attention spans are at an all-time low. The first wireframe page had a plethora of words and information on it. I believe that for many users, this will confuse them and cause them to lose interest. My goal was to take the pictorial approach.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Three profile pictures -->
+        <div class="section">
+            <div class="three-images">
+                <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Dating%20App%20Profile.jpg" alt="Dating App Profile 1">
+                <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Dating%20App%20Profile%20Picture%202.jpg" alt="Dating App Profile 2">
+                <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Dating%20App%20Profile%20Picture%203.jpg" alt="Dating App Profile 3">
+            </div>
+            <div class="center-text">
+                <p>Instead of having the information written under the page I wanted to disperse it among the profile pictures. I also wanted to link their Instagram profiles to promote interest from the users.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Profile with arrow and two descriptions -->
+        <div class="section">
+            <div class="split-layout">
+                <div class="split-left">
+                    <div class="image-with-arrow">
+                        <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Dating%20App%20Profile.jpg" alt="Dating App Profile" class="split-image">
+                        <svg class="arrow" style="top: 50%; left: 40%; transform-origin: center;" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 12 3.5, 0 7" fill="#87CEEB" />
+                                </marker>
+                            </defs>
+                            <path d="M 20 60 Q 40 30, 80 50" stroke="#87CEEB" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="10" y="70" fill="#87CEEB" font-size="14" font-weight="bold">Instagram</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="split-right">
+                    <div class="description">
+                        <p>My goal was to take the pictorial approach. A picture speaks a thousand words so instead of filling the page with words icons I thought to fill it with pictures instead. My hope is to draw and maintain engagement. Applications like Instagram and Facebook are flagship when it comes to social media today because of how picture eccentric they are. For this approach I wanted all information to be fixated or centered around the profile picture(s) to gauge audience interest.</p>
+                        <p>My goal was to take the pictorial approach. A picture speaks a thousand words so instead of filling the page with words icons I thought to fill it with pictures instead. My hope is to draw and maintain engagement. Applications like Instagram and Facebook are flagship when it comes to social media today because of how picture eccentric they are. For this approach I wanted all information to be fixated or centered around the profile picture(s) to gauge audience interest.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Settings page on right, description on left -->
+        <div class="section">
+            <div class="split-layout reverse">
+                <div class="split-right">
+                    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Settings%20page%20revised.jpg" alt="Settings Page" class="split-image">
+                </div>
+                <div class="split-left">
+                    <div class="description">
+                        <p>For the settings page, I wanted to create a plan of action. There was plenty of information on the page, but I wanted to fixate all the information around one element. In this instance, I wanted the settings page to be centered around driving consumer revenue. I chose for the page to have a greater emphasis on consumer upgrading. The more popular dating apps take on this approach, so I didn't view this as informal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Two settings images on left, description on right -->
+        <div class="section">
+            <div class="split-layout">
+                <div class="split-left">
+                    <div class="two-images">
+                        <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Settings%20page%20revised.jpg" alt="Settings Revised">
+                        <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Settings%20(1).png" alt="Settings">
+                    </div>
+                </div>
+                <div class="split-right">
+                    <div class="description">
+                        <p>The new design versus the previous design encourages an immediate plan of action. Promoting the immediate upgrade to avoid overwhelming the consumer by going from the free plan to the ultra-plan. But if the user is interested in more expansive plans, they can still select them by hitting the "upgrade" button.</p>
+                        <p>The "subscribe" button is relabeled as the "upgrade" button just to clarify the button's intent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Settings Page 2A on left, description on right -->
+        <div class="section">
+            <div class="split-layout">
+                <div class="split-left">
+                    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Settings%20Page%202A.jpg" alt="Settings Page 2A" class="split-image">
+                </div>
+                <div class="split-right">
+                    <div class="description">
+                        <p>The upgrade page lays out and expands on the options that the first page did. I just amplified the graphic to encourage user engagement. I also highlighted some of the fonts in gold lettering to promote some of the features that each plan provides.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Q&A page on right, description on left -->
+        <div class="section">
+            <div class="split-layout reverse">
+                <div class="split-right">
+                    <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/swmarketingtech.github.io_loungetest_index.html%20(1).png" alt="Q&A Page" class="split-image">
+                </div>
+                <div class="split-left">
+                    <div class="description">
+                        <p>For the page, I wanted to change the setup of the questions. I felt that the first set of questions in the example had way too many questions and that it could possibly be a tad bit overwhelming for someone to gloss through if they were just swiping through suitors. I felt the best option was to condense the questions into a smaller number of Q&A questions that had a more intimate approach. So instead of asking some to select "yes" or "no" for whether or not they like long walks on the beach, they would see a prompt asking them if they like long walks on the beach, and they would answer in their own words. This is an app on a phone, not an actual face to face encounter, so I wanted to bridge the gap as much as possible to create supplicate human-like interaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Task bar centered with description below -->
+        <div class="section">
+            <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Dating%20App%20Task%20Bar.jpg" alt="Task Bar" class="full-width-image">
+            <div class="center-text">
+                <p>The selection pane at the bottom of the screen was left untouched, because I didn't see it as an immediate issue. I also didn't think the selection pane played a strong factor in increases engagement with users.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
