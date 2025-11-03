@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lounge Entrance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .logo-container {
+            perspective: 1000px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .animated-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 64px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            display: inline-block;
+        }
+
+        .animated-text span {
+            opacity: 0;
+            display: inline-block;
+            animation: writeText 0.5s forwards;
+        }
+
+        @keyframes writeText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .selector-container {
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        .selector-pane {
+            display: flex;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: #0B5269;
+            padding: 8px;
+        }
+
+        .selector-btn {
+            padding: 18px 50px;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 42px;
+            position: relative;
+        }
+
+        .selector-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .selector-btn.active {
+            background: #FFD700;
+            color: #0B5269;
+        }
+
+        .selector-btn:not(.active):hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/SWMarketingTech/SWFiles/main/Lounge%20Logo%20transarent%20background%20(hopefully).png" alt="Lounge Logo" class="logo" id="logo">
+        </div>
+        
+        <div class="animated-text" id="animatedText"></div>
+        
+        <div class="selector-container">
+            <div class="selector-pane">
+                <button class="selector-btn active" id="fullScreenBtn">Full Screen</button>
+                <button class="selector-btn" id="mobileBtn">Mobile</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 3D Tilt Effect
+        const logo = document.getElementById('logo');
+        const logoContainer = document.querySelector('.logo-container');
+
+        logoContainer.addEventListener('mousemove', (e) => {
+            const rect = logoContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+
+        logoContainer.addEventListener('mouseleave', () => {
+            logo.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+        });
+
+        // Animated Text
+        const text = "testpage";
+        const animatedText = document.getElementById('animatedText');
+        
+        text.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.animationDelay = `${index * 0.1}s`;
+            animatedText.appendChild(span);
+        });
+
+        // Selector Buttons
+        const fullScreenBtn = document.getElementById('fullScreenBtn');
+        const mobileBtn = document.getElementById('mobileBtn');
+
+        fullScreenBtn.addEventListener('click', () => {
+            fullScreenBtn.classList.add('active');
+            mobileBtn.classList.remove('active');
+            // Add your navigation logic here
+            console.log('Full Screen version selected');
+        });
+
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.add('active');
+            fullScreenBtn.classList.remove('active');
+            // Add your navigation logic here
+            console.log('Mobile version selected');
+        });
+    </script>
+</body>
+</html>
